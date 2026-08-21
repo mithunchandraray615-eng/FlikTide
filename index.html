@@ -1,458 +1,1167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#070b14" />
-  <meta
-    name="description"
-    content="FlikTide — Discover, Play, Learn & Explore."
-  />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1020">
+<meta name="description" content="FlikTide — Connect, discover and share.">
+<title>FlikTide — Social Entertainment</title>
 
-  <title>FlikTide — Discover, Play, Learn & Explore</title>
+<style>
+:root{
+  --bg:#f4f6fa;
+  --card:#fff;
+  --text:#111827;
+  --muted:#667085;
+  --border:#e5e7eb;
+  --primary:#6d5dfc;
+  --primary2:#8b7cff;
+  --soft:#f0efff;
+  --shadow:0 8px 30px rgba(16,24,40,.07);
+  --radius:18px;
+}
 
-  <style>
-    :root {
-      --bg: #070b14;
-      --surface: #0d1320;
-      --surface-2: #121a2a;
-      --border: rgba(255,255,255,.09);
-      --text: #f5f7fb;
-      --muted: #9aa5b5;
-      --primary: #6d5dfc;
-      --primary-2: #8b7cff;
-      --radius: 20px;
-    }
+*{box-sizing:border-box;margin:0;padding:0}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+body{
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,
+  "Segoe UI",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+button,input,textarea{font:inherit}
+button{cursor:pointer;border:0}
+a{text-decoration:none;color:inherit}
 
-    body {
-      font-family:
-        Inter, system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+.hidden{display:none!important}
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+/* HEADER */
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:100;
+  height:64px;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
 
-    button {
-      font: inherit;
-    }
+.topbar-inner{
+  max-width:1180px;
+  height:100%;
+  margin:auto;
+  padding:0 16px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
 
-    /* Header */
+.logo{
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:-1px;
+}
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(18px);
-      background: rgba(7,11,20,.78);
-      border-bottom: 1px solid var(--border);
-    }
+.logo span{color:var(--primary)}
 
-    .nav {
-      max-width: 1100px;
-      margin: auto;
-      height: 68px;
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+.search{
+  display:none;
+  position:relative;
+  flex:1;
+  max-width:360px;
+}
 
-    .logo {
-      font-size: 23px;
-      font-weight: 800;
-      letter-spacing: -.6px;
-    }
+.search input{
+  width:100%;
+  height:42px;
+  border:0;
+  outline:0;
+  border-radius:999px;
+  background:#f0f2f5;
+  padding:0 16px 0 42px;
+}
 
-    .logo span {
-      color: var(--primary-2);
-    }
+.search-icon{
+  position:absolute;
+  left:15px;
+  top:10px;
+  color:var(--muted);
+}
 
-    .nav-links {
-      display: none;
-      gap: 28px;
-      color: var(--muted);
-      font-size: 14px;
-    }
+.top-actions{
+  margin-left:auto;
+  display:flex;
+  gap:7px;
+}
 
-    .nav-links a:hover {
-      color: var(--text);
-    }
+.icon-btn{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#f0f2f5;
+  color:var(--text);
+  display:grid;
+  place-items:center;
+  font-size:18px;
+  position:relative;
+}
 
-    .menu {
-      width: 42px;
-      height: 42px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: var(--surface);
-      color: white;
-      cursor: pointer;
-      font-size: 20px;
-    }
+.badge{
+  position:absolute;
+  right:-2px;
+  top:-2px;
+  min-width:18px;
+  height:18px;
+  padding:0 4px;
+  border-radius:20px;
+  background:#ef4444;
+  color:white;
+  font-size:10px;
+  display:grid;
+  place-items:center;
+  border:2px solid white;
+}
 
-    /* Hero */
+/* LAYOUT */
+.layout{
+  max-width:1180px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:22px;
+  padding:20px 14px 90px;
+}
 
-    .hero {
-      max-width: 1100px;
-      margin: auto;
-      padding: 78px 20px 55px;
-      text-align: center;
-    }
+.sidebar{
+  display:none;
+}
 
-    .badge {
-      display: inline-flex;
-      padding: 7px 13px;
-      border: 1px solid rgba(109,93,252,.35);
-      background: rgba(109,93,252,.1);
-      border-radius: 999px;
-      color: #b9b1ff;
-      font-size: 13px;
-      margin-bottom: 22px;
-    }
+.sidebar-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:16px;
+  box-shadow:var(--shadow);
+}
 
-    .hero h1 {
-      max-width: 760px;
-      margin: auto;
-      font-size: clamp(42px, 11vw, 76px);
-      line-height: 1.02;
-      letter-spacing: -2.8px;
-    }
+.side-link{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:3px;
+  font-weight:600;
+}
 
-    .gradient {
-      background: linear-gradient(
-        120deg,
-        #ffffff,
-        #9f95ff,
-        #6d5dfc
-      );
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+.side-link:hover{background:var(--soft)}
 
-    .hero p {
-      max-width: 620px;
-      margin: 23px auto 0;
-      color: var(--muted);
-      font-size: 16px;
-    }
+.avatar{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  object-fit:cover;
+  background:linear-gradient(135deg,#6d5dfc,#27c2ff);
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-weight:800;
+  flex:none;
+}
 
-    .actions {
-      margin-top: 30px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+.avatar.small{
+  width:36px;
+  height:36px;
+}
 
-    .btn {
-      min-height: 52px;
-      padding: 0 25px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      transition: .25s ease;
-    }
+.avatar.big{
+  width:76px;
+  height:76px;
+  font-size:25px;
+}
 
-    .btn-primary {
-      background: var(--primary);
-      box-shadow: 0 12px 35px rgba(109,93,252,.25);
-    }
+/* STORIES */
+.stories{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding-bottom:4px;
+  scrollbar-width:none;
+}
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      background: var(--primary-2);
-    }
+.stories::-webkit-scrollbar{display:none}
 
-    .btn-secondary {
-      background: var(--surface);
-      color: var(--text);
-    }
+.story{
+  min-width:112px;
+  height:165px;
+  border-radius:16px;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg,#6d5dfc,#16b8a6);
+  color:white;
+  box-shadow:var(--shadow);
+}
 
-    .btn-secondary:hover {
-      background: var(--surface-2);
-    }
+.story::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(transparent 35%,rgba(0,0,0,.7));
+}
 
-    /* Cards */
+.story-content{
+  position:absolute;
+  inset:auto 10px 10px;
+  z-index:2;
+  font-weight:700;
+  font-size:13px;
+}
 
-    .section {
-      max-width: 1100px;
-      margin: auto;
-      padding: 45px 20px;
-    }
+.story .avatar{
+  position:absolute;
+  top:10px;
+  left:10px;
+  z-index:3;
+  border:3px solid var(--primary);
+}
 
-    .section-title {
-      font-size: 27px;
-      letter-spacing: -.7px;
-      margin-bottom: 7px;
-    }
+.story-add{
+  background:var(--card);
+  color:var(--text);
+  border:1px solid var(--border);
+}
 
-    .section-subtitle {
-      color: var(--muted);
-      margin-bottom: 25px;
-      font-size: 14px;
-    }
+.story-add::after{display:none}
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
+.story-add .plus{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:var(--primary);
+  color:white;
+  display:grid;
+  place-items:center;
+  margin:38px auto 25px;
+  font-size:25px;
+}
 
-    .card {
-      padding: 23px;
-      background: linear-gradient(
-        145deg,
-        var(--surface-2),
-        var(--surface)
-      );
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      transition: .25s ease;
-    }
+/* COMPOSER */
+.composer{
+  margin-top:16px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:15px;
+  box-shadow:var(--shadow);
+}
 
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(139,124,255,.35);
-    }
+.composer-top{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
 
-    .icon {
-      width: 48px;
-      height: 48px;
-      display: grid;
-      place-items: center;
-      border-radius: 14px;
-      background: rgba(109,93,252,.13);
-      font-size: 23px;
-      margin-bottom: 17px;
-    }
+.fake-input{
+  flex:1;
+  height:43px;
+  border-radius:999px;
+  background:#f0f2f5;
+  color:var(--muted);
+  padding:11px 17px;
+  cursor:pointer;
+}
 
-    .card h3 {
-      font-size: 18px;
-      margin-bottom: 7px;
-    }
+.composer-actions{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--border);
+  margin-top:14px;
+  padding-top:8px;
+}
 
-    .card p {
-      color: var(--muted);
-      font-size: 14px;
-    }
+.compose-action{
+  background:none;
+  padding:10px;
+  border-radius:10px;
+  color:var(--muted);
+  font-weight:600;
+}
 
-    /* CTA */
+.compose-action:hover{background:#f5f5f5}
 
-    .cta {
-      max-width: 1100px;
-      margin: 30px auto 60px;
-      padding: 45px 25px;
-      text-align: center;
-      border: 1px solid var(--border);
-      border-radius: 25px;
-      background:
-        radial-gradient(
-          circle at top,
-          rgba(109,93,252,.18),
-          transparent 55%
-        ),
-        var(--surface);
-    }
+/* POST */
+.feed{
+  margin-top:16px;
+  display:grid;
+  gap:16px;
+}
 
-    .cta h2 {
-      font-size: 30px;
-      letter-spacing: -1px;
-    }
+.post{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
 
-    .cta p {
-      color: var(--muted);
-      margin: 10px auto 23px;
-      max-width: 500px;
-    }
+.post-head{
+  display:flex;
+  gap:10px;
+  padding:16px;
+}
 
-    /* Footer */
+.post-user{
+  flex:1;
+}
 
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 30px 20px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 13px;
-    }
+.post-user strong{display:block}
+.post-meta{
+  color:var(--muted);
+  font-size:12px;
+}
 
-    footer strong {
-      color: var(--text);
-    }
+.more{
+  background:none;
+  font-size:20px;
+  color:var(--muted);
+}
 
-    /* Desktop */
+.post-text{
+  padding:0 16px 15px;
+  line-height:1.6;
+}
 
-    @media (min-width: 700px) {
-      .menu {
-        display: none;
-      }
+.post-image{
+  width:100%;
+  display:block;
+  max-height:560px;
+  object-fit:cover;
+  background:#ddd;
+}
 
-      .nav-links {
-        display: flex;
-      }
+.post-stats{
+  display:flex;
+  justify-content:space-between;
+  padding:11px 16px;
+  color:var(--muted);
+  font-size:13px;
+}
 
-      .actions {
-        flex-direction: row;
-        justify-content: center;
-      }
+.post-actions{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--border);
+}
 
-      .btn {
-        min-width: 150px;
-      }
+.post-action{
+  background:none;
+  padding:12px 5px;
+  color:var(--muted);
+  font-weight:700;
+}
 
-      .hero {
-        padding-top: 115px;
-        padding-bottom: 90px;
-      }
+.post-action:hover{background:#f5f5f5}
 
-      .grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
+.post-action.liked{
+  color:var(--primary);
+}
 
-      .section {
-        padding-top: 65px;
-        padding-bottom: 65px;
-      }
-    }
-  </style>
+.comments{
+  padding:0 16px 14px;
+}
+
+.comment{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+}
+
+.comment-bubble{
+  background:#f0f2f5;
+  border-radius:15px;
+  padding:7px 11px;
+  font-size:13px;
+}
+
+.comment-form{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+}
+
+.comment-form input{
+  flex:1;
+  border:0;
+  outline:0;
+  background:#f0f2f5;
+  border-radius:999px;
+  padding:10px 14px;
+}
+
+/* RIGHT */
+.rightbar{
+  display:none;
+}
+
+.trend{
+  padding:10px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.trend:last-child{border-bottom:0}
+
+.trend small{color:var(--muted)}
+
+.friend{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:9px 0;
+}
+
+/* MOBILE NAV */
+.bottom-nav{
+  position:fixed;
+  z-index:120;
+  bottom:0;
+  left:0;
+  right:0;
+  height:66px;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(16px);
+  border-top:1px solid var(--border);
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+}
+
+.bottom-nav button{
+  background:none;
+  color:var(--muted);
+  font-size:20px;
+}
+
+.bottom-nav button.active{
+  color:var(--primary);
+}
+
+.bottom-nav span{
+  display:block;
+  font-size:10px;
+  margin-top:2px;
+}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  z-index:300;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+}
+
+.modal.open{display:flex}
+
+.modal-box{
+  width:100%;
+  max-width:520px;
+  background:var(--card);
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 25px 70px rgba(0,0,0,.3);
+}
+
+.modal-head{
+  padding:16px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.close{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:#f0f2f5;
+}
+
+.post-editor{
+  padding:16px;
+}
+
+.post-editor textarea{
+  width:100%;
+  min-height:130px;
+  resize:none;
+  border:0;
+  outline:0;
+  font-size:17px;
+}
+
+.preview{
+  max-height:260px;
+  max-width:100%;
+  display:block;
+  margin:10px auto;
+  border-radius:12px;
+}
+
+.modal-footer{
+  padding:12px 16px 16px;
+  display:flex;
+  gap:10px;
+  border-top:1px solid var(--border);
+}
+
+.primary-btn{
+  flex:1;
+  height:46px;
+  border-radius:12px;
+  background:var(--primary);
+  color:white;
+  font-weight:800;
+}
+
+/* TOAST */
+.toast{
+  position:fixed;
+  z-index:500;
+  left:50%;
+  bottom:82px;
+  transform:translateX(-50%) translateY(20px);
+  background:#111827;
+  color:white;
+  padding:11px 17px;
+  border-radius:999px;
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  font-size:13px;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* DARK */
+body.dark{
+  --bg:#080b12;
+  --card:#10151f;
+  --text:#f4f6fa;
+  --muted:#98a2b3;
+  --border:#202938;
+  --soft:#171d2a;
+}
+
+body.dark .topbar,
+body.dark .bottom-nav{
+  background:rgba(16,21,31,.94);
+}
+
+body.dark .search input,
+body.dark .fake-input,
+body.dark .comment-bubble,
+body.dark .comment-form input,
+body.dark .icon-btn{
+  background:#1a2230;
+}
+
+body.dark .compose-action:hover,
+body.dark .post-action:hover,
+body.dark .side-link:hover{
+  background:#171d2a;
+}
+
+/* DESKTOP */
+@media(min-width:760px){
+  .search{display:block}
+
+  .layout{
+    grid-template-columns:220px minmax(0,620px);
+    padding-top:28px;
+  }
+
+  .sidebar{
+    display:block;
+  }
+
+  .bottom-nav{display:none}
+}
+
+@media(min-width:1050px){
+  .layout{
+    grid-template-columns:220px minmax(0,620px) 260px;
+  }
+
+  .rightbar{
+    display:block;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- Navigation -->
-  <header>
-    <nav class="nav">
-      <a href="#" class="logo">
-        Flik<span>Tide</span>
+<header class="topbar">
+  <div class="topbar-inner">
+
+    <a class="logo" href="#">Flik<span>Tide</span></a>
+
+    <div class="search">
+      <span class="search-icon">⌕</span>
+      <input id="searchInput" type="search"
+             placeholder="Search FlikTide">
+    </div>
+
+    <div class="top-actions">
+      <button class="icon-btn" id="themeBtn" aria-label="Theme">☾</button>
+      <button class="icon-btn" id="notifBtn" aria-label="Notifications">
+        ♡
+        <span class="badge">3</span>
+      </button>
+      <button class="icon-btn" id="profileBtn" aria-label="Profile">👤</button>
+    </div>
+
+  </div>
+</header>
+
+
+<div class="layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sidebar-card">
+
+      <a class="side-link" href="#">
+        <div class="avatar small">T</div>
+        My Profile
       </a>
 
-      <div class="nav-links">
-        <a href="#discover">Discover</a>
-        <a href="#features">Features</a>
-        <a href="#about">About</a>
-      </div>
+      <a class="side-link" href="#">
+        🏠 Home
+      </a>
 
-      <button class="menu" aria-label="Menu">☰</button>
-    </nav>
-  </header>
+      <a class="side-link" href="#">
+        🔥 Trending
+      </a>
+
+      <a class="side-link" href="#">
+        👥 Friends
+      </a>
+
+      <a class="side-link" href="#">
+        🎬 Entertainment
+      </a>
+
+      <a class="side-link" href="#">
+        🔔 Notifications
+      </a>
+
+      <a class="side-link" href="#">
+        ⚙️ Settings
+      </a>
+
+    </div>
+
+  </aside>
 
 
-  <!-- Hero -->
+  <!-- MAIN -->
   <main>
 
-    <section class="hero" id="discover">
-      <div class="badge">✦ Welcome to FlikTide</div>
+    <!-- STORIES -->
+    <section class="stories">
 
-      <h1>
-        Discover.
-        <span class="gradient">Play.</span>
-        Learn.
-        Explore.
-      </h1>
-
-      <p>
-        A modern space to discover interesting content,
-        explore new ideas, learn something useful and enjoy
-        every moment.
-      </p>
-
-      <div class="actions">
-        <a href="#features" class="btn btn-primary">
-          Explore FlikTide →
-        </a>
-
-        <a href="#about" class="btn btn-secondary">
-          Learn More
-        </a>
+      <div class="story story-add">
+        <div class="plus">+</div>
+        <div class="story-content">Create story</div>
       </div>
+
+      <div class="story">
+        <div class="avatar small">A</div>
+        <div class="story-content">Alex's story</div>
+      </div>
+
+      <div class="story">
+        <div class="avatar small">S</div>
+        <div class="story-content">Sarah's story</div>
+      </div>
+
+      <div class="story">
+        <div class="avatar small">R</div>
+        <div class="story-content">Rahim's story</div>
+      </div>
+
+      <div class="story">
+        <div class="avatar small">M</div>
+        <div class="story-content">Maya's story</div>
+      </div>
+
     </section>
 
 
-    <!-- Features -->
-    <section class="section" id="features">
+    <!-- CREATE POST -->
+    <section class="composer">
 
-      <h2 class="section-title">Everything in one place</h2>
+      <div class="composer-top">
 
-      <p class="section-subtitle">
-        Built to keep discovery simple, smooth and enjoyable.
-      </p>
+        <div class="avatar">T</div>
 
-      <div class="grid">
-
-        <article class="card">
-          <div class="icon">✦</div>
-          <h3>Discover</h3>
-          <p>
-            Find fresh ideas, interesting topics and
-            content worth exploring.
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="icon">▶</div>
-          <h3>Play</h3>
-          <p>
-            Take a break and enjoy interactive,
-            entertaining experiences.
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="icon">⌁</div>
-          <h3>Learn</h3>
-          <p>
-            Explore useful knowledge and keep learning
-            something new every day.
-          </p>
-        </article>
+        <div class="fake-input" id="openComposer">
+          What's happening?
+        </div>
 
       </div>
+
+      <div class="composer-actions">
+
+        <button class="compose-action" onclick="openPostModal()">
+          🎬 Video
+        </button>
+
+        <button class="compose-action" onclick="openPostModal()">
+          📷 Photo
+        </button>
+
+        <button class="compose-action" onclick="openPostModal()">
+          😊 Feeling
+        </button>
+
+      </div>
+
     </section>
 
 
-    <!-- CTA -->
-    <section class="cta" id="about">
+    <!-- FEED -->
+    <section class="feed" id="feed">
 
-      <h2>Ready to explore?</h2>
+      <!-- POST 1 -->
+      <article class="post" data-post="1">
 
-      <p>
-        FlikTide is designed to make discovery,
-        learning and entertainment feel effortless.
-      </p>
+        <div class="post-head">
 
-      <a href="#discover" class="btn btn-primary">
-        Get Started →
-      </a>
+          <div class="avatar">A</div>
+
+          <div class="post-user">
+            <strong>Alex Morgan</strong>
+            <span class="post-meta">2h · 🌎 Public</span>
+          </div>
+
+          <button class="more">•••</button>
+
+        </div>
+
+        <div class="post-text">
+          What an amazing day! 🌅  
+          Sometimes the simplest moments become the best memories.
+        </div>
+
+        <img
+          class="post-image"
+          alt="Nature"
+          src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=80"
+        >
+
+        <div class="post-stats">
+          <span class="like-count">❤️ 1.2K</span>
+          <span>84 comments · 27 shares</span>
+        </div>
+
+        <div class="post-actions">
+
+          <button class="post-action like-btn">
+            ♡ Like
+          </button>
+
+          <button class="post-action comment-btn">
+            💬 Comment
+          </button>
+
+          <button class="post-action share-btn">
+            ↗ Share
+          </button>
+
+        </div>
+
+        <div class="comments hidden">
+
+          <div class="comment">
+            <div class="avatar small">S</div>
+            <div class="comment-bubble">
+              <strong>Sarah</strong><br>
+              Beautiful! ✨
+            </div>
+          </div>
+
+          <form class="comment-form">
+            <input placeholder="Write a comment..." required>
+            <button>➤</button>
+          </form>
+
+        </div>
+
+      </article>
+
+
+      <!-- POST 2 -->
+      <article class="post" data-post="2">
+
+        <div class="post-head">
+
+          <div class="avatar">M</div>
+
+          <div class="post-user">
+            <strong>Maya Chen</strong>
+            <span class="post-meta">5h · 🌎 Public</span>
+          </div>
+
+          <button class="more">•••</button>
+
+        </div>
+
+        <div class="post-text">
+          Here's something interesting I discovered today.  
+          What's something new you learned recently? 💡
+        </div>
+
+        <div class="post-stats">
+          <span class="like-count">❤️ 486</span>
+          <span>39 comments · 12 shares</span>
+        </div>
+
+        <div class="post-actions">
+
+          <button class="post-action like-btn">
+            ♡ Like
+          </button>
+
+          <button class="post-action comment-btn">
+            💬 Comment
+          </button>
+
+          <button class="post-action share-btn">
+            ↗ Share
+          </button>
+
+        </div>
+
+        <div class="comments hidden">
+
+          <form class="comment-form">
+            <input placeholder="Write a comment..." required>
+            <button>➤</button>
+          </form>
+
+        </div>
+
+      </article>
+
 
     </section>
 
   </main>
 
 
-  <!-- Footer -->
-  <footer>
-    <strong>FlikTide</strong> — Discover, Play, Learn & Explore
-    <br />
-    © 2026 FlikTide. All rights reserved.
-  </footer>
+  <!-- RIGHT SIDEBAR -->
+  <aside class="rightbar">
 
-</body>
-</html>
+    <div class="sidebar-card">
+
+      <h3>🔥 Trending</h3>
+
+      <div class="trend">
+        <strong>#FlikTide</strong>
+        <small> · 24K posts</small>
+      </div>
+
+      <div class="trend">
+        <strong>#Entertainment</strong>
+        <small> · 18K posts</small>
+      </div>
+
+      <div class="trend">
+        <strong>#Technology</strong>
+        <small> · 12K posts</small>
+      </div>
+
+      <div class="trend">
+        <strong>#Today</strong>
+        <small> · 9K posts</small>
+      </div>
+
+    </div>
+
+    <br>
+
+    <div class="sidebar-card">
+
+      <h3>People you may know</h3>
+
+      <div class="friend">
+        <div class="avatar small">J</div>
+        <div>
+          <strong>James</strong><br>
+          <small>Follow</small>
+        </div>
+      </div>
+
+      <div class="friend">
+        <div class="avatar small">N</div>
+        <div>
+          <strong>Nadia</strong><br>
+          <small>Follow</small>
+        </div>
+      </div>
+
+    </div>
+
+  </aside>
+
+</div>
+
+
+<!-- MOBILE NAV -->
+<nav class="bottom-nav">
+
+  <button class="active">
+    🏠
+    <span>Home</span>
+  </button>
+
+  <button>
+    🔎
+    <span>Explore</span>
+  </button>
+
+  <button onclick="openPostModal()">
+    ＋
+    <span>Create</span>
+  </button>
+
+  <button>
+    🔔
+    <span>Alerts</span>
+  </button>
+
+  <button>
+    👤
+    <span>Profile</span>
+  </button>
+
+</nav>
+
+
+<!-- CREATE POST MODAL -->
+<div class="modal" id="postModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <strong>Create post</strong>
+      <button class="close" onclick="closePostModal()">✕</button>
+    </div>
+
+    <form id="postForm">
+
+      <div class="post-editor">
+
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:15px">
+          <div class="avatar">T</div>
+          <strong>You</strong>
+        </div>
+
+        <textarea
+          id="postText"
+          placeholder="What's happening?"
+        ></textarea>
+
+        <img id="preview" class="preview hidden" alt="Preview">
+
+        <input
+          id="imageInput"
+          type="file"
+          accept="image/*"
+          class="hidden"
+        >
+
+        <button
+          type="button"
+          class="compose-action"
+          onclick="document.getElementById('imageInput').click()"
+        >
+          📷 Add photo
+        </button>
+
+      </div>
+
+      <div class="modal-footer">
+
+        <button class="primary-btn" type="submit">
+          Post
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+/* ---------------------------
+   BASIC HELPERS
+---------------------------- */
+
+const toast = document.getElementById("toast");
+
+function showToast(message){
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  setTimeout(()=>{
+    toast.classList.remove("show");
+  },2200);
+}
+
+
+/* ---------------------------
+   THEME
+---------------------------- */
+
+const themeBtn = document.getElementById("themeBtn");
+
+themeBtn.addEventListener("click",()=>{
+
+  document.body.classList.toggle("dark");
+
+  const dark =
+    document.body.classList.contains("dark");
+
+  localStorage.setItem("fliktide-theme",dark ? "dark" : "light");
+
+  themeBtn.textContent = dark ? "☀" : "☾";
+});
+
+if(localStorage.getItem("fliktide-theme")==="dark"){
+  document.body.classList.add("dark");
+  themeBtn.textContent="☀";
+}
+
+
+/* ---------------------------
+   POST MODAL
+---------------------------- */
+
+const modal =
+  document.getElementById("postModal");
+
+const composerInput =
+  document.getElementById("openComposer");
+
+function openPostModal(){
+  modal.classList.add("open");
+  document.getElementById("postText").focus();
+}
+
+function closePostModal(){
+  modal.classList.remove("open");
+}
+
+composerInput.addEventListener(
+  "click",
+  openPostModal
+);
+
+modal.addEventListener("click",(e)=>{
+  if(e.target === modal){
+    closePostModal();
+  }
+});
+
+
+/* ---------------------------
+   IMAGE PREVIEW
+---------------------------- */
+
+const imageInput =
+  document.getElementById("imageInput");
+
+const preview =
+  document.getElementById("preview");
+
+imageInput.addEventListener("change",()=>{
+
+  const file = imageInput.files[0];
+
+  if(!file) return;
+
+  const url = URL.createObjectURL(file);
+
+  preview.src = url;
+  preview.classList.remove("hidden");
+});
+
+
+/* ---------------------------
+   CREATE NEW POST
+---------------------------- */
+
+const postForm =
+  document.getElementById("postForm");
+
+postForm.addEventListener("submit",(e)=>{
+
+  e.preventDefault();
+
+  const text =
+    document.getElementById("postText")
+    .value.trim();
+
+  const file =
+    imageInput.files[0];
+
+  if(!text && !file){
+    showToast("Write something first.");
+    return;
+  }
+
+  const post =
+    document.createElement("article");
+
+  post.className = "post";
+
+  let imageHTML = "";
+
+  if(file){
+    const imageURL =
+      URL.createObjectURL(file);
+
+    imageHTML =
+      `<img class="post-image"
+            src="${imageURL}"
+            alt="Your post">`;
+  }
+
+  post.innerHTML = `
+
+    <div class="post-head">
+
+      <div class="avatar">T</div>
+
+      <div class="post-user">
+        <strong>You</strong>
+        <span class="post-meta">
+          Just now · 🌎 Public
+        </span
