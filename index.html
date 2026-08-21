@@ -1,1360 +1,1288 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<title>FlickTide</title>
-
-<style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-:root{
-    --bg:#0f172a;
-    --card:#111827;
-    --card2:#1e293b;
-    --text:#f8fafc;
-    --muted:#94a3b8;
-    --border:#263247;
-    --primary:#2563eb;
-    --orange:#ff7200;
-    --white:#ffffff;
-}
-
-body.light{
-    --bg:#f4f6fb;
-    --card:#ffffff;
-    --card2:#eef2f7;
-    --text:#111827;
-    --muted:#64748b;
-    --border:#dbe2ea;
-}
-
-body{
-    font-family:
-        Arial,
-        "Noto Sans Bengali",
-        sans-serif;
-
-    background:var(--bg);
-    color:var(--text);
-    min-height:100vh;
-    overflow-x:hidden;
-}
-
-/* =========================
-   HEADER
-========================= */
-
-.header{
-    position:sticky;
-    top:0;
-    z-index:1000;
-
-    height:74px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:10px 22px;
-
-    background:var(--bg);
-    border-bottom:1px solid var(--border);
-}
-
-.brand{
-    display:flex;
-    align-items:center;
-    gap:14px;
-
-    cursor:pointer;
-}
-
-.logo{
-    width:50px;
-    height:50px;
-
-    border-radius:16px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:
-        linear-gradient(135deg,#2563eb,#7c3aed,#ff7200);
-
-    color:white;
-    font-size:20px;
-    font-weight:900;
-}
-
-.brand-name{
-    font-size:27px;
-    font-weight:900;
-}
-
-.brand-name span{
-    color:var(--orange);
-}
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>FlickTide</title>
+
+    <style>
+        /* =====================================================
+           FlickTide - INDEX FOUNDATION
+           Long Video Only
+        ===================================================== */
+
+        :root {
+            --bg: #0b1220;
+            --surface: #111a2b;
+            --surface-2: #18243a;
+            --text: #ffffff;
+            --muted: #9aa7bb;
+            --border: rgba(255,255,255,.08);
+            --primary: #3867ff;
+            --orange: #ff7a00;
+            --danger: #ff5c68;
+            --bottom: #0d1525;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 82px;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        button {
+            border: 0;
+            cursor: pointer;
+        }
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .top-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            height: 72px;
+            display: flex;
+            align-items: center;
+
+            padding: 0 18px;
+
+            background: rgba(11,18,32,.96);
+            border-bottom: 1px solid var(--border);
+
+            backdrop-filter: blur(14px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            flex: 1;
+        }
+
+        .brand-logo {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #3d62ff,
+                    #7437e9,
+                    #ff7a00
+                );
 
-.header-actions{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
+            font-size: 20px;
+            font-weight: 900;
+        }
 
-.icon-btn{
-    width:52px;
-    height:52px;
+        .brand-name {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: -.7px;
+        }
 
-    border:0;
-    border-radius:17px;
+        .brand-name span {
+            color: var(--orange);
+        }
 
-    background:var(--card2);
-    color:var(--text);
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    font-size:24px;
-    cursor:pointer;
-}
+        .header-btn {
+            width: 48px;
+            height: 48px;
 
-.profile-mini{
-    width:52px;
-    height:52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    border-radius:50%;
+            border-radius: 15px;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+            background: var(--surface-2);
+            color: white;
 
-    background:linear-gradient(135deg,#2563eb,#7c3aed);
+            font-size: 23px;
+        }
 
-    color:white;
-    font-size:20px;
-    font-weight:800;
+        .profile-mini {
+            width: 48px;
+            height: 48px;
 
-    cursor:pointer;
-    overflow:hidden;
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-.profile-mini img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
+            border-radius: 50%;
 
-/* =========================
-   SEARCH
-========================= */
+            background: linear-gradient(
+                135deg,
+                #315cff,
+                #7139ee
+            );
 
-.search-area{
-    padding:18px 22px 8px;
-}
+            color: white;
+            font-size: 18px;
+            font-weight: 800;
+        }
 
-.search-box{
-    height:55px;
+        /* =====================================================
+           SEARCH
+        ===================================================== */
 
-    display:flex;
-    align-items:center;
-    gap:12px;
+        .search-section {
+            padding: 16px 18px 8px;
+        }
 
-    padding:0 18px;
+        .search-box {
+            height: 54px;
 
-    border:1px solid var(--border);
-    border-radius:28px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
 
-    background:var(--card);
-}
+            padding: 0 17px;
 
-.search-box input{
-    flex:1;
+            border-radius: 18px;
 
-    border:0;
-    outline:0;
+            background: var(--surface);
+            border: 1px solid var(--border);
+        }
 
-    background:transparent;
-    color:var(--text);
+        .search-box span {
+            font-size: 23px;
+        }
 
-    font-size:17px;
-}
+        .search-box input {
+            width: 100%;
 
-/* =========================
-   PAGE
-========================= */
+            border: 0;
+            outline: 0;
 
-.page{
-    display:none;
-    min-height:calc(100vh - 145px);
-    padding-bottom:95px;
-}
+            background: transparent;
+            color: var(--text);
 
-.page.active{
-    display:block;
-}
+            font-size: 16px;
+        }
 
-.page-content{
-    padding:12px 22px;
-}
+        .search-box input::placeholder {
+            color: var(--muted);
+        }
 
-.page-title{
-    font-size:28px;
-    font-weight:900;
-    margin:15px 0 20px;
-}
+        /* =====================================================
+           CATEGORY
+        ===================================================== */
 
-/* =========================
-   HOME FEED
-========================= */
+        .categories {
+            display: flex;
+            gap: 9px;
 
-.video-feed{
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-}
+            overflow-x: auto;
 
-.long-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:22px;
-    overflow:hidden;
-    cursor:pointer;
-}
+            padding: 10px 18px 14px;
 
-.thumbnail{
-    position:relative;
+            scrollbar-width: none;
+        }
 
-    width:100%;
-    aspect-ratio:16/9;
+        .categories::-webkit-scrollbar {
+            display: none;
+        }
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+        .category-btn {
+            flex: 0 0 auto;
 
-    background:
-        linear-gradient(135deg,#dbeafe,#fef3c7);
+            padding: 9px 17px;
 
-    color:#334155;
+            border-radius: 20px;
 
-    font-size:65px;
-}
+            background: var(--surface-2);
+            color: var(--text);
 
-.thumbnail .duration{
-    position:absolute;
-    right:10px;
-    bottom:10px;
+            border: 1px solid var(--border);
+        }
 
-    padding:5px 8px;
+        .category-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
 
-    border-radius:6px;
+        /* =====================================================
+           HOME FEED
+        ===================================================== */
 
-    background:rgba(0,0,0,.8);
-    color:white;
+        .page-title {
+            padding: 12px 18px 14px;
 
-    font-size:13px;
-}
+            font-size: 25px;
+            font-weight: 800;
+        }
 
-.video-info{
-    padding:15px;
-}
+        .video-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
 
-.video-title{
-    font-size:19px;
-    font-weight:800;
-    line-height:1.4;
-}
+            padding: 0 18px 30px;
+        }
 
-.video-meta{
-    margin-top:7px;
+        .video-card {
+            overflow: hidden;
 
-    color:var(--muted);
-    font-size:14px;
-}
+            border-radius: 20px;
 
-.teacher-row{
-    display:flex;
-    align-items:center;
-    gap:10px;
+            background: var(--surface);
+            border: 1px solid var(--border);
 
-    margin-top:12px;
-}
+            transition: transform .2s ease;
+        }
 
-.teacher-logo{
-    width:36px;
-    height:36px;
+        .video-card:active {
+            transform: scale(.985);
+        }
 
-    border-radius:50%;
+        .thumbnail-wrapper {
+            position: relative;
 
-    background:linear-gradient(135deg,#2563eb,#9333ea);
+            width: 100%;
+            aspect-ratio: 16 / 9;
 
-    color:white;
+            overflow: hidden;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+            background:
+                linear-gradient(
+                    135deg,
+                    #263b77,
+                    #703c9d
+                );
+        }
 
-    font-size:13px;
-    font-weight:bold;
+        .thumbnail {
+            width: 100%;
+            height: 100%;
 
-    overflow:hidden;
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-.teacher-logo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
+            font-size: 55px;
+        }
 
-.teacher-name{
-    color:var(--muted);
-    font-size:14px;
-}
+        .duration {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
 
-/* =========================
-   SHORTS SECTION
-========================= */
+            padding: 4px 7px;
 
-.shorts-section{
-    margin:8px 0 15px;
-}
+            border-radius: 6px;
 
-.shorts-heading{
-    font-size:22px;
-    font-weight:900;
-    margin-bottom:12px;
-}
+            background: rgba(0,0,0,.82);
 
-.shorts-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+        }
 
-.short-card{
-    background:var(--card);
-    border:1px solid var(--border);
+        .video-info {
+            display: flex;
+            gap: 12px;
 
-    border-radius:18px;
+            padding: 14px;
+        }
 
-    overflow:hidden;
-    cursor:pointer;
-}
+        .teacher-avatar {
+            flex: 0 0 auto;
 
-.short-thumbnail{
-    width:100%;
-    aspect-ratio:9/16;
+            width: 42px;
+            height: 42px;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    background:
-        linear-gradient(145deg,#dbeafe,#fff7ed);
+            border-radius: 50%;
 
-    font-size:48px;
-}
+            background:
+                linear-gradient(
+                    135deg,
+                    #3867ff,
+                    #8a3ffc
+                );
 
-.short-info{
-    padding:12px;
-}
+            color: white;
+            font-weight: 800;
 
-.short-title{
-    font-size:15px;
-    font-weight:800;
-    line-height:1.4;
-}
+            cursor: pointer;
+        }
 
-.short-meta{
-    color:var(--muted);
-    margin-top:5px;
-    font-size:12px;
-}
+        .video-details {
+            min-width: 0;
+            flex: 1;
+        }
 
-/* =========================
-   BOTTOM NAV
-========================= */
+        .video-title {
+            font-size: 17px;
+            line-height: 1.35;
+            font-weight: 750;
 
-.bottom-nav{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
+            margin-bottom: 6px;
+        }
 
-    height:76px;
+        .teacher-name {
+            color: var(--muted);
+            font-size: 14px;
 
-    z-index:1000;
+            cursor: pointer;
+        }
 
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
+        .video-meta {
+            color: var(--muted);
+            font-size: 13px;
 
-    background:var(--bg);
-    border-top:1px solid var(--border);
-}
+            margin-top: 3px;
+        }
 
-.nav-item{
-    border:0;
-    background:transparent;
+        /* =====================================================
+           VIDEO PLAYER PAGE
+        ===================================================== */
 
-    color:var(--muted);
+        .page {
+            display: none;
+        }
 
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
+        .page.active {
+            display: block;
+        }
 
-    gap:4px;
+        .back-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
 
-    cursor:pointer;
-}
+            padding: 12px 18px;
+        }
 
-.nav-item.active{
-    color:#2563eb;
-}
+        .back-btn {
+            width: 44px;
+            height: 44px;
 
-.nav-icon{
-    font-size:23px;
-}
+            border-radius: 50%;
 
-.nav-label{
-    font-size:12px;
-}
+            background: var(--surface-2);
+            color: white;
 
-/* =========================
-   BACK BUTTON
-========================= */
+            font-size: 25px;
+        }
 
-.back-bar{
-    display:none;
+        .back-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
 
-    padding:14px 22px 5px;
-}
+        .player-container {
+            width: 100%;
 
-.back-bar.show{
-    display:block;
-}
+            background: #000;
+        }
 
-.back-button{
-    border:0;
-    background:var(--card2);
-    color:var(--text);
+        .video-player {
+            width: 100%;
+            display: block;
 
-    border-radius:12px;
+            aspect-ratio: 16 / 9;
 
-    padding:10px 15px;
+            background: #000;
+            object-fit: contain;
+        }
 
-    font-size:16px;
-    cursor:pointer;
-}
+        .player-info {
+            padding: 16px 18px;
+        }
 
-/* =========================
-   VIDEO PLAYER
-========================= */
+        .player-title {
+            font-size: 21px;
+            font-weight: 800;
+            line-height: 1.35;
+        }
 
-.player-page{
-    padding:0 0 100px;
-}
+        .player-meta {
+            color: var(--muted);
+            margin-top: 8px;
+        }
 
-.video-player-wrapper{
-    position:relative;
+        .player-teacher {
+            display: flex;
+            align-items: center;
+            gap: 12px;
 
-    width:100%;
+            padding: 15px 18px;
 
-    background:#000;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
+        .teacher-info strong {
+            display: block;
+            font-size: 16px;
+        }
 
-#mainVideo{
-    width:100%;
-    max-height:75vh;
+        .teacher-info small {
+            color: var(--muted);
+        }
 
-    display:block;
+        /* =====================================================
+           PLAYER ACTIONS
+        ===================================================== */
 
-    background:#000;
+        .player-actions {
+            display: flex;
+            gap: 10px;
 
-    object-fit:contain;
+            padding: 14px 18px;
 
-    transition:transform .2s ease;
-}
+            overflow-x: auto;
+        }
 
-.player-controls{
-    position:absolute;
-    right:12px;
-    bottom:12px;
+        .player-action {
+            flex: 0 0 auto;
 
-    display:flex;
-    gap:8px;
-}
+            padding: 10px 16px;
 
-.player-btn{
-    border:0;
+            border-radius: 20px;
 
-    background:rgba(0,0,0,.75);
-    color:#fff;
+            background: var(--surface-2);
+            color: white;
+        }
 
-    width:42px;
-    height:42px;
+        /* =====================================================
+           RELATED VIDEOS
+        ===================================================== */
 
-    border-radius:50%;
+        .section-heading {
+            padding: 18px 18px 12px;
 
-    cursor:pointer;
-    font-size:18px;
-}
+            font-size: 20px;
+            font-weight: 800;
+        }
 
-.player-info{
-    padding:18px 22px;
-}
+        .related-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
 
-.player-title{
-    font-size:23px;
-    font-weight:900;
-    line-height:1.4;
-}
+            padding: 0 18px 30px;
+        }
 
-.player-description{
-    margin-top:10px;
-    color:var(--muted);
-    line-height:1.6;
-}
+        .related-card {
+            display: flex;
+            gap: 11px;
 
-.player-teacher{
-    margin-top:15px;
+            cursor: pointer;
+        }
 
-    display:flex;
-    align-items:center;
-    gap:12px;
+        .related-thumb {
+            flex: 0 0 145px;
 
-    cursor:pointer;
-}
+            aspect-ratio: 16 / 9;
 
-.suggested{
-    padding:10px 22px;
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-.suggested-title{
-    font-size:22px;
-    font-weight:900;
-    margin-bottom:15px;
-}
+            border-radius: 12px;
 
-/* =========================
-   PROFILE
-========================= */
+            background:
+                linear-gradient(
+                    135deg,
+                    #263b77,
+                    #7c3da0
+                );
 
-.profile-page{
-    padding-bottom:100px;
-}
+            font-size: 30px;
+        }
 
-.cover{
-    position:relative;
+        .related-info {
+            min-width: 0;
+        }
 
-    height:190px;
+        .related-title {
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
 
-    background:
-        linear-gradient(135deg,#2563eb,#7c3aed,#ec4899);
+        .related-meta {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 6px;
+        }
 
-    overflow:hidden;
-}
+        /* =====================================================
+           TEACHER PROFILE
+        ===================================================== */
 
-.cover img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
+        .teacher-cover {
+            height: 190px;
 
-.profile-card{
-    margin:0 22px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #385dff,
+                    #8134e9,
+                    #e05d78
+                );
+        }
 
-    margin-top:-40px;
+        .teacher-profile-card {
+            margin: -50px 18px 0;
 
-    position:relative;
-    z-index:2;
+            position: relative;
 
-    padding:85px 22px 28px;
+            padding: 0 20px 25px;
 
-    border-radius:28px;
+            border-radius: 25px;
 
-    background:var(--card);
+            background: var(--surface);
 
-    border:1px solid var(--border);
-}
+            border: 1px solid var(--border);
+        }
 
-.profile-photo{
-    position:absolute;
+        .large-avatar {
+            width: 105px;
+            height: 105px;
 
-    top:-70px;
-    left:22px;
+            margin-top: -55px;
 
-    width:140px;
-    height:140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    border-radius:50%;
+            border: 5px solid var(--surface);
 
-    border:6px solid var(--bg);
+            border-radius: 50%;
 
-    background:
-        linear-gradient(135deg,#2563eb,#7c3aed);
+            background:
+                linear-gradient(
+                    135deg,
+                    #3867ff,
+                    #8038ed
+                );
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+            font-size: 38px;
+            font-weight: 800;
+        }
 
-    color:#fff;
-    font-size:48px;
-    font-weight:900;
+        .teacher-profile-name {
+            margin-top: 12px;
 
-    overflow:hidden;
-}
+            font-size: 26px;
+            font-weight: 850;
+        }
 
-.profile-photo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
+        .teacher-subject {
+            color: var(--muted);
+            margin-top: 5px;
+        }
 
-.profile-name{
-    font-size:32px;
-    font-weight:900;
-}
+        .teacher-bio {
+            color: var(--muted);
 
-.profile-phone{
-    margin-top:6px;
-    color:var(--muted);
-    font-size:18px;
-}
+            line-height: 1.5;
 
-.role-badge{
-    display:inline-block;
+            margin-top: 15px;
+        }
 
-    margin-top:14px;
+        /* =====================================================
+           PROFILE PAGE
+        ===================================================== */
 
-    padding:10px 22px;
+        .profile-cover {
+            height: 210px;
 
-    background:var(--white);
-    color:#475569;
+            background:
+                linear-gradient(
+                    135deg,
+                    #315cff,
+                    #8135e8,
+                    #e06678
+                );
+        }
 
-    border-radius:30px;
+        .my-profile-card {
+            position: relative;
 
-    font-size:16px;
-}
+            margin: -55px 18px 20px;
 
-.profile-buttons{
-    display:flex;
-    gap:10px;
+            padding: 0 20px 25px;
 
-    margin-top:18px;
-}
+            border-radius: 25px;
 
-.primary-btn{
-    border:0;
+            background: var(--surface);
 
-    background:var(--primary);
-    color:#fff;
+            border: 1px solid var(--border);
+        }
 
-    padding:13px 20px;
+        .my-avatar {
+            width: 110px;
+            height: 110px;
 
-    border-radius:14px;
+            margin-top: -58px;
 
-    font-size:16px;
-    font-weight:800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    cursor:pointer;
-}
+            border-radius: 50%;
 
-/* =========================
-   PROFILE STATS
-========================= */
+            border: 5px solid var(--surface);
 
-.stats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
+            background:
+                linear-gradient(
+                    135deg,
+                    #3867ff,
+                    #7c3bea
+                );
 
-    gap:10px;
+            font-size: 40px;
+            font-weight: 800;
+        }
 
-    margin:18px 22px;
-}
+        .my-name {
+            margin-top: 12px;
 
-.stat{
-    background:var(--card);
+            font-size: 27px;
+            font-weight: 850;
+        }
 
-    border:1px solid var(--border);
+        .my-phone {
+            color: var(--muted);
 
-    border-radius:17px;
+            margin-top: 5px;
+        }
 
-    padding:15px 8px;
+        .role-badge {
+            display: inline-block;
 
-    text-align:center;
-}
+            margin-top: 14px;
+            padding: 9px 18px;
 
-.stat-number{
-    font-size:20px;
-    font-weight:900;
-}
+            border-radius: 20px;
 
-.stat-label{
-    color:var(--muted);
-    font-size:12px;
-    margin-top:4px;
-}
+            background: white;
+            color: #273247;
 
-/* =========================
-   EDIT MODAL
-========================= */
+            font-weight: 650;
+        }
 
-.modal{
-    position:fixed;
-    inset:0;
+        .profile-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
 
-    z-index:3000;
+            margin-top: 20px;
+        }
 
-    display:none;
-    align-items:flex-end;
-    justify-content:center;
+        .profile-btn {
+            width: 100%;
 
-    background:rgba(0,0,0,.7);
-}
+            padding: 14px;
 
-.modal.show{
-    display:flex;
-}
+            border-radius: 15px;
 
-.modal-box{
-    width:100%;
-    max-width:600px;
+            background: var(--surface-2);
+            color: white;
 
-    background:var(--card);
+            font-weight: 700;
+        }
 
-    border-radius:28px 28px 0 0;
+        .logout-btn {
+            color: #ff6b72;
+            background: rgba(255,80,90,.10);
+        }
 
-    padding:25px;
+        /* =====================================================
+           BOTTOM NAVIGATION
+        ===================================================== */
 
-    max-height:90vh;
-    overflow-y:auto;
-}
+        .bottom-nav {
+            position: fixed;
 
-.modal-title{
-    font-size:23px;
-    font-weight:900;
+            left: 0;
+            right: 0;
+            bottom: 0;
 
-    margin-bottom:20px;
-}
+            height: 76px;
 
-.form-group{
-    margin-bottom:15px;
-}
+            z-index: 2000;
 
-.form-group label{
-    display:block;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
 
-    margin-bottom:7px;
+            background: rgba(13,21,37,.98);
 
-    color:var(--muted);
-}
+            border-top: 1px solid var(--border);
 
-.form-group input,
-.form-group select{
-    width:100%;
+            padding-bottom: env(safe-area-inset-bottom);
+        }
 
-    padding:14px;
+        .nav-item {
+            width: 20%;
 
-    border-radius:13px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
 
-    border:1px solid var(--border);
+            background: transparent;
+            color: #758299;
 
-    background:var(--bg);
-    color:var(--text);
+            font-size: 12px;
+        }
 
-    outline:none;
-}
+        .nav-icon {
+            font-size: 23px;
+        }
 
-.modal-actions{
-    display:flex;
-    gap:10px;
+        .nav-item.active {
+            color: #3470ff;
+        }
 
-    margin-top:20px;
-}
+        /* =====================================================
+           NOTIFICATION PANEL
+        ===================================================== */
 
-.secondary-btn{
-    flex:1;
+        .notification-panel {
+            display: none;
 
-    border:1px solid var(--border);
+            position: fixed;
 
-    background:var(--card2);
-    color:var(--text);
+            top: 78px;
+            right: 15px;
 
-    padding:13px;
+            width: min(340px, calc(100vw - 30px));
 
-    border-radius:13px;
+            z-index: 3000;
 
-    cursor:pointer;
-}
+            padding: 16px;
 
-.primary-btn.full{
-    flex:1;
-}
+            border-radius: 18px;
 
-/* =========================
-   TEACHER PROFILE
-========================= */
+            background: var(--surface);
 
-.teacher-profile-header{
-    text-align:center;
+            border: 1px solid var(--border);
 
-    padding:25px;
-}
+            box-shadow: 0 20px 50px rgba(0,0,0,.4);
+        }
 
-.big-teacher-logo{
-    width:110px;
-    height:110px;
+        .notification-panel.show {
+            display: block;
+        }
 
-    margin:auto;
+        .notification-title {
+            font-weight: 800;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
 
-    border-radius:50%;
+        .notification-item {
+            padding: 12px 0;
 
-    background:linear-gradient(135deg,#2563eb,#7c3aed);
+            color: var(--muted);
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+            border-bottom: 1px solid var(--border);
+        }
 
-    color:#fff;
-    font-size:38px;
-    font-weight:900;
+        /* =====================================================
+           EMPTY / LOADING
+        ===================================================== */
 
-    overflow:hidden;
-}
+        .empty-state {
+            padding: 50px 20px;
 
-.big-teacher-logo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
+            text-align: center;
 
-.teacher-profile-name{
-    font-size:28px;
-    font-weight:900;
-    margin-top:15px;
-}
+            color: var(--muted);
+        }
 
-.teacher-subject{
-    color:var(--muted);
-    margin-top:5px;
-}
+        .empty-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
 
-/* =========================
-   EXPLORE
-========================= */
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
 
-.explore-search{
-    margin-bottom:18px;
-}
+        @media (min-width: 700px) {
 
-.category-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-}
+            .video-feed {
+                max-width: 900px;
+                margin: auto;
+            }
 
-.category{
-    padding:22px;
+            .search-section {
+                max-width: 900px;
+                margin: auto;
+            }
 
-    background:var(--card);
+            .categories {
+                max-width: 900px;
+                margin: auto;
+            }
 
-    border:1px solid var(--border);
+            .bottom-nav {
+                max-width: 700px;
+                left: 50%;
+                transform: translateX(-50%);
 
-    border-radius:18px;
+                border-radius: 20px 20px 0 0;
+            }
 
-    cursor:pointer;
+            .player-container {
+                max-width: 1000px;
+                margin: auto;
+            }
 
-    font-weight:800;
-}
-
-/* =========================
-   LIBRARY
-========================= */
-
-.empty-state{
-    padding:60px 20px;
-
-    text-align:center;
-
-    color:var(--muted);
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(min-width:800px){
-
-    .page-content,
-    .search-area{
-        max-width:1100px;
-        margin:auto;
-    }
-
-    .video-feed{
-        display:grid;
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .shorts-section{
-        grid-column:1/-1;
-    }
-
-    .shorts-grid{
-        grid-template-columns:repeat(2,250px);
-    }
-
-    .bottom-nav{
-        max-width:700px;
-        left:50%;
-        transform:translateX(-50%);
-        border:1px solid var(--border);
-        border-radius:20px 20px 0 0;
-    }
-}
-
-@media(max-width:480px){
-
-    .header{
-        height:72px;
-        padding:10px 18px;
-    }
-
-    .brand-name{
-        font-size:23px;
-    }
-
-    .logo{
-        width:45px;
-        height:45px;
-    }
-
-    .header-actions{
-        gap:7px;
-    }
-
-    .icon-btn{
-        width:45px;
-        height:45px;
-    }
-
-    .profile-mini{
-        width:45px;
-        height:45px;
-    }
-
-    .page-content{
-        padding:10px 22px;
-    }
-}
-</style>
+            .related-list {
+                max-width: 900px;
+                margin: auto;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- =====================================================
+<!-- =========================================================
      HEADER
-===================================================== -->
+========================================================= -->
 
-<header class="header">
+<header class="top-header">
 
-    <div class="brand" onclick="navigateHome()">
-
-        <div class="logo">
-            FT
-        </div>
+    <div class="brand">
+        <div class="brand-logo">FT</div>
 
         <div class="brand-name">
             Flick<span>Tide</span>
         </div>
-
     </div>
 
     <div class="header-actions">
 
-        <button class="icon-btn"
-                onclick="toggleTheme()"
-                aria-label="Theme">
+        <button
+            class="header-btn"
+            id="themeButton"
+            onclick="toggleTheme()"
+            aria-label="Theme">
             🌙
         </button>
 
-        <button class="icon-btn"
-                onclick="showNotifications()"
-                aria-label="Notifications">
+        <button
+            class="header-btn"
+            onclick="toggleNotifications()"
+            aria-label="Notifications">
             🔔
         </button>
 
-        <div class="profile-mini"
-             id="miniProfile"
-             onclick="navigate('profile')">
+        <button
+            class="profile-mini"
+            onclick="openPage('profile')"
+            id="headerAvatar">
             M
-        </div>
+        </button>
 
     </div>
 
 </header>
 
 
-<!-- =====================================================
-     BACK BUTTON
-===================================================== -->
+<!-- =========================================================
+     NOTIFICATIONS
+========================================================= -->
 
-<div class="back-bar" id="backBar">
+<div class="notification-panel" id="notificationPanel">
 
-    <button class="back-button"
-            onclick="goBack()">
-        ← আগের পেজ
-    </button>
+    <div class="notification-title">
+        🔔 Notifications
+    </div>
+
+    <div class="notification-item">
+        নতুন ভিডিও আপনার জন্য অপেক্ষা করছে।
+    </div>
+
+    <div class="notification-item">
+        আপনার পছন্দের শিক্ষক নতুন ভিডিও প্রকাশ করেছেন।
+    </div>
+
+    <div class="notification-item">
+        আপনার Library-তে নতুন কনটেন্ট যোগ হয়েছে।
+    </div>
 
 </div>
 
 
-<!-- =====================================================
-     HOME
-===================================================== -->
+<!-- =========================================================
+     HOME PAGE
+========================================================= -->
 
-<main id="homePage"
-      class="page active">
+<main id="homePage" class="page active">
 
-    <div class="search-area">
+    <section class="search-section">
 
         <div class="search-box">
 
-            🔍
+            <span>🔍</span>
 
             <input
-                id="homeSearch"
                 type="search"
+                id="searchInput"
                 placeholder="ভিডিও, বিষয়, শিক্ষক খুঁজুন..."
-                oninput="searchHome(this.value)"
-            >
+                oninput="searchVideos()">
 
         </div>
 
+    </section>
+
+
+    <div class="categories">
+
+        <button
+            class="category-btn active"
+            onclick="filterCategory('all', this)">
+            সব
+        </button>
+
+        <button
+            class="category-btn"
+            onclick="filterCategory('গণিত', this)">
+            গণিত
+        </button>
+
+        <button
+            class="category-btn"
+            onclick="filterCategory('বিজ্ঞান', this)">
+            বিজ্ঞান
+        </button>
+
+        <button
+            class="category-btn"
+            onclick="filterCategory('ইংরেজি', this)">
+            ইংরেজি
+        </button>
+
+        <button
+            class="category-btn"
+            onclick="filterCategory('বাংলা', this)">
+            বাংলা
+        </button>
+
+        <button
+            class="category-btn"
+            onclick="filterCategory('ICT', this)">
+            ICT
+        </button>
+
     </div>
 
-    <div class="page-content">
 
-        <div class="video-feed"
-             id="homeFeed">
+    <h1 class="page-title">
+        Recommended
+    </h1>
 
-        </div>
 
-    </div>
+    <section class="video-feed" id="videoFeed">
+        <!-- JavaScript ভিডিওগুলো এখানে তৈরি করবে -->
+    </section>
 
 </main>
 
 
-<!-- =====================================================
-     SHORTS
-===================================================== -->
+<!-- =========================================================
+     VIDEO PLAYER PAGE
+========================================================= -->
 
-<main id="shortsPage"
-      class="page">
+<main id="playerPage" class="page">
 
-    <div class="page-content">
+    <div class="back-bar">
 
-        <h1 class="page-title">
-            Shorts
-        </h1>
+        <button
+            class="back-btn"
+            onclick="goBack()">
+            ←
+        </button>
 
-        <div class="shorts-grid"
-             id="shortsFeed">
-
+        <div class="back-title">
+            ভিডিও
         </div>
 
     </div>
 
-</main>
 
-
-<!-- =====================================================
-     EXPLORE
-===================================================== -->
-
-<main id="explorePage"
-      class="page">
-
-    <div class="page-content">
-
-        <h1 class="page-title">
-            Explore
-        </h1>
-
-        <div class="search-box explore-search">
-
-            🔍
-
-            <input
-                id="exploreSearch"
-                placeholder="বিষয় বা শিক্ষক খুঁজুন..."
-                oninput="searchExplore(this.value)"
-            >
-
-        </div>
-
-        <div class="category-grid"
-             id="categoryGrid">
-
-        </div>
-
-    </div>
-
-</main>
-
-
-<!-- =====================================================
-     LIBRARY
-===================================================== -->
-
-<main id="libraryPage"
-      class="page">
-
-    <div class="page-content">
-
-        <h1 class="page-title">
-            Library
-        </h1>
-
-        <div class="empty-state">
-
-            📚
-
-            <br><br>
-
-            আপনার Save করা ভিডিও এখানে থাকবে।
-
-        </div>
-
-    </div>
-
-</main>
-
-
-<!-- =====================================================
-     PROFILE
-===================================================== -->
-
-<main id="profilePage"
-      class="page profile-page">
-
-    <div class="cover"
-         id="profileCover">
-
-        <img id="coverImage"
-             style="display:none">
-
-    </div>
-
-    <div class="profile-card">
-
-        <div class="profile-photo"
-             id="profilePhoto">
-
-            M
-
-        </div>
-
-        <div class="profile-name"
-             id="profileName">
-            Mithun Chandra Ray
-        </div>
-
-        <div class="profile-phone"
-             id="profilePhone">
-            01708744994
-        </div>
-
-        <span class="role-badge"
-              id="profileRole">
-            Student
-        </span>
-
-        <div class="profile-buttons">
-
-            <button class="primary-btn"
-                    onclick="openEditProfile()">
-                Edit Profile
-            </button>
-
-        </div>
-
-    </div>
-
-    <div class="stats">
-
-        <div class="stat">
-
-            <div class="stat-number"
-                 id="watchHours">
-                0h 0m 0s
-            </div>
-
-            <div class="stat-label">
-                আজকের সময়
-            </div>
-
-        </div>
-
-        <div class="stat">
-
-            <div class="stat-number">
-                0
-            </div>
-
-            <div class="stat-label">
-                Saved
-            </div>
-
-        </div>
-
-        <div class="stat">
-
-            <div class="stat-number">
-                0
-            </div>
-
-            <div class="stat-label">
-                Liked
-            </div>
-
-        </div>
-
-    </div>
-
-</main>
-
-
-<!-- =====================================================
-     TEACHER PROFILE
-===================================================== -->
-
-<main id="teacherPage"
-      class="page">
-
-    <div class="page-content">
-
-        <div class="teacher-profile-header">
-
-            <div class="big-teacher-logo"
-                 id="teacherBigLogo">
-                T
-            </div>
-
-            <div class="teacher-profile-name"
-                 id="teacherProfileName">
-                FlickTide Teacher
-            </div>
-
-            <div class="teacher-subject"
-                 id="teacherProfileSubject">
-                শিক্ষক
-            </div>
-
-        </div>
-
-        <h2 class="page-title">
-            এই শিক্ষকের কন্টেন্ট
-        </h2>
-
-        <div class="video-feed"
-             id="teacherFeed">
-
-        </div>
-
-    </div>
-
-</main>
-
-
-<!-- =====================================================
-     VIDEO PLAYER
-===================================================== -->
-
-<main id="playerPage"
-      class="page player-page">
-
-    <div class="video-player-wrapper">
+    <div class="player-container">
 
         <video
             id="mainVideo"
+            class="video-player"
             controls
-            playsinline>
+            playsinline
+            preload="metadata">
+
+            <!-- পরে এখানে আসল ভিডিও URL বসবে -->
+
         </video>
 
-        <div class="player-controls">
+    </div>
 
-            <button class="player-btn"
-                    onclick="zoomVideo(-0.1)">
-                −
-            </button>
 
-            <button class="player-btn"
-                    onclick="resetVideoZoom()">
-                1×
-            </button>
+    <section class="player-info">
 
-            <button class="player-btn"
-                    onclick="zoomVideo(0.1)">
-                +
-            </button>
+        <h1
+            class="player-title"
+            id="playerTitle">
+            ভিডিওর নাম
+        </h1>
 
-            <button class="player-btn"
-                    onclick="fullscreenVideo()">
-                ⛶
-            </button>
+        <div
+            class="player-meta"
+            id="playerMeta">
+            0 views • আজ
+        </div>
+
+    </section>
+
+
+    <div class="player-actions">
+
+        <button class="player-action">
+            👍 Like
+        </button>
+
+        <button class="player-action">
+            🔗 Share
+        </button>
+
+        <button class="player-action">
+            💾 Save
+        </button>
+
+    </div>
+
+
+    <div
+        class="player-teacher"
+        onclick="openTeacher(currentVideo.teacherId)">
+
+        <div
+            class="teacher-avatar"
+            id="playerTeacherAvatar">
+            T
+        </div>
+
+        <div class="teacher-info">
+
+            <strong id="playerTeacherName">
+                শিক্ষক
+            </strong>
+
+            <small id="playerTeacherSubject">
+                বিষয়
+            </small>
 
         </div>
 
     </div>
 
-    <div class="player-info">
 
-        <div class="player-title"
-             id="playerTitle">
-        </div>
+    <h2 class="section-heading">
+        Related Videos
+    </h2>
 
-        <div class="player-description"
-             id="playerDescription">
-        </div>
+    <section
+        class="related-list"
+        id="relatedVideos">
+    </section>
 
-        <div class="player-teacher"
-             onclick="openCurrentTeacher()">
+</main>
 
-            <div class="teacher-logo"
-                 id="playerTeacherLogo">
-            </div>
 
-            <div>
-                <strong id="playerTeacherName">
-                </strong>
+<!-- =========================================================
+     TEACHER PROFILE PAGE
+========================================================= -->
 
-                <div class="teacher-name"
-                     id="playerTeacherSubject">
-                </div>
-            </div>
+<main id="teacherPage" class="page">
 
+    <div class="back-bar">
+
+        <button
+            class="back-btn"
+            onclick="goBack()">
+            ←
+        </button>
+
+        <div class="back-title">
+            শিক্ষক প্রোফাইল
         </div>
 
     </div>
 
-    <section class="suggested">
 
-        <div class="suggested-title">
-            সম্পর্কিত ভিডিও
+    <div
+        class="teacher-cover"
+        id="teacherCover">
+    </div>
+
+
+    <section class="teacher-profile-card">
+
+        <div
+            class="large-avatar"
+            id="teacherAvatar">
+            T
         </div>
 
-        <div class="video-feed"
-             id="suggestedFeed">
+        <h1
+            class="teacher-profile-name"
+            id="teacherName">
+            শিক্ষক
+        </h1>
+
+        <div
+            class="teacher-subject"
+            id="teacherSubject">
+            বিষয়
+        </div>
+
+        <p
+            class="teacher-bio"
+            id="teacherBio">
+            শিক্ষক সম্পর্কে তথ্য এখানে থাকবে।
+        </p>
+
+    </section>
+
+
+    <h2 class="section-heading">
+        এই শিক্ষকের ভিডিও
+    </h2>
+
+
+    <section
+        class="video-feed"
+        id="teacherVideos">
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+     MY PROFILE PAGE
+========================================================= -->
+
+<main id="profilePage" class="page">
+
+    <div class="back-bar">
+
+        <button
+            class="back-btn"
+            onclick="goBack()">
+            ←
+        </button>
+
+        <div class="back-title">
+            Profile
+        </div>
+
+    </div>
+
+
+    <div class="profile-cover">
+    </div>
+
+
+    <section class="my-profile-card">
+
+        <div
+            class="my-avatar"
+            id="myAvatar">
+            M
+        </div>
+
+        <h1
+            class="my-name"
+            id="myName">
+            Mithun Chandra Ray
+        </h1>
+
+        <div
+            class="my-phone"
+            id="myPhone">
+            01700000000
+        </div>
+
+        <div class="role-badge">
+            Student
+        </div>
+
+
+        <div class="profile-buttons">
+
+            <button
+                class="profile-btn"
+                onclick="editProfile()">
+                ✏️ Edit Profile
+            </button>
+
+            <button
+                class="profile-btn"
+                onclick="openLibrary()">
+                💾 My Library
+            </button>
+
+            <button
+                class="profile-btn logout-btn"
+                onclick="logoutUser()">
+                🚪 Log Out
+            </button>
+
         </div>
 
     </section>
@@ -1362,185 +1290,92 @@ body{
 </main>
 
 
-<!-- =====================================================
-     EDIT PROFILE MODAL
-===================================================== -->
+<!-- =========================================================
+     LIBRARY PAGE
+========================================================= -->
 
-<div class="modal"
-     id="editModal">
+<main id="libraryPage" class="page">
 
-    <div class="modal-box">
+    <div class="back-bar">
 
-        <div class="modal-title">
-            Edit Profile
-        </div>
+        <button
+            class="back-btn"
+            onclick="goBack()">
+            ←
+        </button>
 
-        <div class="form-group">
-
-            <label>
-                নাম
-            </label>
-
-            <input
-                id="editName"
-                type="text"
-                placeholder="আপনার নাম">
-
-        </div>
-
-        <div class="form-group">
-
-            <label>
-                মোবাইল নাম্বার
-            </label>
-
-            <input
-                id="editPhone"
-                type="tel"
-                placeholder="01XXXXXXXXX">
-
-        </div>
-
-        <div class="form-group">
-
-            <label>
-                Account Type
-            </label>
-
-            <select id="editRole">
-
-                <option>
-                    Student
-                </option>
-
-                <option>
-                    Teacher
-                </option>
-
-            </select>
-
-        </div>
-
-        <div class="form-group">
-
-            <label>
-                Profile Photo
-            </label>
-
-            <input
-                id="profileImageInput"
-                type="file"
-                accept="image/*">
-
-        </div>
-
-        <div class="form-group">
-
-            <label>
-                Cover Photo
-            </label>
-
-            <input
-                id="coverImageInput"
-                type="file"
-                accept="image/*">
-
-        </div>
-
-        <div class="modal-actions">
-
-            <button
-                class="secondary-btn"
-                onclick="closeEditProfile()">
-                Cancel
-            </button>
-
-            <button
-                class="primary-btn full"
-                onclick="saveProfile()">
-                Save
-            </button>
-
+        <div class="back-title">
+            My Library
         </div>
 
     </div>
 
-</div>
+
+    <div class="empty-state">
+
+        <div class="empty-icon">
+            📚
+        </div>
+
+        <h2>
+            আপনার Library
+        </h2>
+
+        <p>
+            Save করা ভিডিওগুলো এখানে দেখা যাবে।
+        </p>
+
+    </div>
+
+</main>
 
 
-<!-- =====================================================
+<!-- =========================================================
      BOTTOM NAVIGATION
-===================================================== -->
+========================================================= -->
 
 <nav class="bottom-nav">
 
-    <button class="nav-item active"
-            data-page="home"
-            onclick="navigate('home')">
+    <button
+        class="nav-item active"
+        id="navHome"
+        onclick="openPage('home')">
 
-        <span class="nav-icon">
-            ⌂
-        </span>
-
-        <span class="nav-label">
-            Home
-        </span>
+        <span class="nav-icon">⌂</span>
+        <span>Home</span>
 
     </button>
 
-    <button class="nav-item"
-            data-page="shorts"
-            onclick="navigate('shorts')">
 
-        <span class="nav-icon">
-            ▶
-        </span>
+    <button
+        class="nav-item"
+        id="navExplore"
+        onclick="openPage('home')">
 
-        <span class="nav-label">
-            Shorts
-        </span>
+        <span class="nav-icon">◉</span>
+        <span>Explore</span>
 
     </button>
 
-    <button class="nav-item"
-            data-page="explore"
-            onclick="navigate('explore')">
 
-        <span class="nav-icon">
-            ◉
-        </span>
+    <button
+        class="nav-item"
+        id="navLibrary"
+        onclick="openLibrary()">
 
-        <span class="nav-label">
-            Explore
-        </span>
+        <span class="nav-icon">▣</span>
+        <span>Library</span>
 
     </button>
 
-    <button class="nav-item"
-            data-page="library"
-            onclick="navigate('library')">
 
-        <span class="nav-icon">
-            ▣
-        </span>
+    <button
+        class="nav-item"
+        id="navProfile"
+        onclick="openPage('profile')">
 
-        <span class="nav-label">
-            Library
-        </span>
-
-    </button>
-
-    <button class="nav-item"
-            data-page="profile"
-            onclick="navigate('profile')">
-
-        <span class="nav-icon">
-            ♙
-        </span>
-
-        <span class="nav-label">
-            Profile
-        </span>
+        <span class="nav-icon">♙</span>
+        <span>Profile</span>
 
     </button>
 
@@ -1549,1286 +1384,960 @@ body{
 
 <script>
 
-/* =====================================================
-   DATA FOUNDATION
-===================================================== */
+    /* =====================================================
+       DATA FOUNDATION
+       পরে এগুলো Database/API থেকে আসবে
+    ===================================================== */
 
-const longVideos = [
+    const teachers = {
 
-{
-    id:1,
-    title:"গণিতের গুরুত্বপূর্ণ ধারণা",
-    subject:"গণিত",
-    teacher:"রাকিব স্যার",
-    teacherId:"rakib",
-    teacherLogo:"R",
-    icon:"📐",
-    duration:"12:45",
-    description:"গণিতের গুরুত্বপূর্ণ ধারণাগুলো সহজভাবে শেখানো হয়েছে।",
-    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-},
+        teacher1: {
+            id: "teacher1",
+            name: "FlickTide Teacher",
+            subject: "গণিত",
+            avatar: "FT",
+            bio: "গণিতের গুরুত্বপূর্ণ ধারণা সহজভাবে শেখানো হয়।"
+        },
 
-{
-    id:2,
-    title:"Science Basics",
-    subject:"বিজ্ঞান",
-    teacher:"সুমাইয়া ম্যাডাম",
-    teacherId:"sumaiya",
-    teacherLogo:"S",
-    icon:"🔬",
-    duration:"18:20",
-    description:"বিজ্ঞানের মৌলিক বিষয়গুলো বুঝে শেখার একটি সহজ ক্লাস।",
-    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-},
+        teacher2: {
+            id: "teacher2",
+            name: "FlickTide Science",
+            subject: "বিজ্ঞান",
+            avatar: "FS",
+            bio: "বিজ্ঞানের বিষয়গুলো সহজ ও সুন্দরভাবে শেখানো হয়।"
+        },
 
-{
-    id:3,
-    title:"English Grammar",
-    subject:"ইংরেজি",
-    teacher:"নাজমুল স্যার",
-    teacherId:"nazmul",
-    teacherLogo:"N",
-    icon:"📘",
-    duration:"15:10",
-    description:"English Grammar-এর গুরুত্বপূর্ণ বিষয়গুলো।",
-    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-},
+        teacher3: {
+            id: "teacher3",
+            name: "FlickTide English",
+            subject: "ইংরেজি",
+            avatar: "FE",
+            bio: "English grammar এবং language learning।"
+        },
 
-{
-    id:4,
-    title:"বাংলা সাহিত্য পরিচিতি",
-    subject:"বাংলা",
-    teacher:"তানিয়া ম্যাডাম",
-    teacherId:"tania",
-    teacherLogo:"T",
-    icon:"📖",
-    duration:"20:10",
-    description:"বাংলা সাহিত্যের গুরুত্বপূর্ণ অধ্যায়।",
-    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-},
-
-{
-    id:5,
-    title:"পদার্থবিজ্ঞানের বেসিক",
-    subject:"পদার্থবিজ্ঞান",
-    teacher:"আরিফ স্যার",
-    teacherId:"arif",
-    teacherLogo:"A",
-    icon:"⚛️",
-    duration:"22:30",
-    description:"পদার্থবিজ্ঞানের মৌলিক ধারণা।",
-    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-},
-
-{
-    id:6,
-    title:"জীববিজ্ঞানের গুরুত্বপূর্ণ অধ্যায়",
-    subject:"জীববিজ্ঞান",
-    teacher:"মেহেদী স্যার",
-    teacherId:"mehedi",
-    teacherLogo:"M",
-    icon:"🧬",
-    duration:"17:50",
-    description:"জীববিজ্ঞানের গুরুত্বপূর্ণ বিষয়গুলো।",
-    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-},
-
-{
-    id:7,
-    title:"Higher Math Class",
-    subject:"উচ্চতর গণিত",
-    teacher:"রাকিব স্যার",
-    teacherId:"rakib",
-    teacherLogo:"R",
-    icon:"📊",
-    duration:"25:20",
-    description:"Higher Math-এর গুরুত্বপূর্ণ ধারণা।",
-    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-},
-
-{
-    id:8,
-    title:"ICT Basic Course",
-    subject:"ICT",
-    teacher:"সুমাইয়া ম্যাডাম",
-    teacherId:"sumaiya",
-    teacherLogo:"S",
-    icon:"💻",
-    duration:"16:40",
-    description:"ICT শেখার জন্য বেসিক ক্লাস।",
-    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-},
-
-{
-    id:9,
-    title:"রসায়নের গুরুত্বপূর্ণ সূত্র",
-    subject:"রসায়ন",
-    teacher:"আরিফ স্যার",
-    teacherId:"arif",
-    teacherLogo:"A",
-    icon:"🧪",
-    duration:"19:15",
-    description:"রসায়নের গুরুত্বপূর্ণ সূত্র।",
-    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-},
-
-{
-    id:10,
-    title:"Exam Preparation",
-    subject:"Exam",
-    teacher:"মেহেদী স্যার",
-    teacherId:"mehedi",
-    teacherLogo:"M",
-    icon:"🎓",
-    duration:"13:50",
-    description:"পরীক্ষার প্রস্তুতির জন্য গুরুত্বপূর্ণ আলোচনা।",
-    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-},
-
-{
-    id:11,
-    title:"Bangla 2nd Paper",
-    subject:"বাংলা",
-    teacher:"তানিয়া ম্যাডাম",
-    teacherId:"tania",
-    teacherLogo:"T",
-    icon:"📚",
-    duration:"21:30",
-    description:"বাংলা দ্বিতীয় পত্রের ক্লাস।",
-    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-},
-
-{
-    id:12,
-    title:"Physics Problem Solving",
-    subject:"পদার্থবিজ্ঞান",
-    teacher:"আরিফ স্যার",
-    teacherId:"arif",
-    teacherLogo:"A",
-    icon:"🔭",
-    duration:"28:10",
-    description:"Physics-এর গুরুত্বপূর্ণ সমস্যা সমাধান।",
-    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-}
-
-];
-
-
-const shorts = [
-
-{
-    id:101,
-    title:"১ মিনিটে একটি গুরুত্বপূর্ণ ধারণা",
-    subject:"গণিত",
-    teacher:"রাকিব স্যার",
-    teacherId:"rakib",
-    logo:"🎓",
-    duration:"0:58"
-},
-
-{
-    id:102,
-    title:"Exam preparation tip",
-    subject:"Study",
-    teacher:"মেহেদী স্যার",
-    teacherId:"mehedi",
-    logo:"🧠",
-    duration:"0:45"
-},
-
-{
-    id:103,
-    title:"English Grammar Tip",
-    subject:"ইংরেজি",
-    teacher:"নাজমুল স্যার",
-    teacherId:"nazmul",
-    logo:"📘",
-    duration:"0:52"
-},
-
-{
-    id:104,
-    title:"Science in 60 Seconds",
-    subject:"বিজ্ঞান",
-    teacher:"সুমাইয়া ম্যাডাম",
-    teacherId:"sumaiya",
-    logo:"🔬",
-    duration:"0:59"
-},
-
-{
-    id:105,
-    title:"দ্রুত গণিত সমাধান",
-    subject:"গণিত",
-    teacher:"রাকিব স্যার",
-    teacherId:"rakib",
-    logo:"📐",
-    duration:"0:50"
-},
-
-{
-    id:106,
-    title:"পরীক্ষার আগে যা করবেন",
-    subject:"Study",
-    teacher:"তানিয়া ম্যাডাম",
-    teacherId:"tania",
-    logo:"🎯",
-    duration:"0:57"
-}
-
-];
-
-
-/* =====================================================
-   PROFILE DATA
-===================================================== */
-
-let profile = JSON.parse(
-    localStorage.getItem("flicktide_profile")
-) || {
-
-    name:"Mithun Chandra Ray",
-    phone:"01708744994",
-    role:"Student",
-    photo:"",
-    cover:""
-
-};
-
-
-/* =====================================================
-   CURRENT STATE
-===================================================== */
-
-let currentVideo = null;
-let currentTeacher = null;
-
-let videoZoom = 1;
-
-let pageHistory = [];
-
-
-/* =====================================================
-   INITIALIZATION
-===================================================== */
-
-document.addEventListener("DOMContentLoaded",()=>{
-
-    loadProfile();
-
-    renderHome();
-
-    renderShorts();
-
-    renderExplore();
-
-    startWatchTimer();
-
-    window.addEventListener(
-        "popstate",
-        handleBrowserBack
-    );
-
-});
-
-
-/* =====================================================
-   NAVIGATION
-===================================================== */
-
-function navigate(page, saveHistory=true){
-
-    const pages = [
-        "home",
-        "shorts",
-        "explore",
-        "library",
-        "profile",
-        "teacher",
-        "player"
-    ];
-
-    pages.forEach(p=>{
-
-        const element =
-            document.getElementById(p+"Page");
-
-        if(element){
-            element.classList.remove("active");
+        teacher4: {
+            id: "teacher4",
+            name: "FlickTide ICT",
+            subject: "ICT",
+            avatar: "FI",
+            bio: "ICT এবং প্রযুক্তি বিষয়ক শিক্ষামূলক ভিডিও।"
         }
 
-    });
-
-    const target =
-        document.getElementById(page+"Page");
-
-    if(target){
-        target.classList.add("active");
-    }
-
-    if(saveHistory){
-
-        pageHistory.push(page);
-
-        history.pushState(
-            {page:page},
-            "",
-            "#"+page
-        );
-
-    }
-
-    updateBottomNavigation(page);
-
-    updateBackButton(page);
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-}
+    };
 
 
-function navigateHome(){
+    const videos = [
 
-    navigate("home");
-}
+        {
+            id: 1,
+            title: "গণিতের গুরুত্বপূর্ণ ধারণা",
+            teacherId: "teacher1",
+            category: "গণিত",
+            views: "12K",
+            time: "2 দিন আগে",
+            duration: "18:42",
+            icon: "📐",
+            videoUrl: ""
+        },
 
+        {
+            id: 2,
+            title: "বিজ্ঞান কীভাবে কাজ করে?",
+            teacherId: "teacher2",
+            category: "বিজ্ঞান",
+            views: "8.5K",
+            time: "3 দিন আগে",
+            duration: "22:15",
+            icon: "🔬",
+            videoUrl: ""
+        },
 
-function goBack(){
+        {
+            id: 3,
+            title: "English Grammar সম্পূর্ণ ধারণা",
+            teacherId: "teacher3",
+            category: "ইংরেজি",
+            views: "15K",
+            time: "5 দিন আগে",
+            duration: "25:30",
+            icon: "📘",
+            videoUrl: ""
+        },
 
-    if(pageHistory.length > 1){
+        {
+            id: 4,
+            title: "ICT এর মৌলিক ধারণা",
+            teacherId: "teacher4",
+            category: "ICT",
+            views: "6.2K",
+            time: "১ সপ্তাহ আগে",
+            duration: "20:18",
+            icon: "💻",
+            videoUrl: ""
+        },
 
-        pageHistory.pop();
+        {
+            id: 5,
+            title: "বীজগণিত সহজে শিখুন",
+            teacherId: "teacher1",
+            category: "গণিত",
+            views: "9.8K",
+            time: "১ সপ্তাহ আগে",
+            duration: "31:20",
+            icon: "➗",
+            videoUrl: ""
+        },
 
-        history.back();
+        {
+            id: 6,
+            title: "জীববিজ্ঞানের গুরুত্বপূর্ণ অধ্যায়",
+            teacherId: "teacher2",
+            category: "বিজ্ঞান",
+            views: "11K",
+            time: "২ সপ্তাহ আগে",
+            duration: "28:10",
+            icon: "🧬",
+            videoUrl: ""
+        },
 
-    }else{
+        {
+            id: 7,
+            title: "বাংলা ব্যাকরণ সম্পূর্ণ ক্লাস",
+            teacherId: "teacher1",
+            category: "বাংলা",
+            views: "7.4K",
+            time: "২ সপ্তাহ আগে",
+            duration: "35:12",
+            icon: "📖",
+            videoUrl: ""
+        },
 
-        navigate("home");
+        {
+            id: 8,
+            title: "Programming এর শুরু",
+            teacherId: "teacher4",
+            category: "ICT",
+            views: "18K",
+            time: "৩ সপ্তাহ আগে",
+            duration: "42:25",
+            icon: "💻",
+            videoUrl: ""
+        }
 
-    }
-
-}
-
-
-function handleBrowserBack(){
-
-    if(pageHistory.length > 1){
-
-        pageHistory.pop();
-
-    }else{
-
-        pageHistory = ["home"];
-
-    }
-
-    const page =
-        pageHistory[pageHistory.length-1] || "home";
-
-    navigate(page,false);
-
-}
-
-
-function updateBackButton(page){
-
-    const backBar =
-        document.getElementById("backBar");
-
-    const normalPages = [
-        "home",
-        "shorts",
-        "explore",
-        "library",
-        "profile"
     ];
 
-    if(normalPages.includes(page)){
 
-        backBar.classList.remove("show");
+    let currentVideo = videos[0];
 
-    }else{
+    let currentPage = "home";
 
-        backBar.classList.add("show");
+    let pageHistory = [];
 
-    }
-
-}
+    let selectedCategory = "all";
 
 
-function updateBottomNavigation(page){
+    /* =====================================================
+       PAGE SYSTEM
+    ===================================================== */
 
-    document
-        .querySelectorAll(".nav-item")
-        .forEach(item=>{
+    function openPage(pageName, addHistory = true) {
 
-            item.classList.remove("active");
+        if (addHistory && currentPage !== pageName) {
+            pageHistory.push(currentPage);
+        }
 
+        document.querySelectorAll(".page")
+            .forEach(page => page.classList.remove("active"));
+
+
+        const target = document.getElementById(pageName + "Page");
+
+        if (target) {
+            target.classList.add("active");
+        }
+
+
+        currentPage = pageName;
+
+
+        updateNavigation();
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "instant"
         });
 
-    const item =
-        document.querySelector(
-            `.nav-item[data-page="${page}"]`
-        );
-
-    if(item){
-        item.classList.add("active");
     }
 
-}
+
+    function goBack() {
+
+        if (pageHistory.length > 0) {
+
+            const previousPage =
+                pageHistory.pop();
+
+            openPage(previousPage, false);
+
+        } else {
+
+            openPage("home", false);
+
+        }
+
+    }
 
 
-/* =====================================================
-   HOME FEED
-===================================================== */
+    /* =====================================================
+       HOME FEED
+    ===================================================== */
 
-function renderHome(list=longVideos){
+    function renderVideos(list = videos) {
 
-    const feed =
-        document.getElementById("homeFeed");
+        const feed =
+            document.getElementById("videoFeed");
 
-    feed.innerHTML="";
-
-    list.forEach((video,index)=>{
-
-        const card =
-            createLongCard(video);
-
-        feed.appendChild(card);
+        feed.innerHTML = "";
 
 
-        /*
-           প্রতি ৬টি Long Video-এর পরে
-           ২টি Shorts পাশাপাশি
-        */
+        if (!list.length) {
 
-        if(
-            (index+1)%6===0 &&
-            index < list.length-1
-        ){
+            feed.innerHTML = `
+                <div class="empty-state">
 
-            const section =
-                document.createElement("section");
+                    <div class="empty-icon">
+                        🔍
+                    </div>
 
-            section.className="shorts-section";
+                    <h2>কোনো ভিডিও পাওয়া যায়নি</h2>
 
-            section.innerHTML=`
-                <div class="shorts-heading">
-                    Shorts
-                </div>
-
-                <div class="shorts-grid">
-
-                    ${shorts.slice(0,2)
-                        .map(s=>createShortHTML(s))
-                        .join("")}
+                    <p>
+                        অন্য কিছু লিখে আবার চেষ্টা করুন।
+                    </p>
 
                 </div>
             `;
 
-            feed.appendChild(section);
+            return;
+        }
+
+
+        list.forEach(video => {
+
+            feed.appendChild(
+                createVideoCard(video)
+            );
+
+        });
+
+    }
+
+
+    function createVideoCard(video) {
+
+        const teacher =
+            teachers[video.teacherId];
+
+
+        const card =
+            document.createElement("article");
+
+        card.className = "video-card";
+
+
+        card.innerHTML = `
+
+            <div
+                class="thumbnail-wrapper"
+                onclick="openVideo(${video.id})">
+
+                <div class="thumbnail">
+                    ${video.icon}
+                </div>
+
+                <div class="duration">
+                    ${video.duration}
+                </div>
+
+            </div>
+
+
+            <div class="video-info">
+
+                <div
+                    class="teacher-avatar"
+                    onclick="event.stopPropagation(); openTeacher('${teacher.id}')">
+
+                    ${teacher.avatar}
+
+                </div>
+
+
+                <div
+                    class="video-details"
+                    onclick="openVideo(${video.id})">
+
+                    <div class="video-title">
+                        ${video.title}
+                    </div>
+
+                    <div
+                        class="teacher-name"
+                        onclick="event.stopPropagation(); openTeacher('${teacher.id}')">
+
+                        ${teacher.name}
+
+                    </div>
+
+                    <div class="video-meta">
+
+                        ${video.views} views •
+                        ${video.time}
+
+                    </div>
+
+                </div>
+
+            </div>
+        `;
+
+
+        return card;
+
+    }
+
+
+    /* =====================================================
+       SEARCH
+    ===================================================== */
+
+    function searchVideos() {
+
+        const query =
+            document
+                .getElementById("searchInput")
+                .value
+                .toLowerCase()
+                .trim();
+
+
+        let result = videos;
+
+
+        if (selectedCategory !== "all") {
+
+            result =
+                result.filter(video =>
+                    video.category === selectedCategory
+                );
 
         }
 
-    });
 
-}
+        if (query) {
 
+            result =
+                result.filter(video => {
 
-/* =====================================================
-   LONG CARD
-===================================================== */
+                    const teacher =
+                        teachers[video.teacherId];
 
-function createLongCard(video){
+                    return (
+                        video.title
+                            .toLowerCase()
+                            .includes(query)
+                        ||
+                        teacher.name
+                            .toLowerCase()
+                            .includes(query)
+                        ||
+                        video.category
+                            .toLowerCase()
+                            .includes(query)
+                    );
 
-    const card =
-        document.createElement("article");
+                });
 
-    card.className="long-card";
+        }
 
-    card.innerHTML=`
 
-        <div class="thumbnail">
-
-            <span>
-                ${video.icon}
-            </span>
-
-            <div class="duration">
-                ${video.duration}
-            </div>
-
-        </div>
-
-        <div class="video-info">
-
-            <div class="video-title">
-                ${video.title}
-            </div>
-
-            <div class="video-meta">
-                ${video.subject}
-            </div>
-
-            <div class="teacher-row"
-                 onclick="event.stopPropagation(); openTeacher('${video.teacherId}')">
-
-                <div class="teacher-logo">
-                    ${video.teacherLogo}
-                </div>
-
-                <div class="teacher-name">
-                    ${video.teacher}
-                </div>
-
-            </div>
-
-        </div>
-
-    `;
-
-    card.onclick=()=>openVideo(video);
-
-    return card;
-
-}
-
-
-/* =====================================================
-   SHORTS
-===================================================== */
-
-function renderShorts(list=shorts){
-
-    const feed =
-        document.getElementById("shortsFeed");
-
-    feed.innerHTML="";
-
-    list.forEach(short=>{
-
-        feed.insertAdjacentHTML(
-            "beforeend",
-            createShortHTML(short)
-        );
-
-    });
-
-}
-
-
-function createShortHTML(short){
-
-    return `
-
-        <article
-            class="short-card"
-            onclick="openShort(${short.id})">
-
-            <div class="short-thumbnail">
-                ${short.logo}
-            </div>
-
-            <div class="short-info">
-
-                <div class="short-title">
-                    ${short.title}
-                </div>
-
-                <div class="short-meta">
-                    ${short.subject} • ${short.teacher}
-                </div>
-
-            </div>
-
-        </article>
-
-    `;
-
-}
-
-
-function openShort(id){
-
-    const short =
-        shorts.find(s=>s.id===id);
-
-    if(!short) return;
-
-    /*
-       Shorts-কে vertical player হিসেবে চালানোর
-       foundation।
-    */
-
-    const video = {
-
-        id:short.id,
-
-        title:short.title,
-
-        subject:short.subject,
-
-        teacher:short.teacher,
-
-        teacherId:short.teacherId,
-
-        teacherLogo:short.logo,
-
-        description:
-            "এই Short ভিডিওটি FlickTide-এর শিক্ষামূলক কন্টেন্ট।",
-
-        video:
-            "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-
-    };
-
-    openVideo(video);
-
-}
-
-
-/* =====================================================
-   VIDEO PLAYER
-===================================================== */
-
-function openVideo(video){
-
-    currentVideo = video;
-
-    const player =
-        document.getElementById("mainVideo");
-
-    player.src = video.video;
-
-    player.currentTime = 0;
-
-    playerZoomReset();
-
-    document.getElementById(
-        "playerTitle"
-    ).textContent = video.title;
-
-    document.getElementById(
-        "playerDescription"
-    ).textContent = video.description;
-
-    document.getElementById(
-        "playerTeacherName"
-    ).textContent = video.teacher;
-
-    document.getElementById(
-        "playerTeacherSubject"
-    ).textContent = video.subject;
-
-    document.getElementById(
-        "playerTeacherLogo"
-    ).textContent = video.teacherLogo;
-
-    renderSuggested(video);
-
-    navigate("player");
-
-}
-
-
-function renderSuggested(video){
-
-    const feed =
-        document.getElementById("suggestedFeed");
-
-    feed.innerHTML="";
-
-    const suggestions =
-        longVideos
-            .filter(v=>v.id!==video.id)
-            .filter(v=>
-                v.subject===video.subject ||
-                v.teacherId===video.teacherId
-            )
-            .slice(0,6);
-
-    suggestions.forEach(v=>{
-
-        feed.appendChild(
-            createLongCard(v)
-        );
-
-    });
-
-}
-
-
-function fullscreenVideo(){
-
-    const player =
-        document.getElementById("mainVideo");
-
-    if(player.requestFullscreen){
-
-        player.requestFullscreen();
-
-    }else if(player.webkitEnterFullscreen){
-
-        player.webkitEnterFullscreen();
+        renderVideos(result);
 
     }
 
-}
 
+    /* =====================================================
+       CATEGORY
+    ===================================================== */
 
-function zoomVideo(amount){
+    function filterCategory(category, button) {
 
-    videoZoom += amount;
+        selectedCategory = category;
 
-    if(videoZoom < 1){
-        videoZoom=1;
-    }
 
-    if(videoZoom > 2.5){
-        videoZoom=2.5;
-    }
-
-    document.getElementById(
-        "mainVideo"
-    ).style.transform =
-        `scale(${videoZoom})`;
-
-}
-
-
-function resetVideoZoom(){
-
-    videoZoom=1;
-
-    document.getElementById(
-        "mainVideo"
-    ).style.transform =
-        "scale(1)";
-
-}
-
-
-function playerZoomReset(){
-
-    videoZoom=1;
-
-    const player =
-        document.getElementById("mainVideo");
-
-    player.style.transform="scale(1)";
-
-}
-
-
-/* =====================================================
-   TEACHER PROFILE
-===================================================== */
-
-function openTeacher(teacherId){
-
-    currentTeacher = teacherId;
-
-    const teacherVideos =
-        longVideos.filter(
-            v=>v.teacherId===teacherId
-        );
-
-    if(!teacherVideos.length) return;
-
-    const teacher =
-        teacherVideos[0];
-
-    document.getElementById(
-        "teacherProfileName"
-    ).textContent =
-        teacher.teacher;
-
-    document.getElementById(
-        "teacherProfileSubject"
-    ).textContent =
-        teacher.subject;
-
-    document.getElementById(
-        "teacherBigLogo"
-    ).textContent =
-        teacher.teacherLogo;
-
-    const feed =
-        document.getElementById("teacherFeed");
-
-    feed.innerHTML="";
-
-    teacherVideos.forEach(video=>{
-
-        feed.appendChild(
-            createLongCard(video)
-        );
-
-    });
-
-    navigate("teacher");
-
-}
-
-
-function openCurrentTeacher(){
-
-    if(currentVideo){
-
-        openTeacher(
-            currentVideo.teacherId
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   EXPLORE
-===================================================== */
-
-function renderExplore(){
-
-    const grid =
-        document.getElementById("categoryGrid");
-
-    const subjects =
-        [...new Set(
-            longVideos.map(v=>v.subject)
-        )];
-
-    grid.innerHTML="";
-
-    subjects.forEach(subject=>{
-
-        const div =
-            document.createElement("div");
-
-        div.className="category";
-
-        div.textContent=subject;
-
-        div.onclick=()=>{
-
-            const filtered =
-                longVideos.filter(
-                    v=>v.subject===subject
-                );
-
-            renderHome(filtered);
-
-            navigate("home");
-
-        };
-
-        grid.appendChild(div);
-
-    });
-
-}
-
-
-function searchHome(value){
-
-    const query =
-        value.trim().toLowerCase();
-
-    if(!query){
-
-        renderHome(longVideos);
-        return;
-
-    }
-
-    const results =
-        longVideos.filter(video=>
-
-            video.title
-                .toLowerCase()
-                .includes(query)
-
-            ||
-
-            video.subject
-                .toLowerCase()
-                .includes(query)
-
-            ||
-
-            video.teacher
-                .toLowerCase()
-                .includes(query)
-
-        );
-
-    renderHome(results);
-
-}
-
-
-function searchExplore(value){
-
-    const query =
-        value.trim().toLowerCase();
-
-    const categories =
-        document.querySelectorAll(".category");
-
-    categories.forEach(category=>{
-
-        category.style.display =
-            category.textContent
-                .toLowerCase()
-                .includes(query)
-                ? "block"
-                : "none";
-
-    });
-
-}
-
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
-function loadProfile(){
-
-    document.getElementById(
-        "profileName"
-    ).textContent =
-        profile.name;
-
-    document.getElementById(
-        "profilePhone"
-    ).textContent =
-        profile.phone;
-
-    document.getElementById(
-        "profileRole"
-    ).textContent =
-        profile.role;
-
-    const mini =
-        document.getElementById("miniProfile");
-
-    if(profile.photo){
-
-        mini.innerHTML =
-            `<img src="${profile.photo}">`;
-
-        document.getElementById(
-            "profilePhoto"
-        ).innerHTML =
-            `<img src="${profile.photo}">`;
-
-    }else{
-
-        const letter =
-            profile.name
-                ? profile.name.charAt(0).toUpperCase()
-                : "M";
-
-        mini.textContent=letter;
-
-        document.getElementById(
-            "profilePhoto"
-        ).textContent=letter;
-
-    }
-
-    if(profile.cover){
-
-        const cover =
-            document.getElementById(
-                "coverImage"
+        document
+            .querySelectorAll(".category-btn")
+            .forEach(btn =>
+                btn.classList.remove("active")
             );
 
-        cover.src=profile.cover;
-        cover.style.display="block";
+
+        button.classList.add("active");
+
+
+        searchVideos();
 
     }
 
-}
+
+    /* =====================================================
+       VIDEO PLAYER
+    ===================================================== */
+
+    function openVideo(videoId) {
+
+        const video =
+            videos.find(v => v.id === videoId);
 
 
-function openEditProfile(){
-
-    document.getElementById(
-        "editName"
-    ).value=profile.name;
-
-    document.getElementById(
-        "editPhone"
-    ).value=profile.phone;
-
-    document.getElementById(
-        "editRole"
-    ).value=profile.role;
-
-    document.getElementById(
-        "editModal"
-    ).classList.add("show");
-
-}
+        if (!video) return;
 
 
-function closeEditProfile(){
-
-    document.getElementById(
-        "editModal"
-    ).classList.remove("show");
-
-}
+        currentVideo = video;
 
 
-function saveProfile(){
+        const teacher =
+            teachers[video.teacherId];
 
-    const name =
-        document.getElementById(
-            "editName"
-        ).value.trim();
 
-    const phone =
-        document.getElementById(
-            "editPhone"
-        ).value.trim();
+        document.getElementById("playerTitle")
+            .textContent = video.title;
 
-    const role =
-        document.getElementById(
-            "editRole"
-        ).value;
 
-    if(!name){
+        document.getElementById("playerMeta")
+            .textContent =
+            `${video.views} views • ${video.time}`;
 
-        alert("নাম লিখুন।");
-        return;
+
+        document.getElementById("playerTeacherName")
+            .textContent = teacher.name;
+
+
+        document.getElementById("playerTeacherSubject")
+            .textContent = teacher.subject;
+
+
+        document.getElementById("playerTeacherAvatar")
+            .textContent = teacher.avatar;
+
+
+        const player =
+            document.getElementById("mainVideo");
+
+
+        if (video.videoUrl) {
+
+            player.src = video.videoUrl;
+
+        } else {
+
+            player.removeAttribute("src");
+
+        }
+
+
+        renderRelatedVideos(video);
+
+
+        openPage("player");
+
+    }
+
+
+    /* =====================================================
+       RELATED VIDEOS
+    ===================================================== */
+
+    function renderRelatedVideos(video) {
+
+        const container =
+            document.getElementById("relatedVideos");
+
+
+        container.innerHTML = "";
+
+
+        const related =
+            videos
+                .filter(v =>
+                    v.id !== video.id &&
+                    (
+                        v.category === video.category ||
+                        v.teacherId === video.teacherId
+                    )
+                )
+                .slice(0, 6);
+
+
+        related.forEach(item => {
+
+            const teacher =
+                teachers[item.teacherId];
+
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "related-card";
+
+
+            card.onclick = () =>
+                openVideo(item.id);
+
+
+            card.innerHTML = `
+
+                <div class="related-thumb">
+                    ${item.icon}
+                </div>
+
+                <div class="related-info">
+
+                    <div class="related-title">
+                        ${item.title}
+                    </div>
+
+                    <div class="related-meta">
+                        ${teacher.name}
+                    </div>
+
+                    <div class="related-meta">
+                        ${item.views} views • ${item.time}
+                    </div>
+
+                </div>
+            `;
+
+
+            container.appendChild(card);
+
+        });
 
     }
 
-    profile.name=name;
 
-    profile.phone=phone;
+    /* =====================================================
+       TEACHER PROFILE
+    ===================================================== */
 
-    profile.role=role;
+    function openTeacher(teacherId) {
 
-
-    const photoInput =
-        document.getElementById(
-            "profileImageInput"
-        );
-
-    const coverInput =
-        document.getElementById(
-            "coverImageInput"
-        );
+        const teacher =
+            teachers[teacherId];
 
 
-    const saveAfterImages=()=>{
-
-        localStorage.setItem(
-            "flicktide_profile",
-            JSON.stringify(profile)
-        );
-
-        loadProfile();
-
-        closeEditProfile();
-
-    };
+        if (!teacher) return;
 
 
-    if(photoInput.files.length){
+        document.getElementById("teacherName")
+            .textContent = teacher.name;
 
-        const reader =
-            new FileReader();
 
-        reader.onload=e=>{
+        document.getElementById("teacherSubject")
+            .textContent = teacher.subject;
 
-            profile.photo=e.target.result;
 
-            saveAfterImages();
+        document.getElementById("teacherAvatar")
+            .textContent = teacher.avatar;
 
-        };
 
-        reader.readAsDataURL(
-            photoInput.files[0]
-        );
+        document.getElementById("teacherBio")
+            .textContent = teacher.bio;
 
-    }else if(coverInput.files.length){
 
-        const reader =
-            new FileReader();
+        const teacherVideos =
+            videos.filter(
+                video =>
+                    video.teacherId === teacherId
+            );
 
-        reader.onload=e=>{
 
-            profile.cover=e.target.result;
+        const container =
+            document.getElementById("teacherVideos");
 
-            saveAfterImages();
 
-        };
+        container.innerHTML = "";
 
-        reader.readAsDataURL(
-            coverInput.files[0]
-        );
 
-    }else{
+        teacherVideos.forEach(video => {
 
-        saveAfterImages();
+            container.appendChild(
+                createVideoCard(video)
+            );
+
+        });
+
+
+        openPage("teacher");
 
     }
+
+
+    /* =====================================================
+       MY PROFILE
+    ===================================================== */
+
+    function loadMyProfile() {
+
+        const savedUser =
+            localStorage.getItem("fliktide_user");
+
+
+        if (!savedUser) return;
+
+
+        try {
+
+            const user =
+                JSON.parse(savedUser);
+
+
+            if (user.name) {
+
+                document.getElementById("myName")
+                    .textContent = user.name;
+
+                document.getElementById("headerAvatar")
+                    .textContent =
+                    user.name.charAt(0).toUpperCase();
+
+                document.getElementById("myAvatar")
+                    .textContent =
+                    user.name.charAt(0).toUpperCase();
+
+            }
+
+
+            if (user.phone) {
+
+                document.getElementById("myPhone")
+                    .textContent = user.phone;
+
+            }
+
+        } catch (error) {
+
+            console.log(
+                "Profile data unavailable"
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       PROFILE EDIT FOUNDATION
+    ===================================================== */
+
+    function editProfile() {
+
+        alert(
+            "Profile Edit system পরবর্তী ধাপে যুক্ত করা হবে।"
+        );
+
+    }
+
+
+    /* =====================================================
+       LIBRARY
+    ===================================================== */
+
+    function openLibrary() {
+
+        openPage("library");
+
+        updateNavigation();
+
+    }
+
+
+    /* =====================================================
+       LOGOUT
+    ===================================================== */
+
+    function logoutUser() {
+
+        const confirmed =
+            confirm(
+                "আপনি কি সত্যিই Log Out করতে চান?"
+            );
+
+
+        if (!confirmed) return;
+
+
+        localStorage.removeItem(
+            "fliktide_user"
+        );
+
+
+        localStorage.removeItem(
+            "fliktide_logged_in"
+        );
+
+
+        sessionStorage.clear();
+
+
+        /*
+         * Login page পরে তৈরি হলে:
+         *
+         * window.location.href = "login.html";
+         *
+         * আপাতত Home page-এ ফেরত যাচ্ছে।
+         */
+
+        pageHistory = [];
+
+        openPage("home", false);
+
+
+        alert(
+            "আপনি Log Out করেছেন।"
+        );
+
+    }
+
+
+    /* =====================================================
+       THEME
+    ===================================================== */
+
+    function toggleTheme() {
+
+        const root =
+            document.documentElement;
+
+
+        const current =
+            getComputedStyle(root)
+                .getPropertyValue("--bg")
+                .trim();
+
+
+        if (current === "#0b1220") {
+
+            root.style.setProperty(
+                "--bg",
+                "#f4f6fa"
+            );
+
+            root.style.setProperty(
+                "--surface",
+                "#ffffff"
+            );
+
+            root.style.setProperty(
+                "--surface-2",
+                "#e9edf5"
+            );
+
+            root.style.setProperty(
+                "--text",
+                "#111827"
+            );
+
+            root.style.setProperty(
+                "--muted",
+                "#667085"
+            );
+
+            document.getElementById(
+                "themeButton"
+            ).textContent = "☀️";
+
+
+            localStorage.setItem(
+                "fliktide_theme",
+                "light"
+            );
+
+        } else {
+
+            root.style.setProperty(
+                "--bg",
+                "#0b1220"
+            );
+
+            root.style.setProperty(
+                "--surface",
+                "#111a2b"
+            );
+
+            root.style.setProperty(
+                "--surface-2",
+                "#18243a"
+            );
+
+            root.style.setProperty(
+                "--text",
+                "#ffffff"
+            );
+
+            root.style.setProperty(
+                "--muted",
+                "#9aa7bb"
+            );
+
+            document.getElementById(
+                "themeButton"
+            ).textContent = "🌙";
+
+
+            localStorage.setItem(
+                "fliktide_theme",
+                "dark"
+            );
+
+        }
+
+    }
+
+
+    function loadTheme() {
+
+        const theme =
+            localStorage.getItem(
+                "fliktide_theme"
+            );
+
+
+        if (theme === "light") {
+
+            toggleTheme();
+
+        }
+
+    }
+
+
+    /* =====================================================
+       NOTIFICATION
+    ===================================================== */
+
+    function toggleNotifications() {
+
+        document
+            .getElementById("notificationPanel")
+            .classList.toggle("show");
+
+    }
+
+
+    /* =====================================================
+       NAVIGATION STATE
+    ===================================================== */
+
+    function updateNavigation() {
+
+        document
+            .querySelectorAll(".nav-item")
+            .forEach(item =>
+                item.classList.remove("active")
+            );
+
+
+        if (currentPage === "home") {
+
+            document
+                .getElementById("navHome")
+                .classList.add("active");
+
+        }
+
+
+        if (currentPage === "library") {
+
+            document
+                .getElementById("navLibrary")
+                .classList.add("active");
+
+        }
+
+
+        if (currentPage === "profile") {
+
+            document
+                .getElementById("navProfile")
+                .classList.add("active");
+
+        }
+
+    }
+
+
+    /* =====================================================
+       MOBILE BACK BUTTON
+    ===================================================== */
+
+    window.addEventListener(
+        "popstate",
+        function() {
+
+            goBack();
+
+        }
+    );
 
 
     /*
-       Cover image থাকলেও profile photo থাকলে
-       দুইটি file একসাথে save করার জন্য
-       পরের foundation update-এ async version
-       ব্যবহার করা যাবে।
-    */
+     * Browser history-তে state তৈরি করা।
+     * পরবর্তী ধাপে আরও উন্নত করা হবে।
+     */
 
-}
+    function pushBrowserHistory() {
 
-
-/* =====================================================
-   THEME
-===================================================== */
-
-function toggleTheme(){
-
-    document.body.classList.toggle("light");
-
-    localStorage.setItem(
-        "flicktide_theme",
-        document.body.classList.contains("light")
-            ? "light"
-            : "dark"
-    );
-
-}
-
-
-if(
-    localStorage.getItem("flicktide_theme")
-    ==="light"
-){
-
-    document.body.classList.add("light");
-
-}
-
-
-/* =====================================================
-   NOTIFICATION
-===================================================== */
-
-function showNotifications(){
-
-    alert(
-        "এখনো কোনো নতুন notification নেই।"
-    );
-
-}
-
-
-/* =====================================================
-   WATCH TIME
-===================================================== */
-
-let watchSeconds =
-    Number(
-        localStorage.getItem(
-            "flicktide_watch_seconds"
-        )
-    ) || 0;
-
-
-function startWatchTimer(){
-
-    setInterval(()=>{
-
-        /*
-           এখানে site open থাকা সময় গণনা হচ্ছে।
-           পরে video-playing time-এর সঙ্গে
-           এটিকে connect করা যাবে।
-        */
-
-        watchSeconds++;
-
-        localStorage.setItem(
-            "flicktide_watch_seconds",
-            watchSeconds
+        history.pushState(
+            {
+                page: currentPage
+            },
+            "",
+            "#" + currentPage
         );
-
-        updateWatchTime();
-
-    },1000);
-
-}
-
-
-function updateWatchTime(){
-
-    const hours =
-        Math.floor(
-            watchSeconds/3600
-        );
-
-    const minutes =
-        Math.floor(
-            (watchSeconds%3600)/60
-        );
-
-    const seconds =
-        watchSeconds%60;
-
-    const element =
-        document.getElementById(
-            "watchHours"
-        );
-
-    if(element){
-
-        element.textContent =
-            `${hours}h ${minutes}m ${seconds}s`;
 
     }
 
-}
 
+    /* =====================================================
+       CLOSE NOTIFICATION OUTSIDE
+    ===================================================== */
 
-/* =====================================================
-   MOBILE BACK / INITIAL HISTORY
-===================================================== */
-
-if(!location.hash){
-
-    history.replaceState(
-        {page:"home"},
-        "",
-        "#home"
-    );
-
-}
-
-pageHistory=["home"];
-
-
-/* =====================================================
-   CLOSE MODAL BY OUTSIDE CLICK
-===================================================== */
-
-document
-    .getElementById("editModal")
-    .addEventListener(
+    document.addEventListener(
         "click",
-        function(e){
+        function(event) {
 
-            if(e.target===this){
+            const panel =
+                document.getElementById(
+                    "notificationPanel"
+                );
 
-                closeEditProfile();
+
+            const notificationButton =
+                event.target.closest(
+                    ".header-btn"
+                );
+
+
+            if (
+                panel.classList.contains("show") &&
+                !panel.contains(event.target) &&
+                !notificationButton
+            ) {
+
+                panel.classList.remove("show");
 
             }
 
@@ -2836,22 +2345,22 @@ document
     );
 
 
-/* =====================================================
-   KEYBOARD / ESC
-===================================================== */
+    /* =====================================================
+       INITIALIZE
+    ===================================================== */
 
-document.addEventListener(
-    "keydown",
-    e=>{
+    document.addEventListener(
+        "DOMContentLoaded",
+        function() {
 
-        if(e.key==="Escape"){
+            renderVideos();
 
-            closeEditProfile();
+            loadMyProfile();
+
+            loadTheme();
 
         }
-
-    }
-);
+    );
 
 </script>
 
