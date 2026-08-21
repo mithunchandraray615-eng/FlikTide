@@ -1,71 +1,414 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
+    <!-- =====================================================
+         Basic Document Setup
+         ===================================================== -->
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>FlikTide</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <!-- Main stylesheet -->
-    <link rel="stylesheet" href="styles.css">
+    <meta
+        name="theme-color"
+        content="#ffffff"
+    >
+
+    <meta
+        name="description"
+        content="FlikTide — শিক্ষার্থীদের জন্য শিক্ষামূলক ভিডিও শেখার প্ল্যাটফর্ম।"
+    >
+
+    <meta
+        name="robots"
+        content="index, follow"
+    >
+
+    <title>FlikTide — Learn Without Limits</title>
+
+
+    <!-- =====================================================
+         Favicon
+         ===================================================== -->
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="assets/images/favicon.png"
+    >
+
+
+    <!-- =====================================================
+         Fonts
+         ===================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         Global CSS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="assets/css/reset.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/variables.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/global.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/layout.css"
+    >
+
+
+    <!-- =====================================================
+         Component CSS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="assets/css/components/header.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/components/sidebar.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/components/video-card.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/components/short-card.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/components/toast.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/components/notification.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/components/modal.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/components/button.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/components/avatar.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/components/skeleton.css"
+    >
+
+
+    <!-- =====================================================
+         Page CSS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="assets/css/pages/home.css"
+    >
+
 </head>
+
 
 <body>
 
-    <!-- =========================
-         APP ROOT
-    ========================== -->
-    <div id="app">
+    <!-- =====================================================
+         Application
+         ===================================================== -->
 
-        <!-- =========================
-             TOP HEADER
-        ========================== -->
-        <header id="app-header">
+    <div
+        id="app"
+        class="app"
+    >
 
-            <!-- Menu -->
-            <button
-                id="menu-button"
-                type="button"
-                aria-label="Menu">
-                ☰
-            </button>
 
-            <!-- Logo / Brand -->
-            <a
-                id="brand"
-                href="#home"
-                aria-label="FlikTide Home">
-                
-                <div id="brand-logo">FT</div>
+        <!-- =================================================
+             Header
+             ================================================= -->
 
-                <div id="brand-name">
-                    <span>Flik</span><strong>Tide</strong>
+        <header
+            id="site-header"
+            class="site-header"
+        >
+
+            <div class="header-left">
+
+                <!-- Mobile Menu -->
+
+                <button
+                    id="menu-button"
+                    class="icon-button"
+                    type="button"
+                    aria-label="মেনু খুলুন"
+                    aria-controls="main-sidebar"
+                    aria-expanded="false"
+                >
+                    ☰
+                </button>
+
+
+                <!-- FlikTide Logo -->
+
+                <a
+                    href="/"
+                    class="brand"
+                    aria-label="FlikTide Home"
+                >
+
+                    <img
+                        src="assets/images/logo.svg"
+                        alt="FlikTide"
+                        class="brand-logo"
+                    >
+
+                    <span class="brand-name">
+                        FlikTide
+                    </span>
+
+                </a>
+
+            </div>
+
+
+            <!-- =================================================
+                 Search
+                 ================================================= -->
+
+            <form
+                id="search-form"
+                class="search-form"
+                role="search"
+            >
+
+                <label
+                    class="sr-only"
+                    for="search-input"
+                >
+                    ভিডিও বা বিষয় খুঁজুন
+                </label>
+
+                <input
+                    id="search-input"
+                    name="q"
+                    type="search"
+                    placeholder="ভিডিও বা বিষয় খুঁজুন"
+                    autocomplete="off"
+                >
+
+                <button
+                    type="submit"
+                    class="search-button"
+                    aria-label="অনুসন্ধান"
+                >
+                    🔍
+                </button>
+
+            </form>
+
+
+            <!-- =================================================
+                 Header Actions
+                 ================================================= -->
+
+            <div class="header-actions">
+
+
+                <!-- Create -->
+
+                <button
+                    id="create-button"
+                    class="icon-button"
+                    type="button"
+                    aria-label="কনটেন্ট তৈরি করুন"
+                >
+                    ＋
+                </button>
+
+
+                <!-- Notifications -->
+
+                <div
+                    class="notification-wrapper"
+                    id="notification-wrapper"
+                >
+
+                    <button
+                        id="notification-button"
+                        class="notification-button"
+                        type="button"
+                        aria-label="নোটিফিকেশন"
+                        aria-expanded="false"
+                        aria-controls="notification-panel"
+                    >
+
+                        <span
+                            class="notification-button__icon"
+                            aria-hidden="true"
+                        >
+                            🔔
+                        </span>
+
+                        <span
+                            id="notification-badge"
+                            class="notification-badge"
+                            aria-label="0টি অপঠিত নোটিফিকেশন"
+                        >
+                            0
+                        </span>
+
+                    </button>
+
+
+                    <!-- Notification Panel -->
+
+                    <section
+                        id="notification-panel"
+                        class="notification-panel"
+                        aria-label="Notifications"
+                    >
+
+                        <header class="notification-header">
+
+                            <h2 class="notification-header__title">
+                                নোটিফিকেশন
+                            </h2>
+
+                            <div class="notification-header__actions">
+
+                                <button
+                                    id="mark-all-read"
+                                    class="notification-header__button"
+                                    type="button"
+                                >
+                                    সব পড়া হয়েছে
+                                </button>
+
+                            </div>
+
+                        </header>
+
+
+                        <nav
+                            class="notification-tabs"
+                            aria-label="Notification filter"
+                        >
+
+                            <button
+                                class="notification-tab is-active"
+                                type="button"
+                                data-filter="all"
+                            >
+                                সব
+                            </button>
+
+                            <button
+                                class="notification-tab"
+                                type="button"
+                                data-filter="unread"
+                            >
+                                অপঠিত
+                            </button>
+
+                        </nav>
+
+
+                        <div
+                            id="notification-list"
+                            class="notification-list"
+                        >
+
+                            <!-- JavaScript will insert notifications here -->
+
+                        </div>
+
+
+                        <div
+                            id="notification-empty"
+                            class="notification-empty"
+                            hidden
+                        >
+
+                            <div
+                                class="notification-empty__icon"
+                                aria-hidden="true"
+                            >
+                                🔔
+                            </div>
+
+                            <h3 class="notification-empty__title">
+                                কোনো নোটিফিকেশন নেই
+                            </h3>
+
+                            <p class="notification-empty__message">
+                                নতুন ক্লাস, ভিডিও এবং শিক্ষামূলক আপডেট এখানে দেখা যাবে।
+                            </p>
+
+                        </div>
+
+                    </section>
+
                 </div>
 
-            </a>
 
-            <!-- Header actions -->
-            <div id="header-actions">
-
-                <button
-                    id="theme-button"
-                    type="button"
-                    aria-label="Theme">
-                    🌙
-                </button>
-
-                <button
-                    id="notification-button"
-                    type="button"
-                    aria-label="Notifications">
-                    🔔
-                </button>
+                <!-- Profile -->
 
                 <button
                     id="profile-button"
+                    class="profile-button"
                     type="button"
-                    aria-label="Profile">
-                    <span id="header-profile-avatar">M</span>
+                    aria-label="প্রোফাইল"
+                >
+
+                    <img
+                        id="header-avatar"
+                        src="assets/images/default-avatar.png"
+                        alt="প্রোফাইল"
+                    >
+
                 </button>
 
             </div>
@@ -73,157 +416,507 @@
         </header>
 
 
-        <!-- =========================
-             PAGE CONTAINER
-        ========================== -->
-        <main id="main-content">
+        <!-- =================================================
+             Main Layout
+             ================================================= -->
 
-            <!--
-                Different pages will be rendered here later.
-
-                Example pages:
-                - Home
-                - Shorts
-                - Explore
-                - Library
-                - Profile
-                - Teacher Profile
-                - Video Player
-                - Settings
-            -->
-
-            <section
-                id="page-home"
-                class="page"
-                data-page="home">
-
-                <!-- Home page content will be added later -->
-
-            </section>
+        <div class="app-layout">
 
 
-            <section
-                id="page-shorts"
-                class="page"
-                data-page="shorts"
-                hidden>
+            <!-- =================================================
+                 Sidebar
+                 ================================================= -->
 
-                <!-- Shorts content will be added later -->
+            <aside
+                id="main-sidebar"
+                class="main-sidebar"
+                aria-label="প্রধান নেভিগেশন"
+            >
 
-            </section>
-
-
-            <section
-                id="page-explore"
-                class="page"
-                data-page="explore"
-                hidden>
-
-                <!-- Explore content will be added later -->
-
-            </section
-                <a
-    href="library/library.html"
-    class="bottom-nav-item">
-
-    <span class="bottom-nav-icon">
-        ▣
-    </span>
-
-    <span class="bottom-nav-label">
-        Library
-    </span>
-
-                </a>
-
-            </section>
+                <nav class="sidebar-nav">
 
 
-            <section
-                id="page-profile"
-                class="page"
-                data-page="profile"
-                hidden>
+                    <a
+                        href="/"
+                        class="sidebar-link is-active"
+                        data-page="home"
+                    >
+                        <span class="sidebar-icon">
+                            🏠
+                        </span>
 
-                <!-- Profile content will be added later -->
+                        <span class="sidebar-label">
+                            হোম
+                        </span>
+                    </a>
 
-            </section>
 
-        </main>
+                    <a
+                        href="/shorts"
+                        class="sidebar-link"
+                        data-page="shorts"
+                    >
+                        <span class="sidebar-icon">
+                            ▶
+                        </span>
+
+                        <span class="sidebar-label">
+                            Shorts
+                        </span>
+                    </a>
 
 
-        <!-- =========================
-             BOTTOM NAVIGATION
-        ========================== -->
+                    <a
+                        href="/subscriptions"
+                        class="sidebar-link"
+                        data-page="subscriptions"
+                    >
+                        <span class="sidebar-icon">
+                            📚
+                        </span>
+
+                        <span class="sidebar-label">
+                            আমার ক্লাস
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="/history"
+                        class="sidebar-link"
+                        data-page="history"
+                    >
+                        <span class="sidebar-icon">
+                            🕘
+                        </span>
+
+                        <span class="sidebar-label">
+                            ইতিহাস
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="/saved"
+                        class="sidebar-link"
+                        data-page="saved"
+                    >
+                        <span class="sidebar-icon">
+                            🔖
+                        </span>
+
+                        <span class="sidebar-label">
+                            সংরক্ষিত
+                        </span>
+                    </a>
+
+
+                    <div class="sidebar-divider"></div>
+
+
+                    <a
+                        href="/courses"
+                        class="sidebar-link"
+                        data-page="courses"
+                    >
+                        <span class="sidebar-icon">
+                            🎓
+                        </span>
+
+                        <span class="sidebar-label">
+                            কোর্স
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="/subjects"
+                        class="sidebar-link"
+                        data-page="subjects"
+                    >
+                        <span class="sidebar-icon">
+                            📖
+                        </span>
+
+                        <span class="sidebar-label">
+                            বিষয়সমূহ
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="/teachers"
+                        class="sidebar-link"
+                        data-page="teachers"
+                    >
+                        <span class="sidebar-icon">
+                            👨‍🏫
+                        </span>
+
+                        <span class="sidebar-label">
+                            শিক্ষক
+                        </span>
+                    </a>
+
+
+                    <div class="sidebar-divider"></div>
+
+
+                    <a
+                        href="/settings"
+                        class="sidebar-link"
+                        data-page="settings"
+                    >
+                        <span class="sidebar-icon">
+                            ⚙️
+                        </span>
+
+                        <span class="sidebar-label">
+                            সেটিংস
+                        </span>
+                    </a>
+
+                </nav>
+
+
+                <footer class="sidebar-footer">
+
+                    <p>
+                        © 2026 FlikTide
+                    </p>
+
+                </footer>
+
+            </aside>
+
+
+            <!-- =================================================
+                 Main Content
+                 ================================================= -->
+
+            <main
+                id="main-content"
+                class="main-content"
+            >
+
+
+                <!-- =================================================
+                     Home Page
+                     ================================================= -->
+
+                <section
+                    id="home-page"
+                    class="page page-home"
+                    aria-labelledby="home-title"
+                >
+
+
+                    <!-- Page Header -->
+
+                    <div class="page-header">
+
+                        <div>
+
+                            <h1 id="home-title">
+                                আপনার জন্য
+                            </h1>
+
+                            <p>
+                                আপনার পড়াশোনার জন্য নির্বাচিত ভিডিও।
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         Category Filter
+                         ================================================= -->
+
+                    <div
+                        id="category-filter"
+                        class="category-filter"
+                        role="tablist"
+                        aria-label="বিষয় নির্বাচন"
+                    >
+
+                        <button
+                            class="category-chip is-active"
+                            type="button"
+                            data-category="all"
+                            role="tab"
+                        >
+                            সব
+                        </button>
+
+                        <button
+                            class="category-chip"
+                            type="button"
+                            data-category="science"
+                            role="tab"
+                        >
+                            বিজ্ঞান
+                        </button>
+
+                        <button
+                            class="category-chip"
+                            type="button"
+                            data-category="math"
+                            role="tab"
+                        >
+                            গণিত
+                        </button>
+
+                        <button
+                            class="category-chip"
+                            type="button"
+                            data-category="english"
+                            role="tab"
+                        >
+                            ইংরেজি
+                        </button>
+
+                        <button
+                            class="category-chip"
+                            type="button"
+                            data-category="bangla"
+                            role="tab"
+                        >
+                            বাংলা
+                        </button>
+
+                        <button
+                            class="category-chip"
+                            type="button"
+                            data-category="ict"
+                            role="tab"
+                        >
+                            ICT
+                        </button>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         Recommended Videos
+                         ================================================= -->
+
+                    <section
+                        class="video-section"
+                        aria-labelledby="recommended-title"
+                    >
+
+                        <div class="section-header">
+
+                            <h2 id="recommended-title">
+                                আপনার জন্য নির্বাচিত
+                            </h2>
+
+                        </div>
+
+
+                        <div
+                            id="video-grid"
+                            class="video-grid"
+                        >
+
+                            <!--
+                                Video cards will be loaded
+                                by JavaScript/API.
+                            -->
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- =================================================
+                         Shorts Section
+                         ================================================= -->
+
+                    <section
+                        class="shorts-section"
+                        aria-labelledby="shorts-title"
+                    >
+
+                        <div class="section-header">
+
+                            <div>
+
+                                <h2 id="shorts-title">
+                                    শিক্ষামূলক Shorts
+                                </h2>
+
+                                <p>
+                                    অল্প সময়ে নতুন কিছু শিখুন।
+                                </p>
+
+                            </div>
+
+                            <a
+                                href="/shorts"
+                                class="section-link"
+                            >
+                                সব দেখুন
+                            </a>
+
+                        </div>
+
+
+                        <div
+                            id="shorts-grid"
+                            class="shorts-grid"
+                        >
+
+                            <!--
+                                Shorts cards will be loaded
+                                by JavaScript/API.
+                            -->
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- =================================================
+                         Loading State
+                         ================================================= -->
+
+                    <section
+                        id="home-loading"
+                        class="loading-section"
+                        hidden
+                    >
+
+                        <div class="loading-spinner"></div>
+
+                        <p>
+                            ভিডিও লোড হচ্ছে...
+                        </p>
+
+                    </section>
+
+
+                    <!-- =================================================
+                         Empty State
+                         ================================================= -->
+
+                    <section
+                        id="home-empty"
+                        class="empty-state"
+                        hidden
+                    >
+
+                        <div class="empty-state__icon">
+                            📚
+                        </div>
+
+                        <h2>
+                            এখনো কোনো ভিডিও নেই
+                        </h2>
+
+                        <p>
+                            নতুন শিক্ষামূলক ভিডিও শীঘ্রই এখানে আসবে।
+                        </p>
+
+                    </section>
+
+
+                </section>
+
+            </main>
+
+        </div>
+
+
+        <!-- =================================================
+             Mobile Bottom Navigation
+             ================================================= -->
+
         <nav
-            id="bottom-navigation"
-            aria-label="Main navigation">
+            class="mobile-bottom-nav"
+            aria-label="মোবাইল নেভিগেশন"
+        >
+
+            <a
+                href="/"
+                class="mobile-nav-item is-active"
+            >
+                <span>🏠</span>
+                <small>হোম</small>
+            </a>
+
+            <a
+                href="/shorts"
+                class="mobile-nav-item"
+            >
+                <span>▶</span>
+                <small>Shorts</small>
+            </a>
 
             <button
-                class="nav-item active"
-                data-page-target="home"
-                type="button">
-
-                <span class="nav-icon">⌂</span>
-                <span class="nav-label">Home</span>
-
+                id="mobile-create-button"
+                class="mobile-nav-create"
+                type="button"
+                aria-label="তৈরি করুন"
+            >
+                ＋
             </button>
 
+            <a
+                href="/courses"
+                class="mobile-nav-item"
+            >
+                <span>📚</span>
+                <small>কোর্স</small>
+            </a>
 
             <button
-                class="nav-item"
-                data-page-target="shorts"
-                type="button">
-
-                <span class="nav-icon">▶</span>
-                <span class="nav-label">Shorts</span>
-
-            </button>
-
-
-            <button
-                class="nav-item"
-                data-page-target="explore"
-                type="button">
-
-                <span class="nav-icon">◉</span>
-                <span class="nav-label">Explore</span>
-
-            </button>
-
-
-            <button
-                class="nav-item"
-                data-page-target="library"
-                type="button">
-
-                <span class="nav-icon">▣</span>
-                <span class="nav-label">Library</span>
-
-            </button>
-
-
-            <button
-                class="nav-item"
-                data-page-target="profile"
-                type="button">
-
-                <span class="nav-icon">♙</span>
-                <span class="nav-label">Profile</span>
-
+                id="mobile-profile-button"
+                class="mobile-nav-item"
+                type="button"
+            >
+                <span>👤</span>
+                <small>প্রোফাইল</small>
             </button>
 
         </nav>
 
+
     </div>
 
 
-    <!--
-        JavaScript functionality will be added
-        in separate files later.
-    -->
+    <!-- =====================================================
+         Toast Container
+         ===================================================== -->
 
-    <script src="js/app.js"></script>
+    <div
+        id="toast-container"
+        class="toast-container top-right"
+        aria-live="polite"
+        aria-atomic="false"
+    ></div>
+
+
+    <!-- =====================================================
+         Global Modal Container
+         ===================================================== -->
+
+    <div
+        id="modal-root"
+        class="modal-root"
+    ></div>
+
+
+    <!-- =====================================================
+         JavaScript
+         ===================================================== -->
+
+    <script
+        type="module"
+        src="assets/js/app.js"
+    ></script>
 
 </body>
 </html>
