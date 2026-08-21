@@ -1,1476 +1,2119 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="theme-color"
-        content="#0f172a"
-    >
-
-    <meta
-        name="description"
-        content="FlickTide — Learn. Flow. Grow."
-    >
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0,
+               maximum-scale=1.0,user-scalable=no">
+
+<title>FlikTide</title>
+
+<style>
+/* =========================================================
+   FLIKTIDE — FOUNDATION
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #f5f7fb;
+    --surface: #ffffff;
+    --surface2: #eef1f7;
+    --text: #111827;
+    --muted: #687386;
+    --border: #dfe4ec;
+    --primary: #2563eb;
+    --primary2: #4f46e5;
+    --orange: #f97316;
+    --danger: #ef4444;
+    --shadow: 0 8px 25px rgba(0,0,0,.08);
+}
+
+body.dark {
+    --bg: #0d1628;
+    --surface: #111b2e;
+    --surface2: #1a263b;
+    --text: #f8fafc;
+    --muted: #9aa6ba;
+    --border: #243149;
+    --shadow: 0 8px 25px rgba(0,0,0,.25);
+}
+
+body {
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Noto Sans Bengali",
+        "Segoe UI",
+        sans-serif;
+
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding-bottom: 78px;
+    transition: .2s;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+    height: 74px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 10px 16px;
+
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-weight: 900;
+    font-size: 19px;
+
+    background:
+        linear-gradient(135deg,#4f46e5,#7c3aed,#f97316);
+}
+
+.brand-name {
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.brand-name span {
+    color: var(--orange);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.icon-btn {
+    width: 48px;
+    height: 48px;
+
+    border: none;
+    border-radius: 15px;
+
+    background: var(--surface2);
+    color: var(--text);
+
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.icon-btn:active {
+    transform: scale(.94);
+}
+
+.header-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-weight: 800;
+    font-size: 18px;
+
+    background:
+        linear-gradient(135deg,#2563eb,#7c3aed);
+}
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.page {
+    display: none;
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px 16px;
+}
+
+.page.active {
+    display: block;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 18px;
+}
 
-    <title>FlickTide</title>
+.back-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
 
-    <!--
-        =========================================================
-        FLIKTIDE FOUNDATION
-        =========================================================
+.back-btn {
+    width: 44px;
+    height: 44px;
 
-        This file is the main application entry point.
+    border: none;
+    border-radius: 13px;
+
+    background: var(--surface2);
+    color: var(--text);
+
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.back-title {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
-        Later:
-        CSS  -> styles.css
-        Auth -> js/auth.js
-        UI   -> js/ui.js
-        API  -> js/api.js
-        etc.
+    background: var(--surface);
+    border: 1px solid var(--border);
 
-        IMPORTANT:
-        This is a front-end foundation.
-        Real authentication/database requires a backend.
-    -->
+    border-radius: 20px;
 
-    <style>
+    padding: 14px 16px;
+    margin-bottom: 22px;
+}
 
-        /* =====================================================
-           RESET
-        ===================================================== */
+.search-box span {
+    font-size: 22px;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+.search-box input {
+    flex: 1;
+    border: none;
+    outline: none;
 
-        html {
-            scroll-behavior: smooth;
-        }
+    background: transparent;
+    color: var(--text);
 
-        body {
-            font-family:
-                system-ui,
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                sans-serif;
+    font-size: 17px;
+}
 
-            background: #f4f6fa;
-            color: #111827;
+/* =========================================================
+   CONTENT CARDS
+   ========================================================= */
 
-            min-height: 100vh;
-        }
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 18px;
+}
 
-        button,
-        input,
-        select,
-        textarea {
-            font: inherit;
-        }
+.content-card {
+    overflow: hidden;
 
-        button {
-            cursor: pointer;
-        }
+    background: var(--surface);
+    border: 1px solid var(--border);
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+    border-radius: 22px;
 
-        ul {
-            list-style: none;
-        }
+    box-shadow: var(--shadow);
 
+    cursor: pointer;
+    transition: .2s;
+}
 
-        /* =====================================================
-           APP
-           ===================================================== */
+.content-card:active {
+    transform: scale(.98);
+}
 
-        .app {
-            min-height: 100vh;
-        }
+.thumbnail {
+    height: 210px;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        /* =====================================================
-           HEADER
-           ===================================================== */
+    background:
+        linear-gradient(135deg,#e0e7ff,#fff7ed);
 
-        .topbar {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+    font-size: 65px;
+}
 
-            height: 72px;
+.card-info {
+    padding: 16px;
+}
 
-            display: flex;
-            align-items: center;
+.card-title {
+    font-size: 20px;
+    font-weight: 850;
+    margin-bottom: 8px;
+}
 
-            padding: 0 20px;
+.card-meta {
+    color: var(--muted);
+    font-size: 15px;
+}
 
-            background: rgba(255,255,255,.95);
-            backdrop-filter: blur(15px);
+/* =========================================================
+   TEACHER
+   ========================================================= */
 
-            border-bottom: 1px solid #e5e7eb;
-        }
+.teacher-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
-        .topbar-inner {
-            width: 100%;
-            max-width: 1400px;
+    margin-top: 12px;
+}
 
-            margin: auto;
+.teacher-logo {
+    width: 40px;
+    height: 40px;
 
-            display: flex;
-            align-items: center;
-            gap: 18px;
-        }
+    border-radius: 50%;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        /* =====================================================
-           LOGO
-           ===================================================== */
+    background:
+        linear-gradient(135deg,#2563eb,#7c3aed);
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+    color: white;
+    font-weight: 800;
 
-            min-width: 190px;
-        }
+    overflow: hidden;
+}
 
-        .brand-logo {
-            width: 44px;
-            height: 44px;
+.teacher-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-            display: grid;
-            place-items: center;
+.teacher-name {
+    color: var(--primary);
+    font-weight: 750;
+    cursor: pointer;
+}
 
-            border-radius: 14px;
+/* =========================================================
+   PROFILE
+   ========================================================= */
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #2563eb,
-                    #f97316
-                );
+.profile-card {
+    overflow: hidden;
 
-            color: white;
+    background: var(--surface);
 
-            font-size: 20px;
-            font-weight: 900;
-        }
+    border: 1px solid var(--border);
 
-        .brand-name {
-            font-size: 25px;
-            font-weight: 900;
+    border-radius: 28px;
 
-            letter-spacing: -1px;
-        }
+    box-shadow: var(--shadow);
+}
 
-        .brand-name span {
-            color: #f97316;
-        }
+.cover {
+    height: 220px;
 
-        .brand-tagline {
-            font-size: 10px;
-            color: #6b7280;
-            letter-spacing: 3px;
-        }
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed,
+            #f97316
+        );
 
+    background-size: cover;
+    background-position: center;
 
-        /* =====================================================
-           SEARCH
-           ===================================================== */
+    position: relative;
+}
 
-        .search-box {
-            flex: 1;
+.cover-edit {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
 
-            max-width: 600px;
+    border: none;
+    border-radius: 12px;
 
-            position: relative;
-        }
+    padding: 10px 14px;
 
-        .search-box input {
-            width: 100%;
+    background: rgba(0,0,0,.55);
+    color: white;
 
-            height: 48px;
+    cursor: pointer;
+}
 
-            padding: 0 18px 0 48px;
+.profile-body {
+    padding: 0 24px 28px;
+}
 
-            border: 1px solid #e5e7eb;
-            border-radius: 15px;
+.profile-avatar {
+    width: 140px;
+    height: 140px;
 
-            background: #f8fafc;
+    margin-top: -70px;
 
-            outline: none;
+    position: relative;
 
-            transition: .2s;
-        }
+    border-radius: 50%;
 
-        .search-box input:focus {
-            border-color: #2563eb;
-            background: white;
+    border: 6px solid var(--surface);
 
-            box-shadow:
-                0 0 0 3px rgba(37,99,235,.1);
-        }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        .search-icon {
-            position: absolute;
+    overflow: hidden;
 
-            left: 17px;
-            top: 50%;
+    background:
+        linear-gradient(135deg,#2563eb,#7c3aed);
 
-            transform: translateY(-50%);
+    color: white;
 
-            color: #64748b;
+    font-size: 52px;
+    font-weight: 900;
+}
 
-            font-size: 20px;
-        }
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
+.profile-name {
+    font-size: 34px;
+    font-weight: 900;
+    margin-top: 18px;
+}
 
-        /* =====================================================
-           HEADER ACTIONS
-           ===================================================== */
+.profile-phone {
+    color: var(--muted);
+    font-size: 20px;
+    margin-top: 6px;
+}
 
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+.badge {
+    display: inline-block;
 
-        .icon-btn {
-            width: 44px;
-            height: 44px;
+    margin-top: 14px;
 
-            border: 0;
-            border-radius: 13px;
+    padding: 10px 18px;
 
-            background: #f1f5f9;
+    background: var(--surface2);
 
-            display: grid;
-            place-items: center;
+    border-radius: 30px;
 
-            font-size: 19px;
+    color: var(--text);
 
-            transition: .2s;
-        }
+    font-weight: 700;
+}
 
-        .icon-btn:hover {
-            background: #e2e8f0;
-            transform: translateY(-1px);
-        }
+.edit-btn {
+    margin-top: 18px;
 
+    border: none;
+    border-radius: 15px;
 
-        /* =====================================================
-           PROFILE BUTTON
-           ===================================================== */
+    padding: 14px 22px;
 
-        .profile-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+    background: var(--primary);
+    color: white;
 
-            border: 0;
-            background: transparent;
-        }
+    font-size: 17px;
+    font-weight: 800;
 
-        .avatar {
-            width: 42px;
-            height: 42px;
+    cursor: pointer;
+}
 
-            border-radius: 50%;
+.profile-details {
+    margin-top: 25px;
 
-            display: grid;
-            place-items: center;
+    display: grid;
+    gap: 10px;
+}
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #2563eb,
-                    #7c3aed
-                );
+.detail {
+    padding: 15px;
 
-            color: white;
+    background: var(--surface2);
 
-            font-weight: 800;
-        }
+    border-radius: 15px;
+}
 
+.detail strong {
+    display: block;
+    margin-bottom: 4px;
+}
 
-        /* =====================================================
-           LAYOUT
-           ===================================================== */
+/* =========================================================
+   STATS
+   ========================================================= */
 
-        .layout {
-            display: grid;
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 10px;
 
-            grid-template-columns:
-                230px
-                minmax(0, 1fr);
+    margin-top: 20px;
+}
 
-            max-width: 1400px;
+.stat {
+    background: var(--surface2);
+    padding: 16px;
+    text-align: center;
+    border-radius: 15px;
+}
 
-            margin: auto;
-        }
+.stat-number {
+    font-size: 22px;
+    font-weight: 900;
+}
 
+/* =========================================================
+   BOTTOM NAV
+   ========================================================= */
 
-        /* =====================================================
-           SIDEBAR
-           ===================================================== */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
-        .sidebar {
-            position: sticky;
-            top: 72px;
+    height: 76px;
 
-            height: calc(100vh - 72px);
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
 
-            padding: 20px 14px;
+    background: var(--surface);
 
-            border-right: 1px solid #e5e7eb;
+    border-top: 1px solid var(--border);
 
-            background: white;
-        }
+    z-index: 2000;
+}
 
-        .sidebar-title {
-            padding: 10px 12px;
+.nav-btn {
+    border: none;
+    background: transparent;
 
-            font-size: 11px;
+    color: var(--muted);
 
-            color: #94a3b8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-            text-transform: uppercase;
+    gap: 4px;
 
-            letter-spacing: 1px;
-        }
+    font-size: 13px;
 
-        .nav-item {
-            width: 100%;
+    cursor: pointer;
+}
 
-            display: flex;
-            align-items: center;
+.nav-icon {
+    font-size: 24px;
+}
 
-            gap: 12px;
+.nav-btn.active {
+    color: var(--primary);
+    font-weight: 800;
+}
 
-            padding: 12px;
+/* =========================================================
+   MODAL
+   ========================================================= */
 
-            margin-bottom: 5px;
+.modal {
+    display: none;
 
-            border: 0;
-            border-radius: 12px;
+    position: fixed;
+    inset: 0;
 
-            background: transparent;
+    background: rgba(0,0,0,.65);
 
-            color: #475569;
+    z-index: 5000;
 
-            text-align: left;
+    align-items: flex-end;
+    justify-content: center;
+}
 
-            transition: .2s;
-        }
+.modal.show {
+    display: flex;
+}
 
-        .nav-item:hover {
-            background: #f1f5f9;
-        }
+.modal-box {
+    width: 100%;
+    max-width: 650px;
 
-        .nav-item.active {
-            background: #eff6ff;
-            color: #2563eb;
+    max-height: 90vh;
+    overflow-y: auto;
 
-            font-weight: 700;
-        }
+    background: var(--surface);
 
-        .nav-icon {
-            width: 22px;
+    border-radius: 25px 25px 0 0;
 
-            text-align: center;
+    padding: 22px;
+}
 
-            font-size: 18px;
-        }
+.modal-title {
+    font-size: 23px;
+    font-weight: 900;
+    margin-bottom: 18px;
+}
 
+.form-group {
+    margin-bottom: 15px;
+}
 
-        /* =====================================================
-           MAIN
-           ===================================================== */
+.form-group label {
+    display: block;
 
-        .main {
-            min-width: 0;
+    margin-bottom: 7px;
 
-            padding: 25px;
-        }
+    font-weight: 700;
+}
 
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
 
-        /* =====================================================
-           PAGE
-           ===================================================== */
+    padding: 14px;
 
-        .page {
-            display: none;
-        }
+    border-radius: 13px;
 
-        .page.active {
-            display: block;
-        }
+    border: 1px solid var(--border);
 
+    background: var(--surface2);
+    color: var(--text);
 
-        /* =====================================================
-           HERO
-           ===================================================== */
+    outline: none;
 
-        .hero {
-            padding: 35px;
+    font-size: 16px;
+}
 
-            border-radius: 25px;
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #eff6ff,
-                    #fff7ed
-                );
+.primary-btn,
+.secondary-btn,
+.danger-btn {
+    flex: 1;
 
-            border: 1px solid #e5e7eb;
+    border: none;
+    border-radius: 13px;
 
-            margin-bottom: 25px;
-        }
+    padding: 14px;
 
-        .hero h1 {
-            font-size: clamp(28px, 5vw, 45px);
+    font-weight: 800;
 
-            line-height: 1.1;
+    cursor: pointer;
+}
 
-            margin-bottom: 12px;
-        }
+.primary-btn {
+    background: var(--primary);
+    color: white;
+}
 
-        .hero p {
-            color: #64748b;
+.secondary-btn {
+    background: var(--surface2);
+    color: var(--text);
+}
 
-            max-width: 650px;
+.danger-btn {
+    background: var(--danger);
+    color: white;
+}
 
-            line-height: 1.7;
+/* =========================================================
+   LOGIN
+   ========================================================= */
 
-            margin-bottom: 20px;
-        }
+.auth-page {
+    min-height: calc(100vh - 74px);
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        /* =====================================================
-           BUTTONS
-           ===================================================== */
+    padding: 20px;
+}
 
-        .btn {
-            min-height: 44px;
+.auth-box {
+    width: 100%;
+    max-width: 430px;
 
-            padding: 0 18px;
+    background: var(--surface);
 
-            border: 0;
+    border: 1px solid var(--border);
 
-            border-radius: 12px;
+    border-radius: 25px;
 
-            font-weight: 700;
+    padding: 25px;
 
-            transition: .2s;
-        }
+    box-shadow: var(--shadow);
+}
 
-        .btn-primary {
-            background: #2563eb;
-            color: white;
-        }
+.auth-logo {
+    width: 75px;
+    height: 75px;
 
-        .btn-primary:hover {
-            background: #1d4ed8;
-        }
+    border-radius: 22px;
 
-        .btn-secondary {
-            background: #e2e8f0;
-            color: #0f172a;
-        }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        .btn-danger {
-            background: #fee2e2;
-            color: #dc2626;
-        }
+    margin: 0 auto 18px;
 
+    background:
+        linear-gradient(135deg,#2563eb,#7c3aed,#f97316);
 
-        /* =====================================================
-           SECTION
-           ===================================================== */
+    color: white;
 
-        .section {
-            margin-bottom: 30px;
-        }
+    font-size: 25px;
+    font-weight: 900;
+}
 
-        .section-head {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+.auth-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 8px;
+}
 
-            margin-bottom: 15px;
-        }
+.auth-subtitle {
+    text-align: center;
+    color: var(--muted);
+    margin-bottom: 25px;
+}
 
-        .section-title {
-            font-size: 21px;
-            font-weight: 800;
-        }
+.auth-switch {
+    margin-top: 18px;
+    text-align: center;
+    color: var(--primary);
+    cursor: pointer;
+    font-weight: 700;
+}
 
-        .section-link {
-            color: #2563eb;
-            font-size: 14px;
-            font-weight: 700;
-        }
+/* =========================================================
+   TEACHER PAGE
+   ========================================================= */
 
+.teacher-profile {
+    padding: 22px;
 
-        /* =====================================================
-           CARDS
-           ===================================================== */
+    background: var(--surface);
 
-        .card-grid {
-            display: grid;
+    border: 1px solid var(--border);
 
-            grid-template-columns:
-                repeat(
-                    auto-fill,
-                    minmax(220px, 1fr)
-                );
+    border-radius: 25px;
 
-            gap: 18px;
-        }
+    margin-bottom: 20px;
+}
 
-        .card {
-            background: white;
+.teacher-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
-            border: 1px solid #e5e7eb;
+.teacher-big-logo {
+    width: 80px;
+    height: 80px;
 
-            border-radius: 18px;
+    border-radius: 50%;
 
-            overflow: hidden;
+    background:
+        linear-gradient(135deg,#2563eb,#7c3aed);
 
-            transition: .2s;
-        }
+    color: white;
 
-        .card:hover {
-            transform: translateY(-3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-            box-shadow:
-                0 10px 30px
-                rgba(15,23,42,.08);
-        }
+    font-size: 30px;
+    font-weight: 900;
 
-        .thumbnail {
-            aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
 
-            display: grid;
-            place-items: center;
+.teacher-big-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #dbeafe,
-                    #ffedd5
-                );
+/* =========================================================
+   EMPTY
+   ========================================================= */
 
-            font-size: 35px;
-        }
+.empty {
+    padding: 50px 20px;
+    text-align: center;
+    color: var(--muted);
+}
 
-        .card-body {
-            padding: 15px;
-        }
+.empty-icon {
+    font-size: 55px;
+    margin-bottom: 10px;
+}
 
-        .card-title {
-            font-weight: 800;
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
 
-            line-height: 1.4;
+@media (max-width: 650px) {
 
-            margin-bottom: 7px;
-        }
+    .brand-name {
+        font-size: 22px;
+    }
 
-        .card-meta {
-            color: #64748b;
+    .header {
+        padding: 10px 12px;
+    }
 
-            font-size: 13px;
-        }
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
 
+    .thumbnail {
+        height: 260px;
+    }
 
-        /* =====================================================
-           CATEGORY CHIPS
-           ===================================================== */
+    .profile-name {
+        font-size: 30px;
+    }
 
-        .chips {
-            display: flex;
-            gap: 9px;
+    .stats {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
 
-            overflow-x: auto;
+@media (max-width: 380px) {
 
-            padding-bottom: 5px;
-        }
+    .brand-name {
+        display: none;
+    }
 
-        .chip {
-            flex: 0 0 auto;
+    .icon-btn {
+        width: 43px;
+        height: 43px;
+    }
 
-            padding: 9px 15px;
-
-            border-radius: 999px;
-
-            border: 1px solid #e2e8f0;
-
-            background: white;
-
-            color: #475569;
-
-            font-size: 14px;
-        }
-
-        .chip.active {
-            background: #2563eb;
-            color: white;
-
-            border-color: #2563eb;
-        }
-
-
-        /* =====================================================
-           AUTH
-           ===================================================== */
-
-        .auth-screen {
-            min-height: 100vh;
-
-            display: none;
-
-            place-items: center;
-
-            padding: 20px;
-
-            background:
-                radial-gradient(
-                    circle at top right,
-                    #dbeafe,
-                    transparent 35%
-                ),
-                #f8fafc;
-        }
-
-        .auth-screen.active {
-            display: grid;
-        }
-
-        .auth-box {
-            width: 100%;
-            max-width: 440px;
-
-            padding: 30px;
-
-            background: white;
-
-            border: 1px solid #e5e7eb;
-
-            border-radius: 25px;
-
-            box-shadow:
-                0 20px 60px
-                rgba(15,23,42,.1);
-        }
-
-        .auth-logo {
-            text-align: center;
-
-            margin-bottom: 25px;
-        }
-
-        .auth-box h2 {
-            text-align: center;
-
-            margin-bottom: 8px;
-        }
-
-        .auth-subtitle {
-            text-align: center;
-
-            color: #64748b;
-
-            font-size: 14px;
-
-            margin-bottom: 25px;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        .form-group label {
-            display: block;
-
-            margin-bottom: 7px;
-
-            font-size: 14px;
-
-            font-weight: 700;
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-
-            height: 48px;
-
-            padding: 0 14px;
-
-            border: 1px solid #cbd5e1;
-
-            border-radius: 12px;
-
-            outline: none;
-
-            background: white;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus {
-            border-color: #2563eb;
-
-            box-shadow:
-                0 0 0 3px
-                rgba(37,99,235,.1);
-        }
-
-        .auth-submit {
-            width: 100%;
-
-            margin-top: 5px;
-        }
-
-        .auth-switch {
-            text-align: center;
-
-            margin-top: 20px;
-
-            color: #64748b;
-
-            font-size: 14px;
-        }
-
-        .auth-switch button {
-            border: 0;
-
-            background: none;
-
-            color: #2563eb;
-
-            font-weight: 800;
-        }
-
-
-        /* =====================================================
-           PROFILE
-           ===================================================== */
-
-        .profile-cover {
-            height: 180px;
-
-            border-radius: 22px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #2563eb,
-                    #7c3aed,
-                    #f97316
-                );
-        }
-
-        .profile-info {
-            background: white;
-
-            border: 1px solid #e5e7eb;
-
-            border-radius: 20px;
-
-            margin-top: -50px;
-
-            position: relative;
-
-            padding: 70px 25px 25px;
-        }
-
-        .profile-avatar-large {
-            position: absolute;
-
-            top: -55px;
-            left: 25px;
-
-            width: 110px;
-            height: 110px;
-
-            border-radius: 50%;
-
-            border: 5px solid white;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #2563eb,
-                    #7c3aed
-                );
-
-            color: white;
-
-            display: grid;
-            place-items: center;
-
-            font-size: 38px;
-            font-weight: 900;
-        }
-
-        .profile-name {
-            font-size: 25px;
-            font-weight: 900;
-        }
-
-        .profile-mobile {
-            color: #64748b;
-
-            margin-top: 5px;
-        }
-
-
-        /* =====================================================
-           MODAL
-           ===================================================== */
-
-        .modal {
-            position: fixed;
-
-            inset: 0;
-
-            z-index: 5000;
-
-            display: none;
-
-            place-items: center;
-
-            padding: 20px;
-
-            background:
-                rgba(15,23,42,.55);
-
-            backdrop-filter: blur(5px);
-        }
-
-        .modal.active {
-            display: grid;
-        }
-
-        .modal-box {
-            width: 100%;
-            max-width: 550px;
-
-            max-height: 90vh;
-
-            overflow-y: auto;
-
-            background: white;
-
-            border-radius: 22px;
-
-            padding: 25px;
-        }
-
-        .modal-head {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            margin-bottom: 20px;
-        }
-
-
-        /* =====================================================
-           TOAST
-           ===================================================== */
-
-        .toast {
-            position: fixed;
-
-            right: 20px;
-            bottom: 90px;
-
-            z-index: 10000;
-
-            padding: 14px 18px;
-
-            border-radius: 13px;
-
-            background: #0f172a;
-
-            color: white;
-
-            opacity: 0;
-
-            transform: translateY(15px);
-
-            pointer-events: none;
-
-            transition: .3s;
-        }
-
-        .toast.show {
-            opacity: 1;
-
-            transform: translateY(0);
-        }
-
-
-        /* =====================================================
-           MOBILE NAV
-           ===================================================== */
-
-        .bottom-nav {
-            display: none;
-
-            position: fixed;
-
-            bottom: 0;
-            left: 0;
-            right: 0;
-
-            z-index: 2000;
-
-            height: 70px;
-
-            background: rgba(255,255,255,.97);
-
-            border-top: 1px solid #e5e7eb;
-
-            backdrop-filter: blur(15px);
-
-            justify-content: space-around;
-        }
-
-        .bottom-item {
-            flex: 1;
-
-            border: 0;
-
-            background: transparent;
-
-            color: #64748b;
-
-            font-size: 11px;
-        }
-
-        .bottom-item span {
-            display: block;
-
-            font-size: 20px;
-
-            margin-bottom: 2px;
-        }
-
-        .bottom-item.active {
-            color: #2563eb;
-
-            font-weight: 800;
-        }
-
-
-        /* =====================================================
-           EMPTY STATE
-           ===================================================== */
-
-        .empty {
-            padding: 50px 20px;
-
-            text-align: center;
-
-            color: #64748b;
-        }
-
-        .empty-icon {
-            font-size: 45px;
-
-            margin-bottom: 12px;
-        }
-
-
-        /* =====================================================
-           DARK MODE
-           ===================================================== */
-
-        body.dark {
-            background: #0f172a;
-            color: #f8fafc;
-        }
-
-        body.dark .topbar,
-        body.dark .sidebar,
-        body.dark .card,
-        body.dark .profile-info,
-        body.dark .auth-box,
-        body.dark .modal-box,
-        body.dark .bottom-nav {
-            background: #111827;
-
-            border-color: #1f2937;
-        }
-
-        body.dark .search-box input,
-        body.dark .form-group input,
-        body.dark .form-group select {
-            background: #0f172a;
-
-            color: white;
-
-            border-color: #334155;
-        }
-
-        body.dark .icon-btn,
-        body.dark .nav-item:hover,
-        body.dark .btn-secondary {
-            background: #1e293b;
-
-            color: #f8fafc;
-        }
-
-        body.dark .hero {
-            background:
-                linear-gradient(
-                    135deg,
-                    #172554,
-                    #431407
-                );
-
-            border-color: #1e293b;
-        }
-
-        body.dark .card-meta,
-        body.dark .profile-mobile,
-        body.dark .auth-subtitle {
-            color: #94a3b8;
-        }
-
-
-        /* =====================================================
-           RESPONSIVE
-           ===================================================== */
-
-        @media (max-width: 900px) {
-
-            .layout {
-                grid-template-columns: 1fr;
-            }
-
-            .sidebar {
-                display: none;
-            }
-
-            .main {
-                padding: 18px;
-            }
-
-            .brand {
-                min-width: auto;
-            }
-
-            .brand-tagline {
-                display: none;
-            }
-
-        }
-
-
-        @media (max-width: 650px) {
-
-            .topbar {
-                height: 64px;
-
-                padding: 0 12px;
-            }
-
-            .brand-name {
-                font-size: 20px;
-            }
-
-            .brand-logo {
-                width: 38px;
-                height: 38px;
-            }
-
-            .search-box {
-                display: none;
-            }
-
-            .header-actions {
-                margin-left: auto;
-            }
-
-            .profile-btn span {
-                display: none;
-            }
-
-            .main {
-                padding: 12px;
-
-                padding-bottom: 85px;
-            }
-
-            .hero {
-                padding: 24px 18px;
-
-                border-radius: 20px;
-            }
-
-            .card-grid {
-                grid-template-columns:
-                    repeat(2, minmax(0, 1fr));
-
-                gap: 10px;
-            }
-
-            .card {
-                border-radius: 14px;
-            }
-
-            .card-body {
-                padding: 11px;
-            }
-
-            .card-title {
-                font-size: 14px;
-            }
-
-            .bottom-nav {
-                display: flex;
-            }
-
-        }
-
-
-        @media (max-width: 400px) {
-
-            .card-grid {
-                grid-template-columns: 1fr;
-            }
-
-        }
-
-    </style>
+    .header-avatar {
+        width: 43px;
+        height: 43px;
+    }
+}
+</style>
 </head>
-
 
 <body>
 
-    <!-- =====================================================
-         AUTH SCREEN
-         ===================================================== -->
+<!-- =======================================================
+     HEADER
+     ======================================================= -->
 
-    <section
-        id="authScreen"
-        class="auth-screen active"
-    >
+<header class="header">
 
-        <div class="auth-box">
+    <div class="brand">
 
-            <div class="auth-logo">
+        <div class="logo">FT</div>
 
-                <div class="brand-logo"
-                     style="margin:auto;">
-                    FT
-                </div>
+        <div class="brand-name">
+            Flick<span>Tide</span>
+        </div>
 
-                <h1 class="brand-name">
-                    Flick<span>Tide</span>
-                </h1>
+    </div>
 
-                <p class="brand-tagline">
-                    LEARN · FLOW · GROW
-                </p>
+    <div class="header-actions">
 
-            </div>
+        <button
+            class="icon-btn"
+            id="themeBtn"
+            onclick="toggleTheme()">
+            🌙
+        </button>
 
+        <button
+            class="icon-btn"
+            onclick="showNotifications()">
+            🔔
+        </button>
 
-            <!-- SIGN UP -->
+        <button
+            class="header-avatar"
+            onclick="navigate('profile')"
+            id="headerAvatar">
+            M
+        </button>
 
-            <form
-                id="signupForm"
-                style="display:none;"
-            >
+    </div>
 
-                <h2>
-                    প্রথমে আপনার প্রোফাইল তৈরি করুন
-                </h2>
+</header>
 
-                <p class="auth-subtitle">
-                    FlickTide ব্যবহার শুরু করতে একটি অ্যাকাউন্ট তৈরি করুন।
-                </p>
 
+<!-- =======================================================
+     HOME
+     ======================================================= -->
 
-                <div class="form-group">
+<main
+    id="home"
+    class="page active">
 
-                    <label for="signupName">
-                        নাম
-                    </label>
+    <div class="search-box">
 
-                    <input
-                        id="signupName"
-                        type="text"
-                        placeholder="আপনার নাম"
-                        required
-                    >
+        <span>🔍</span>
 
-                </div>
+        <input
+            id="searchInput"
+            type="search"
+            placeholder="ভিডিও, বিষয়, শিক্ষক খুঁজুন..."
+            oninput="searchContent(this.value)">
 
+    </div>
 
-                <div class="form-group">
+    <h1 class="page-title">
+        শেখা শুরু করুন
+    </h1>
 
-                    <label for="signupMobile">
-                        মোবাইল নম্বর
-                    </label>
+    <div
+        id="homeContent"
+        class="card-grid">
+    </div>
 
-                    <input
-                        id="signupMobile"
-                        type="tel"
-                        inputmode="numeric"
-                        placeholder="01XXXXXXXXX"
-                        required
-                    >
+</main>
 
-                </div>
 
+<!-- =======================================================
+     SHORTS
+     ======================================================= -->
 
-                <div class="form-group">
+<main
+    id="shorts"
+    class="page">
 
-                    <label for="signupPassword">
-                        পাসওয়ার্ড
-                    </label>
+    <h1 class="page-title">
+        Shorts
+    </h1>
 
-                    <input
-                        id="signupPassword"
-                        type="password"
-                        placeholder="কমপক্ষে ৮ অক্ষর"
-                        minlength="8"
-                        required
-                    >
+    <div
+        id="shortsContent"
+        class="card-grid">
+    </div>
 
-                </div>
+</main>
 
 
-                <div class="form-group">
+<!-- =======================================================
+     EXPLORE
+     ======================================================= -->
 
-                    <label for="accountType">
-                        আপনি কী হিসেবে ব্যবহার করবেন?
-                    </label>
+<main
+    id="explore"
+    class="page">
 
-                    <select id="accountType">
+    <h1 class="page-title">
+        Explore
+    </h1>
 
-                        <option value="student">
-                            Student
-                        </option>
+    <div class="search-box">
 
-                        <option value="teacher">
-                            Teacher
-                        </option>
+        <span>🔍</span>
 
-                    </select>
+        <input
+            type="search"
+            placeholder="বিষয় বা শিক্ষক খুঁজুন..."
+            oninput="searchExplore(this.value)">
 
-                </div>
+    </div>
 
+    <div id="exploreContent"></div>
 
-                <button
-                    class="btn btn-primary auth-submit"
-                    type="submit"
-                >
-                    অ্যাকাউন্ট তৈরি করুন
-                </button>
+</main>
 
 
-                <div class="auth-switch">
+<!-- =======================================================
+     LIBRARY
+     ======================================================= -->
 
-                    আগে থেকেই অ্যাকাউন্ট আছে?
+<main
+    id="library"
+    class="page">
 
-                    <button
-                        type="button"
-                        onclick="showLogin()"
-                    >
-                        Login
-                    </button>
+    <h1 class="page-title">
+        Library
+    </h1>
 
-                </div>
+    <div
+        id="libraryContent"
+        class="card-grid">
+    </div>
 
-            </form>
+</main>
 
 
-            <!-- LOGIN -->
+<!-- =======================================================
+     PROFILE
+     ======================================================= -->
 
-            <form id="loginForm">
+<main
+    id="profile"
+    class="page">
 
-                <h2>
-                    FlickTide-এ Login করুন
-                </h2>
+    <div class="profile-card">
 
-                <p class="auth-subtitle">
-                    আপনার মোবাইল নম্বর ও পাসওয়ার্ড দিয়ে প্রবেশ করুন।
-                </p>
+        <div
+            id="profileCover"
+            class="cover">
 
-
-                <div class="form-group">
-
-                    <label for="loginMobile">
-                        মোবাইল নম্বর
-                    </label>
-
-                    <input
-                        id="loginMobile"
-                        type="tel"
-                        inputmode="numeric"
-                        placeholder="01XXXXXXXXX"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="loginPassword">
-                        পাসওয়ার্ড
-                    </label>
-
-                    <input
-                        id="loginPassword"
-                        type="password"
-                        placeholder="আপনার পাসওয়ার্ড"
-                        required
-                    >
-
-                </div>
-
-
-                <button
-                    class="btn btn-primary auth-submit"
-                    type="submit"
-                >
-                    Login
-                </button>
-
-
-                <div class="auth-switch">
-
-                    নতুন ব্যবহারকারী?
-
-                    <button
-                        type="button"
-                        onclick="showSignup()"
-                    >
-                        Sign Up
-                    </button>
-
-                </div>
-
-            </form>
+            <button
+                class="cover-edit"
+                onclick="openEditProfile()">
+                ✏️ Cover পরিবর্তন
+            </button>
 
         </div>
 
-    </section>
+        <div class="profile-body">
+
+            <div
+                id="profileAvatar"
+                class="profile-avatar">
+                M
+            </div>
+
+            <div
+                id="profileName"
+                class="profile-name">
+                Mithun Chandra Ray
+            </div>
+
+            <div
+                id="profilePhone"
+                class="profile-phone">
+                01708744994
+            </div>
+
+            <div
+                id="profileRole"
+                class="badge">
+                Student
+            </div>
+
+            <br>
+
+            <button
+                class="edit-btn"
+                onclick="openEditProfile()">
+                ✏️ Edit Profile
+            </button>
+
+            <div
+                id="profileDetails"
+                class="profile-details">
+            </div>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <div
+                        id="watchTime"
+                        class="stat-number">
+                        00:00:00
+                    </div>
+                    <small>আজকের সময়</small>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-number">0</div>
+                    <small>Saved</small>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-number">0</div>
+                    <small>Completed</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
 
 
-    <!-- =====================================================
-         MAIN APPLICATION
-         ===================================================== -->
+<!-- =======================================================
+     TEACHER PROFILE
+     ======================================================= -->
+
+<main
+    id="teacherPage"
+    class="page">
+
+    <div class="back-row">
+
+        <button
+            class="back-btn"
+            onclick="goBack()">
+            ←
+        </button>
+
+        <div
+            id="teacherPageTitle"
+            class="back-title">
+            শিক্ষক
+        </div>
+
+    </div>
 
     <div
-        id="mainApp"
-        class="app"
-        style="display:none;"
-    >
+        id="teacherProfileBox"
+        class="teacher-profile">
+    </div>
+
+    <h2 class="page-title">
+        এই শিক্ষকের Content
+    </h2>
+
+    <div
+        id="teacherContent"
+        class="card-grid">
+    </div>
+
+</main>
 
 
-        <!-- HEADER -->
+<!-- =======================================================
+     CONTENT DETAIL
+     ======================================================= -->
 
-        <header class="topbar">
+<main
+    id="contentDetail"
+    class="page">
 
-            <div class="topbar-inner">
+    <div class="back-row">
+
+        <button
+            class="back-btn"
+            onclick="goBack()">
+            ←
+        </button>
+
+        <div class="back-title">
+            Content
+        </div>
+
+    </div>
+
+    <div
+        id="detailBox">
+    </div>
+
+</main>
 
 
-                <a
-                    href="#"
-                    class="brand"
-                    onclick="navigate('home')"
-                >
+<!-- =======================================================
+     BOTTOM NAVIGATION
+     ======================================================= -->
 
-                    <div class="brand-logo">
-                        FT
+<nav class="bottom-nav">
+
+    <button
+        class="nav-btn active"
+        data-page="home"
+        onclick="navigate('home')">
+
+        <span class="nav-icon">⌂</span>
+        <span>Home</span>
+
+    </button>
+
+    <button
+        class="nav-btn"
+        data-page="shorts"
+        onclick="navigate('shorts')">
+
+        <span class="nav-icon">▶</span>
+        <span>Shorts</span>
+
+    </button>
+
+    <button
+        class="nav-btn"
+        data-page="explore"
+        onclick="navigate('explore')">
+
+        <span class="nav-icon">◎</span>
+        <span>Explore</span>
+
+    </button>
+
+    <button
+        class="nav-btn"
+        data-page="library"
+        onclick="navigate('library')">
+
+        <span class="nav-icon">▣</span>
+        <span>Library</span>
+
+    </button>
+
+    <button
+        class="nav-btn"
+        data-page="profile"
+        onclick="navigate('profile')">
+
+        <span class="nav-icon">♙</span>
+        <span>Profile</span>
+
+    </button>
+
+</nav>
+
+
+<!-- =======================================================
+     EDIT PROFILE MODAL
+     ======================================================= -->
+
+<div
+    id="editModal"
+    class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-title">
+            Edit Profile
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                নাম
+            </label>
+
+            <input
+                id="editName"
+                type="text">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                মোবাইল নাম্বার
+            </label>
+
+            <input
+                id="editPhone"
+                type="tel">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                পরিচয়
+            </label>
+
+            <select id="editRole">
+
+                <option value="Student">
+                    Student
+                </option>
+
+                <option value="Teacher">
+                    Teacher
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Bio
+            </label>
+
+            <textarea
+                id="editBio"
+                rows="4"
+                placeholder="আপনার সম্পর্কে লিখুন...">
+            </textarea>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Profile Photo URL
+            </label>
+
+            <input
+                id="editAvatar"
+                type="url"
+                placeholder="https://...">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Cover Photo URL
+            </label>
+
+            <input
+                id="editCover"
+                type="url"
+                placeholder="https://...">
+
+        </div>
+
+        <div class="form-actions">
+
+            <button
+                class="secondary-btn"
+                onclick="closeEditProfile()">
+                Cancel
+            </button>
+
+            <button
+                class="primary-btn"
+                onclick="saveProfile()">
+                Save
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     JAVASCRIPT
+     ======================================================= -->
+
+<script>
+
+/* =========================================================
+   DATA
+   ========================================================= */
+
+const defaultProfile = {
+
+    name: "Mithun Chandra Ray",
+
+    phone: "01708744994",
+
+    role: "Student",
+
+    bio: "FlickTide শিক্ষার্থী",
+
+    avatar: "",
+
+    cover: ""
+
+};
+
+
+const teachers = [
+
+    {
+        id: "teacher-1",
+
+        name: "FlickTide Teacher",
+
+        subject: "গণিত",
+
+        logo: "📐",
+
+        bio: "গণিতের গুরুত্বপূর্ণ বিষয় সহজভাবে শেখানো।"
+    },
+
+    {
+        id: "teacher-2",
+
+        name: "Science Teacher",
+
+        subject: "বিজ্ঞান",
+
+        logo: "🔬",
+
+        bio: "বিজ্ঞানের মৌলিক ধারণা।"
+    },
+
+    {
+        id: "teacher-3",
+
+        name: "English Teacher",
+
+        subject: "ইংরেজি",
+
+        logo: "📘",
+
+        bio: "English Grammar এবং Language Learning।"
+    }
+
+];
+
+
+const contents = [
+
+    {
+        id: 1,
+
+        type: "course",
+
+        title: "গণিতের গুরুত্বপূর্ণ ধারণা",
+
+        subject: "গণিত",
+
+        teacherId: "teacher-1",
+
+        icon: "📐"
+    },
+
+    {
+        id: 2,
+
+        type: "course",
+
+        title: "Science Basics",
+
+        subject: "বিজ্ঞান",
+
+        teacherId: "teacher-2",
+
+        icon: "🔬"
+    },
+
+    {
+        id: 3,
+
+        type: "course",
+
+        title: "English Grammar",
+
+        subject: "ইংরেজি",
+
+        teacherId: "teacher-3",
+
+        icon: "📘"
+    },
+
+    {
+        id: 4,
+
+        type: "short",
+
+        title: "১ মিনিটে একটি গুরুত্বপূর্ণ ধারণা",
+
+        subject: "Educational Short",
+
+        teacherId: "teacher-1",
+
+        icon: "🎓"
+    },
+
+    {
+        id: 5,
+
+        type: "short",
+
+        title: "Exam preparation tip",
+
+        subject: "Study Short",
+
+        teacherId: "teacher-2",
+
+        icon: "🧠"
+    }
+
+];
+
+
+/* =========================================================
+   STATE
+   ========================================================= */
+
+let profile =
+    JSON.parse(
+        localStorage.getItem("fliktide_profile")
+    ) || defaultProfile;
+
+
+let currentPage = "home";
+
+let previousPages = [];
+
+let currentTeacherId = null;
+
+
+/* =========================================================
+   PROFILE SAVE
+   ========================================================= */
+
+function saveProfileData() {
+
+    localStorage.setItem(
+        "fliktide_profile",
+        JSON.stringify(profile)
+    );
+
+}
+
+
+/* =========================================================
+   PROFILE RENDER
+   ========================================================= */
+
+function renderProfile() {
+
+    document.getElementById("profileName")
+        .textContent = profile.name;
+
+    document.getElementById("profilePhone")
+        .textContent = profile.phone;
+
+    document.getElementById("profileRole")
+        .textContent = profile.role;
+
+    const avatar =
+        document.getElementById("profileAvatar");
+
+    const headerAvatar =
+        document.getElementById("headerAvatar");
+
+
+    if (profile.avatar) {
+
+        avatar.innerHTML =
+            `<img src="${escapeHTML(profile.avatar)}"
+                  alt="Profile">`;
+
+        headerAvatar.innerHTML =
+            `<img src="${escapeHTML(profile.avatar)}"
+                  style="width:100%;height:100%;object-fit:cover;border-radius:50%"
+                  alt="Profile">`;
+
+    } else {
+
+        const letter =
+            profile.name
+                .trim()
+                .charAt(0)
+                .toUpperCase() || "M";
+
+        avatar.textContent = letter;
+
+        headerAvatar.textContent = letter;
+
+    }
+
+
+    const cover =
+        document.getElementById("profileCover");
+
+    if (profile.cover) {
+
+        cover.style.backgroundImage =
+            `url("${profile.cover}")`;
+
+    } else {
+
+        cover.style.backgroundImage =
+            "linear-gradient(135deg,#2563eb,#7c3aed,#f97316)";
+
+    }
+
+
+    document.getElementById("profileDetails")
+        .innerHTML = `
+
+            <div class="detail">
+                <strong>পরিচয়</strong>
+                ${escapeHTML(profile.role)}
+            </div>
+
+            <div class="detail">
+                <strong>Bio</strong>
+                ${escapeHTML(profile.bio || "কোনো Bio দেওয়া হয়নি।")}
+            </div>
+
+        `;
+}
+
+
+/* =========================================================
+   EDIT PROFILE
+   ========================================================= */
+
+function openEditProfile() {
+
+    document.getElementById("editName").value =
+        profile.name;
+
+    document.getElementById("editPhone").value =
+        profile.phone;
+
+    document.getElementById("editRole").value =
+        profile.role;
+
+    document.getElementById("editBio").value =
+        profile.bio || "";
+
+    document.getElementById("editAvatar").value =
+        profile.avatar || "";
+
+    document.getElementById("editCover").value =
+        profile.cover || "";
+
+    document
+        .getElementById("editModal")
+        .classList.add("show");
+
+}
+
+
+function closeEditProfile() {
+
+    document
+        .getElementById("editModal")
+        .classList.remove("show");
+
+}
+
+
+function saveProfile() {
+
+    profile.name =
+        document.getElementById("editName").value.trim()
+        || "Unnamed User";
+
+    profile.phone =
+        document.getElementById("editPhone").value.trim();
+
+    profile.role =
+        document.getElementById("editRole").value;
+
+    profile.bio =
+        document.getElementById("editBio").value.trim();
+
+    profile.avatar =
+        document.getElementById("editAvatar").value.trim();
+
+    profile.cover =
+        document.getElementById("editCover").value.trim();
+
+
+    saveProfileData();
+
+    renderProfile();
+
+    closeEditProfile();
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+function navigate(page, saveHistory = true) {
+
+    if (!document.getElementById(page)) {
+        return;
+    }
+
+    if (
+        saveHistory &&
+        currentPage !== page
+    ) {
+
+        previousPages.push(currentPage);
+
+    }
+
+
+    document
+        .querySelectorAll(".page")
+        .forEach(p => p.classList.remove("active"));
+
+
+    document
+        .getElementById(page)
+        .classList.add("active");
+
+
+    currentPage = page;
+
+
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(btn => {
+
+            btn.classList.toggle(
+                "active",
+                btn.dataset.page === page
+            );
+
+        });
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+function goBack() {
+
+    if (previousPages.length > 0) {
+
+        const page =
+            previousPages.pop();
+
+        navigate(page, false);
+
+    } else {
+
+        navigate("home", false);
+
+    }
+
+}
+
+
+/* =========================================================
+   ANDROID / BROWSER BACK BUTTON
+   ========================================================= */
+
+window.addEventListener(
+    "popstate",
+    function() {
+
+        if (previousPages.length > 0) {
+
+            const page =
+                previousPages.pop();
+
+            navigate(page, false);
+
+        } else {
+
+            navigate("home", false);
+
+        }
+
+    }
+);
+
+
+/*
+   Push a history state whenever internal navigation happens.
+   This makes Android browser back work with the app.
+*/
+
+const originalNavigate = navigate;
+
+
+/* =========================================================
+   CONTENT CARD
+   ========================================================= */
+
+function createContentCard(item) {
+
+    const teacher =
+        teachers.find(
+            t => t.id === item.teacherId
+        );
+
+    if (!teacher) return "";
+
+
+    return `
+
+        <article
+            class="content-card"
+            onclick="openContent(${item.id})">
+
+            <div class="thumbnail">
+                ${item.icon}
+            </div>
+
+            <div class="card-info">
+
+                <div class="card-title">
+                    ${escapeHTML(item.title)}
+                </div>
+
+                <div class="card-meta">
+                    ${escapeHTML(item.subject)}
+                </div>
+
+                <div
+                    class="teacher-row"
+                    onclick="event.stopPropagation();openTeacher('${teacher.id}')">
+
+                    <div class="teacher-logo">
+
+                        ${teacher.logo}
+
+                    </div>
+
+                    <div class="teacher-name">
+
+                        ${escapeHTML(teacher.name)}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/* =========================================================
+   HOME
+   ========================================================= */
+
+function renderHome(items = contents) {
+
+    document.getElementById("homeContent")
+        .innerHTML =
+        items
+            .filter(i => i.type === "course")
+            .map(createContentCard)
+            .join("");
+
+}
+
+
+/* =========================================================
+   SHORTS
+   ========================================================= */
+
+function renderShorts() {
+
+    document.getElementById("shortsContent")
+        .innerHTML =
+        contents
+            .filter(i => i.type === "short")
+            .map(createContentCard)
+            .join("");
+
+}
+
+
+/* =========================================================
+   LIBRARY
+   ========================================================= */
+
+function renderLibrary() {
+
+    const saved =
+        JSON.parse(
+            localStorage.getItem("fliktide_saved")
+        ) || [];
+
+
+    if (!saved.length) {
+
+        document.getElementById("libraryContent")
+            .innerHTML = `
+
+                <div
+                    class="empty"
+                    style="grid-column:1/-1">
+
+                    <div class="empty-icon">
+                        📚
+                    </div>
+
+                    <h3>
+                        আপনার Library এখনো খালি
+                    </h3>
+
+                    <p>
+                        Content save করলে এখানে দেখা যাবে।
+                    </p>
+
+                </div>
+
+            `;
+
+        return;
+
+    }
+
+
+    const items =
+        contents.filter(
+            item => saved.includes(item.id)
+        );
+
+
+    document.getElementById("libraryContent")
+        .innerHTML =
+        items.map(createContentCard).join("");
+
+}
+
+
+/* =========================================================
+   EXPLORE
+   ========================================================= */
+
+function renderExplore(items = contents) {
+
+    const teachersHTML =
+        teachers.map(t => `
+
+            <div
+                class="teacher-profile"
+                onclick="openTeacher('${t.id}')">
+
+                <div class="teacher-header">
+
+                    <div class="teacher-big-logo">
+                        ${t.logo}
                     </div>
 
                     <div>
 
-                        <div class="brand-name">
-                            Flick<span>Tide</span>
+                        <h2>
+                            ${escapeHTML(t.name)}
+                        </h2>
+
+                        <p class="card-meta">
+                            ${escapeHTML(t.subject)}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `).join("");
+
+
+    const contentHTML =
+        items.map(createContentCard).join("");
+
+
+    document.getElementById("exploreContent")
+        .innerHTML = `
+
+            <h2 style="margin-bottom:15px">
+                শিক্ষক
+            </h2>
+
+            ${teachersHTML}
+
+            <h2 style="margin:20px 0 15px">
+                Content
+            </h2>
+
+            <div class="card-grid">
+                ${contentHTML}
+            </div>
+
+        `;
+
+}
+
+
+/* =========================================================
+   TEACHER PROFILE
+   ========================================================= */
+
+function openTeacher(id) {
+
+    currentTeacherId = id;
+
+    const teacher =
+        teachers.find(
+            t => t.id === id
+        );
+
+    if (!teacher) return;
+
+
+    previousPages.push(currentPage);
+
+
+    document.getElementById("teacherPageTitle")
+        .textContent = teacher.name;
+
+
+    document.getElementById("teacherProfileBox")
+        .innerHTML = `
+
+            <div class="teacher-header">
+
+                <div class="teacher-big-logo">
+                    ${teacher.logo}
+                </div>
+
+                <div>
+
+                    <h1>
+                        ${escapeHTML(teacher.name)}
+                    </h1>
+
+                    <p class="card-meta">
+                        ${escapeHTML(teacher.subject)}
+                    </p>
+
+                </div>
+
+            </div>
+
+            <p
+                style="margin-top:18px;color:var(--muted)">
+                ${escapeHTML(teacher.bio)}
+            </p>
+
+        `;
+
+
+    const teacherContents =
+        contents.filter(
+            item =>
+                item.teacherId === teacher.id
+        );
+
+
+    document.getElementById("teacherContent")
+        .innerHTML =
+        teacherContents
+            .map(createContentCard)
+            .join("");
+
+
+    navigate("teacherPage", false);
+
+}
+
+
+/* =========================================================
+   CONTENT DETAIL
+   ========================================================= */
+
+function openContent(id) {
+
+    const item =
+        contents.find(
+            i => i.id === id
+        );
+
+    if (!item) return;
+
+
+    previousPages.push(currentPage);
+
+
+    const teacher =
+        teachers.find(
+            t => t.id === item.teacherId
+        );
+
+
+    document.getElementById("detailBox")
+        .innerHTML = `
+
+            <div class="content-card"
+                 style="cursor:default">
+
+                <div class="thumbnail"
+                     style="height:300px">
+
+                    ${item.icon}
+
+                </div>
+
+                <div class="card-info">
+
+                    <h1 class="card-title">
+                        ${escapeHTML(item.title)}
+                    </h1>
+
+                    <p class="card-meta">
+                        ${escapeHTML(item.subject)}
+                    </p>
+
+                    <div
+                        class="teacher-row"
+                        onclick="openTeacher('${teacher.id}')">
+
+                        <div class="teacher-logo">
+                            ${teacher.logo}
                         </div>
 
-                        <div class="brand-tagline">
-                            LEARN · FLOW · GROW
+                        <div class="teacher-name">
+                            ${escapeHTML(teacher.name)}
                         </div>
 
                     </div>
 
-                </a>
-
-
-                <div class="search-box">
-
-                    <span class="search-icon">
-                        🔍
-                    </span>
-
-                    <input
-                        id="searchInput"
-                        type="search"
-                        placeholder="ভিডিও, বিষয়, শিক্ষক খুঁজুন..."
-                        oninput="handleSearch(this.value)"
-                    >
-
-                </div>
-
-
-                <div class="header-actions">
-
                     <button
-                        class="icon-btn"
-                        onclick="toggleDarkMode()"
-                        title="Dark mode"
-                    >
-                        🌙
-                    </button>
+                        class="edit-btn"
+                        onclick="saveContent(${item.id})">
 
-
-                    <button
-                        class="icon-btn"
-                        onclick="showNotifications()"
-                        title="Notifications"
-                    >
-                        🔔
-                    </button>
-
-
-                    <button
-                        class="profile-btn"
-                        onclick="navigate('profile')"
-                    >
-
-                        <div
-                            id="headerAvatar"
-                            class="avatar"
-                        >
-                            U
-                        </div>
-
-                        <span id="headerName">
-                            User
-                        </span>
+                        🔖 Library-তে Save
 
                     </button>
 
@@ -1478,1543 +2121,358 @@
 
             </div>
 
-        </header>
+        `;
 
 
-        <!-- LAYOUT -->
+    navigate("contentDetail", false);
 
-        <div class="layout">
+}
 
 
-            <!-- SIDEBAR -->
+/* =========================================================
+   SAVE CONTENT
+   ========================================================= */
 
-            <aside class="sidebar">
+function saveContent(id) {
 
-                <div class="sidebar-title">
-                    Navigation
-                </div>
+    let saved =
+        JSON.parse(
+            localStorage.getItem("fliktide_saved")
+        ) || [];
 
 
-                <button
-                    class="nav-item active"
-                    data-page="home"
-                    onclick="navigate('home')"
-                >
+    if (!saved.includes(id)) {
 
-                    <span class="nav-icon">
-                        🏠
-                    </span>
+        saved.push(id);
 
-                    Home
+        localStorage.setItem(
+            "fliktide_saved",
+            JSON.stringify(saved)
+        );
 
-                </button>
+        alert("Content Library-তে Save হয়েছে।");
 
+        renderLibrary();
 
-                <button
-                    class="nav-item"
-                    data-page="shorts"
-                    onclick="navigate('shorts')"
-                >
+    } else {
 
-                    <span class="nav-icon">
-                        ▶️
-                    </span>
+        alert("এই Content আগে থেকেই Library-তে আছে।");
 
-                    Shorts
+    }
 
-                </button>
+}
 
 
-                <button
-                    class="nav-item"
-                    data-page="explore"
-                    onclick="navigate('explore')"
-                >
+/* =========================================================
+   SEARCH
+   ========================================================= */
 
-                    <span class="nav-icon">
-                        🔎
-                    </span>
+function searchContent(query) {
 
-                    Explore
+    query =
+        query.toLowerCase().trim();
 
-                </button>
 
+    if (!query) {
 
-                <button
-                    class="nav-item"
-                    data-page="library"
-                    onclick="navigate('library')"
-                >
+        renderHome();
 
-                    <span class="nav-icon">
-                        📚
-                    </span>
+        return;
 
-                    Library
+    }
 
-                </button>
 
+    const results =
+        contents.filter(item => {
 
-                <button
-                    class="nav-item"
-                    data-page="profile"
-                    onclick="navigate('profile')"
-                >
+            const teacher =
+                teachers.find(
+                    t => t.id === item.teacherId
+                );
 
-                    <span class="nav-icon">
-                        👤
-                    </span>
+            return (
 
-                    Profile
+                item.title
+                    .toLowerCase()
+                    .includes(query)
 
-                </button>
+                ||
 
+                item.subject
+                    .toLowerCase()
+                    .includes(query)
 
-                <div class="sidebar-title">
-                    Account
-                </div>
+                ||
 
+                teacher.name
+                    .toLowerCase()
+                    .includes(query)
 
-                <button
-                    class="nav-item"
-                    onclick="toggleDarkMode()"
-                >
-
-                    <span class="nav-icon">
-                        🌙
-                    </span>
-
-                    Dark Mode
-
-                </button>
-
-
-                <button
-                    class="nav-item"
-                    onclick="logout()"
-                >
-
-                    <span class="nav-icon">
-                        🚪
-                    </span>
-
-                    Logout
-
-                </button>
-
-            </aside>
-
-
-            <!-- MAIN -->
-
-            <main class="main">
-
-
-                <!-- =================================================
-                     HOME
-                     ================================================= -->
-
-                <section
-                    id="page-home"
-                    class="page active"
-                >
-
-                    <div class="hero">
-
-                        <h1>
-                            শেখা হোক আরও সহজ।
-                        </h1>
-
-                        <p>
-                            FlickTide হলো শিক্ষা-কেন্দ্রিক একটি
-                            ভিডিও প্ল্যাটফর্ম—যেখানে আপনি শিখতে,
-                            শেখাতে এবং নিজের learning journey
-                            তৈরি করতে পারবেন।
-                        </p>
-
-                        <button
-                            class="btn btn-primary"
-                            onclick="navigate('explore')"
-                        >
-                            Explore Learning →
-                        </button>
-
-                    </div>
-
-
-                    <div class="section">
-
-                        <div class="section-head">
-
-                            <h2 class="section-title">
-                                বিষয় নির্বাচন করুন
-                            </h2>
-
-                        </div>
-
-
-                        <div class="chips">
-
-                            <button class="chip active">
-                                সব
-                            </button>
-
-                            <button class="chip">
-                                গণিত
-                            </button>
-
-                            <button class="chip">
-                                বিজ্ঞান
-                            </button>
-
-                            <button class="chip">
-                                ইংরেজি
-                            </button>
-
-                            <button class="chip">
-                                ICT
-                            </button>
-
-                            <button class="chip">
-                                বাংলা
-                            </button>
-
-                            <button class="chip">
-                                ব্যবসা
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="section">
-
-                        <div class="section-head">
-
-                            <h2 class="section-title">
-                                Recommended for you
-                            </h2>
-
-                            <a
-                                class="section-link"
-                                href="#"
-                                onclick="navigate('explore')"
-                            >
-                                See all
-                            </a>
-
-                        </div>
-
-
-                        <div
-                            id="recommendedGrid"
-                            class="card-grid"
-                        ></div>
-
-                    </div>
-
-
-                    <div class="section">
-
-                        <div class="section-head">
-
-                            <h2 class="section-title">
-                                Continue learning
-                            </h2>
-
-                        </div>
-
-
-                        <div class="card-grid">
-
-                            <article class="card">
-
-                                <div class="thumbnail">
-                                    📐
-                                </div>
-
-                                <div class="card-body">
-
-                                    <div class="card-title">
-                                        Mathematics Foundation
-                                    </div>
-
-                                    <div class="card-meta">
-                                        Continue • 35%
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-
-                            <article class="card">
-
-                                <div class="thumbnail">
-                                    💻
-                                </div>
-
-                                <div class="card-body">
-
-                                    <div class="card-title">
-                                        Web Development Basics
-                                    </div>
-
-                                    <div class="card-meta">
-                                        Continue • 20%
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        </div>
-
-                    </div>
-
-                </section>
-
-
-                <!-- =================================================
-                     SHORTS
-                     ================================================= -->
-
-                <section
-                    id="page-shorts"
-                    class="page"
-                >
-
-                    <div class="section-head">
-
-                        <h1 class="section-title">
-                            Shorts
-                        </h1>
-
-                    </div>
-
-
-                    <div class="card-grid">
-
-                        <article class="card">
-
-                            <div class="thumbnail">
-                                🎓
-                            </div>
-
-                            <div class="card-body">
-
-                                <div class="card-title">
-                                    ১ মিনিটে একটি গুরুত্বপূর্ণ ধারণা
-                                </div>
-
-                                <div class="card-meta">
-                                    Educational Short
-                                </div>
-
-                            </div>
-
-                        </article>
-
-
-                        <article class="card">
-
-                            <div class="thumbnail">
-                                🧠
-                            </div>
-
-                            <div class="card-body">
-
-                                <div class="card-title">
-                                    Exam preparation tip
-                                </div>
-
-                                <div class="card-meta">
-                                    Study Short
-                                </div>
-
-                            </div>
-
-                        </article>
-
-                    </div>
-
-                </section>
-
-
-                <!-- =================================================
-                     EXPLORE
-                     ================================================= -->
-
-                <section
-                    id="page-explore"
-                    class="page"
-                >
-
-                    <div class="section-head">
-
-                        <h1 class="section-title">
-                            Explore
-                        </h1>
-
-                    </div>
-
-
-                    <div class="chips">
-
-                        <button class="chip active">
-                            All
-                        </button>
-
-                        <button class="chip">
-                            Courses
-                        </button>
-
-                        <button class="chip">
-                            Videos
-                        </button>
-
-                        <button class="chip">
-                            Teachers
-                        </button>
-
-                    </div>
-
-
-                    <br>
-
-
-                    <div
-                        id="exploreGrid"
-                        class="card-grid"
-                    ></div>
-
-                </section>
-
-
-                <!-- =================================================
-                     LIBRARY
-                     ================================================= -->
-
-                <section
-                    id="page-library"
-                    class="page"
-                >
-
-                    <div class="section-head">
-
-                        <h1 class="section-title">
-                            Your Library
-                        </h1>
-
-                    </div>
-
-
-                    <div class="card-grid">
-
-                        <article class="card">
-
-                            <div class="thumbnail">
-                                📖
-                            </div>
-
-                            <div class="card-body">
-
-                                <div class="card-title">
-                                    Saved lessons
-                                </div>
-
-                                <div class="card-meta">
-                                    Your saved learning content
-                                </div>
-
-                            </div>
-
-                        </article>
-
-                    </div>
-
-                </section>
-
-
-                <!-- =================================================
-                     PROFILE
-                     ================================================= -->
-
-                <section
-                    id="page-profile"
-                    class="page"
-                >
-
-                    <div class="profile-cover"></div>
-
-
-                    <div class="profile-info">
-
-                        <div
-                            id="profileAvatar"
-                            class="profile-avatar-large"
-                        >
-                            U
-                        </div>
-
-
-                        <div
-                            id="profileName"
-                            class="profile-name"
-                        >
-                            User
-                        </div>
-
-
-                        <div
-                            id="profileMobile"
-                            class="profile-mobile"
-                        >
-                            Mobile
-                        </div>
-
-
-                        <br>
-
-
-                        <div>
-
-                            <span class="chip">
-                                Student
-                            </span>
-
-                        </div>
-
-
-                        <br>
-
-
-                        <button
-                            class="btn btn-secondary"
-                            onclick="openEditProfile()"
-                        >
-                            Edit Profile
-                        </button>
-
-                    </div>
-
-                </section>
-
-
-                <!-- =================================================
-                     SEARCH RESULTS
-                     ================================================= -->
-
-                <section
-                    id="page-search"
-                    class="page"
-                >
-
-                    <div class="section-head">
-
-                        <h1 class="section-title">
-                            Search results
-                        </h1>
-
-                    </div>
-
-
-                    <div
-                        id="searchResults"
-                        class="card-grid"
-                    ></div>
-
-                </section>
-
-            </main>
-
-        </div>
-
-
-        <!-- =====================================================
-             MOBILE BOTTOM NAV
-             ===================================================== -->
-
-        <nav class="bottom-nav">
-
-            <button
-                class="bottom-item active"
-                data-page="home"
-                onclick="navigate('home')"
-            >
-
-                <span>⌂</span>
-
-                Home
-
-            </button>
-
-
-            <button
-                class="bottom-item"
-                data-page="shorts"
-                onclick="navigate('shorts')"
-            >
-
-                <span>▶</span>
-
-                Shorts
-
-            </button>
-
-
-            <button
-                class="bottom-item"
-                data-page="explore"
-                onclick="navigate('explore')"
-            >
-
-                <span>◎</span>
-
-                Explore
-
-            </button>
-
-
-            <button
-                class="bottom-item"
-                data-page="library"
-                onclick="navigate('library')"
-            >
-
-                <span>▣</span>
-
-                Library
-
-            </button>
-
-
-            <button
-                class="bottom-item"
-                data-page="profile"
-                onclick="navigate('profile')"
-            >
-
-                <span>♙</span>
-
-                Profile
-
-            </button>
-
-        </nav>
-
-    </div>
-
-
-    <!-- =====================================================
-         MODAL
-         ===================================================== -->
-
-    <div
-        id="modal"
-        class="modal"
-        onclick="closeModalOnBackground(event)"
-    >
-
-        <div
-            id="modalBox"
-            class="modal-box"
-        ></div>
-
-    </div>
-
-
-    <!-- =====================================================
-         TOAST
-         ===================================================== -->
-
-    <div
-        id="toast"
-        class="toast"
-    ></div>
-
-
-    <!-- =====================================================
-         JAVASCRIPT FOUNDATION
-         ===================================================== -->
-
-    <script>
-
-        /* =====================================================
-           APPLICATION STATE
-           ===================================================== */
-
-        const state = {
-
-            user: null,
-
-            darkMode:
-                localStorage.getItem("flicktide_dark")
-                === "true",
-
-            currentPage: "home"
-
-        };
-
-
-        /* =====================================================
-           SAMPLE CONTENT
-           ===================================================== */
-
-        const videos = [
-
-            {
-                title: "গণিতের গুরুত্বপূর্ণ ধারণা",
-                subject: "গণিত",
-                teacher: "FlickTide Teacher",
-                icon: "📐"
-            },
-
-            {
-                title: "Science Basics",
-                subject: "বিজ্ঞান",
-                teacher: "FlickTide Teacher",
-                icon: "🔬"
-            },
-
-            {
-                title: "English Grammar",
-                subject: "ইংরেজি",
-                teacher: "FlickTide Teacher",
-                icon: "📘"
-            },
-
-            {
-                title: "Web Development",
-                subject: "ICT",
-                teacher: "FlickTide Teacher",
-                icon: "💻"
-            },
-
-            {
-                title: "বাংলা সাহিত্য",
-                subject: "বাংলা",
-                teacher: "FlickTide Teacher",
-                icon: "📚"
-            },
-
-            {
-                title: "Business Basics",
-                subject: "ব্যবসা",
-                teacher: "FlickTide Teacher",
-                icon: "📊"
-            }
-
-        ];
-
-
-        /* =====================================================
-           AUTH SCREEN
-           ===================================================== */
-
-        function showLogin() {
-
-            document
-                .getElementById("signupForm")
-                .style.display = "none";
-
-            document
-                .getElementById("loginForm")
-                .style.display = "block";
-
-        }
-
-
-        function showSignup() {
-
-            document
-                .getElementById("loginForm")
-                .style.display = "none";
-
-            document
-                .getElementById("signupForm")
-                .style.display = "block";
-
-        }
-
-
-        /* =====================================================
-           SIGNUP
-           ===================================================== */
-
-        document
-            .getElementById("signupForm")
-            .addEventListener(
-                "submit",
-                function(event) {
-
-                    event.preventDefault();
-
-
-                    const name =
-                        document
-                            .getElementById("signupName")
-                            .value
-                            .trim();
-
-
-                    const mobile =
-                        document
-                            .getElementById("signupMobile")
-                            .value
-                            .trim();
-
-
-                    const password =
-                        document
-                            .getElementById("signupPassword")
-                            .value;
-
-
-                    const type =
-                        document
-                            .getElementById("accountType")
-                            .value;
-
-
-                    if (
-                        name.length < 2 ||
-                        mobile.length < 10 ||
-                        password.length < 8
-                    ) {
-
-                        showToast(
-                            "তথ্যগুলো সঠিকভাবে পূরণ করুন।"
-                        );
-
-                        return;
-
-                    }
-
-
-                    /*
-                     * DEMO ONLY
-                     *
-                     * Production authentication must NOT
-                     * store passwords in localStorage.
-                     */
-
-                    const demoUser = {
-
-                        name: name,
-
-                        mobile: mobile,
-
-                        password: password,
-
-                        type: type
-
-                    };
-
-
-                    localStorage.setItem(
-                        "flicktide_demo_user",
-                        JSON.stringify(demoUser)
-                    );
-
-
-                    state.user = demoUser;
-
-
-                    showToast(
-                        "অ্যাকাউন্ট তৈরি হয়েছে।"
-                    );
-
-
-                    openApplication();
-
-                }
             );
 
-
-        /* =====================================================
-           LOGIN
-           ===================================================== */
-
-        document
-            .getElementById("loginForm")
-            .addEventListener(
-                "submit",
-                function(event) {
-
-                    event.preventDefault();
+        });
 
 
-                    const mobile =
-                        document
-                            .getElementById("loginMobile")
-                            .value
-                            .trim();
+    renderHome(results);
+
+}
 
 
-                    const password =
-                        document
-                            .getElementById("loginPassword")
-                            .value;
+function searchExplore(query) {
+
+    query =
+        query.toLowerCase().trim();
 
 
-                    const saved =
-                        localStorage.getItem(
-                            "flicktide_demo_user"
-                        );
+    if (!query) {
+
+        renderExplore();
+
+        return;
+
+    }
 
 
-                    if (!saved) {
+    const results =
+        contents.filter(item => {
 
-                        showToast(
-                            "আগে একটি অ্যাকাউন্ট তৈরি করুন।"
-                        );
+            const teacher =
+                teachers.find(
+                    t => t.id === item.teacherId
+                );
 
-                        showSignup();
+            return (
 
-                        return;
+                item.title
+                    .toLowerCase()
+                    .includes(query)
 
-                    }
+                ||
 
+                item.subject
+                    .toLowerCase()
+                    .includes(query)
 
-                    const user =
-                        JSON.parse(saved);
+                ||
 
+                teacher.name
+                    .toLowerCase()
+                    .includes(query)
 
-                    if (
-                        user.mobile !== mobile ||
-                        user.password !== password
-                    ) {
-
-                        showToast(
-                            "মোবাইল নম্বর অথবা পাসওয়ার্ড ভুল।"
-                        );
-
-                        return;
-
-                    }
-
-
-                    state.user = user;
-
-
-                    showToast(
-                        "Login সফল হয়েছে।"
-                    );
-
-
-                    openApplication();
-
-                }
             );
 
+        });
 
-        /* =====================================================
-           OPEN APPLICATION
-           ===================================================== */
 
-        function openApplication() {
+    renderExplore(results);
 
-            document
-                .getElementById("authScreen")
-                .classList.remove("active");
+}
 
 
-            document
-                .getElementById("mainApp")
-                .style.display = "block";
+/* =========================================================
+   DARK MODE
+   ========================================================= */
 
+function toggleTheme() {
 
-            updateUserUI();
+    document.body.classList.toggle("dark");
 
 
-            renderVideos();
+    const dark =
+        document.body.classList.contains("dark");
 
 
-            navigate("home");
+    localStorage.setItem(
+        "fliktide_theme",
+        dark ? "dark" : "light"
+    );
 
-        }
 
+    document.getElementById("themeBtn")
+        .textContent =
+        dark ? "☀️" : "🌙";
 
-        /* =====================================================
-           USER UI
-           ===================================================== */
+}
 
-        function updateUserUI() {
 
-            if (!state.user) return;
+function loadTheme() {
 
+    const theme =
+        localStorage.getItem(
+            "fliktide_theme"
+        );
 
-            const first =
-                state.user.name
-                    .charAt(0)
-                    .toUpperCase();
 
+    if (theme === "dark") {
 
-            document
-                .getElementById("headerAvatar")
-                .textContent = first;
+        document.body.classList.add("dark");
 
+        document.getElementById("themeBtn")
+            .textContent = "☀️";
 
-            document
-                .getElementById("headerName")
-                .textContent =
-                    state.user.name;
+    }
 
+}
 
-            document
-                .getElementById("profileAvatar")
-                .textContent = first;
 
+/* =========================================================
+   TODAY WATCH TIME
+   ========================================================= */
 
-            document
-                .getElementById("profileName")
-                .textContent =
-                    state.user.name;
+function getTodayKey() {
 
+    const date =
+        new Date();
 
-            document
-                .getElementById("profileMobile")
-                .textContent =
-                    state.user.mobile;
+    return (
+        "fliktide_watch_" +
+        date.getFullYear() +
+        "_" +
+        (date.getMonth() + 1) +
+        "_" +
+        date.getDate()
+    );
 
-        }
+}
 
 
-        /* =====================================================
-           NAVIGATION
-           ===================================================== */
+function updateWatchTime() {
 
-        function navigate(page) {
+    const key =
+        getTodayKey();
 
-            state.currentPage = page;
 
+    let seconds =
+        Number(
+            localStorage.getItem(key)
+        ) || 0;
 
-            document
-                .querySelectorAll(".page")
-                .forEach(
-                    element => {
 
-                        element.classList.remove(
-                            "active"
-                        );
+    seconds++;
 
-                    }
-                );
 
+    localStorage.setItem(
+        key,
+        seconds
+    );
 
-            const target =
-                document.getElementById(
-                    "page-" + page
-                );
 
+    const hours =
+        Math.floor(seconds / 3600);
 
-            if (target) {
+    const minutes =
+        Math.floor(
+            (seconds % 3600) / 60
+        );
 
-                target.classList.add("active");
+    const secs =
+        seconds % 60;
 
-            }
 
+    const formatted =
+        String(hours).padStart(2,"0") +
+        ":" +
+        String(minutes).padStart(2,"0") +
+        ":" +
+        String(secs).padStart(2,"0");
 
-            document
-                .querySelectorAll(
-                    ".nav-item, .bottom-item"
-                )
-                .forEach(
-                    element => {
 
-                        element.classList.toggle(
-                            "active",
-                            element.dataset.page === page
-                        );
+    document.getElementById("watchTime")
+        .textContent = formatted;
 
-                    }
-                );
+}
 
 
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+/* =========================================================
+   NOTIFICATIONS
+   ========================================================= */
 
-        }
+function showNotifications() {
 
+    alert(
+        "🔔 বর্তমানে নতুন কোনো Notification নেই।"
+    );
 
-        /* =====================================================
-           VIDEO RENDER
-           ===================================================== */
+}
 
-        function createVideoCard(video) {
 
-            return `
+/* =========================================================
+   SECURITY HELPER
+   ========================================================= */
 
-                <article class="card">
+function escapeHTML(value) {
 
-                    <div class="thumbnail">
-                        ${video.icon}
-                    </div>
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
 
-                    <div class="card-body">
+}
 
-                        <div class="card-title">
-                            ${video.title}
-                        </div>
 
-                        <div class="card-meta">
-                            ${video.subject}
-                            •
-                            ${video.teacher}
-                        </div>
+/* =========================================================
+   INITIALIZE
+   ========================================================= */
 
-                    </div>
+function initializeApp() {
 
-                </article>
+    renderProfile();
 
-            `;
+    renderHome();
 
-        }
+    renderShorts();
 
+    renderLibrary();
 
-        function renderVideos() {
+    renderExplore();
 
-            const recommended =
-                document
-                    .getElementById(
-                        "recommendedGrid"
-                    );
+    loadTheme();
 
+}
 
-            const explore =
-                document
-                    .getElementById(
-                        "exploreGrid"
-                    );
 
+/* =========================================================
+   START
+   ========================================================= */
 
-            if (recommended) {
+initializeApp();
 
-                recommended.innerHTML =
-                    videos
-                        .slice(0, 4)
-                        .map(createVideoCard)
-                        .join("");
 
-            }
+/*
+   প্রতি ১ সেকেন্ডে আজকের ব্যবহার সময় update হবে।
+   Browser/app বন্ধ করলে localStorage-এ শেষ সময় থাকবে।
+*/
 
+setInterval(
+    updateWatchTime,
+    1000
+);
 
-            if (explore) {
 
-                explore.innerHTML =
-                    videos
-                        .map(createVideoCard)
-                        .join("");
+/* =========================================================
+   HISTORY STATE
+   ========================================================= */
 
-            }
+/*
+   Android/mobile browser Back button-এর জন্য
+   history state রাখা হচ্ছে।
+*/
 
-        }
+window.addEventListener(
+    "beforeunload",
+    function() {
 
+        localStorage.setItem(
+            "fliktide_last_page",
+            currentPage
+        );
 
-        /* =====================================================
-           SEARCH
-           ===================================================== */
+    }
+);
 
-        function handleSearch(value) {
-
-            const query =
-                value.trim().toLowerCase();
-
-
-            if (!query) {
-
-                navigate("home");
-
-                return;
-
-            }
-
-
-            navigate("search");
-
-
-            const results =
-                videos.filter(
-                    video =>
-                        video.title
-                            .toLowerCase()
-                            .includes(query)
-                        ||
-                        video.subject
-                            .toLowerCase()
-                            .includes(query)
-                );
-
-
-            const container =
-                document
-                    .getElementById(
-                        "searchResults"
-                    );
-
-
-            if (!results.length) {
-
-                container.innerHTML = `
-
-                    <div class="empty">
-
-                        <div class="empty-icon">
-                            🔍
-                        </div>
-
-                        কোনো ফলাফল পাওয়া যায়নি।
-
-                    </div>
-
-                `;
-
-                return;
-
-            }
-
-
-            container.innerHTML =
-                results
-                    .map(createVideoCard)
-                    .join("");
-
-        }
-
-
-        /* =====================================================
-           DARK MODE
-           ===================================================== */
-
-        function toggleDarkMode() {
-
-            state.darkMode =
-                !state.darkMode;
-
-
-            document
-                .body
-                .classList.toggle(
-                    "dark",
-                    state.darkMode
-                );
-
-
-            localStorage.setItem(
-                "flicktide_dark",
-                state.darkMode
-            );
-
-        }
-
-
-        if (state.darkMode) {
-
-            document
-                .body
-                .classList.add("dark");
-
-        }
-
-
-        /* =====================================================
-           NOTIFICATIONS
-           ===================================================== */
-
-        function showNotifications() {
-
-            openModal(`
-
-                <div class="modal-head">
-
-                    <h2>
-                        Notifications
-                    </h2>
-
-                    <button
-                        class="icon-btn"
-                        onclick="closeModal()"
-                    >
-                        ✕
-                    </button>
-
-                </div>
-
-                <div class="empty">
-
-                    <div class="empty-icon">
-                        🔔
-                    </div>
-
-                    এখনো কোনো notification নেই।
-
-                </div>
-
-            `);
-
-        }
-
-
-        /* =====================================================
-           EDIT PROFILE
-           ===================================================== */
-
-        function openEditProfile() {
-
-            if (!state.user) return;
-
-
-            openModal(`
-
-                <div class="modal-head">
-
-                    <h2>
-                        Edit Profile
-                    </h2>
-
-                    <button
-                        class="icon-btn"
-                        onclick="closeModal()"
-                    >
-                        ✕
-                    </button>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        নাম
-                    </label>
-
-                    <input
-                        id="editName"
-                        value="${state.user.name}"
-                    >
-
-                </div>
-
-
-                <button
-                    class="btn btn-primary"
-                    onclick="saveProfile()"
-                >
-                    Save Changes
-                </button>
-
-            `);
-
-        }
-
-
-        function saveProfile() {
-
-            const name =
-                document
-                    .getElementById("editName")
-                    .value
-                    .trim();
-
-
-            if (name.length < 2) {
-
-                showToast(
-                    "সঠিক নাম লিখুন।"
-                );
-
-                return;
-
-            }
-
-
-            state.user.name = name;
-
-
-            localStorage.setItem(
-                "flicktide_demo_user",
-                JSON.stringify(state.user)
-            );
-
-
-            updateUserUI();
-
-            closeModal();
-
-            showToast(
-                "Profile updated."
-            );
-
-        }
-
-
-        /* =====================================================
-           MODAL
-           ===================================================== */
-
-        function openModal(content) {
-
-            document
-                .getElementById("modalBox")
-                .innerHTML = content;
-
-
-            document
-                .getElementById("modal")
-                .classList.add("active");
-
-        }
-
-
-        function closeModal() {
-
-            document
-                .getElementById("modal")
-                .classList.remove("active");
-
-        }
-
-
-        function closeModalOnBackground(event) {
-
-            if (
-                event.target.id === "modal"
-            ) {
-
-                closeModal();
-
-            }
-
-        }
-
-
-        /* =====================================================
-           TOAST
-           ===================================================== */
-
-        let toastTimer;
-
-
-        function showToast(message) {
-
-            const toast =
-                document
-                    .getElementById("toast");
-
-
-            toast.textContent = message;
-
-
-            toast.classList.add("show");
-
-
-            clearTimeout(toastTimer);
-
-
-            toastTimer =
-                setTimeout(
-                    () => {
-
-                        toast.classList.remove(
-                            "show"
-                        );
-
-                    },
-                    2500
-                );
-
-        }
-
-
-        /* =====================================================
-           LOGOUT
-           ===================================================== */
-
-        function logout() {
-
-            state.user = null;
-
-
-            document
-                .getElementById("mainApp")
-                .style.display = "none";
-
-
-            document
-                .getElementById("authScreen")
-                .classList.add("active");
-
-
-            document
-                .getElementById("loginForm")
-                .reset();
-
-
-            showLogin();
-
-
-            showToast(
-                "আপনি Logout করেছেন।"
-            );
-
-        }
-
-
-        /* =====================================================
-           INITIAL APPLICATION CHECK
-           ===================================================== */
-
-        function initialize() {
-
-            const saved =
-                localStorage.getItem(
-                    "flicktide_demo_user"
-                );
-
-
-            if (saved) {
-
-                try {
-
-                    state.user =
-                        JSON.parse(saved);
-
-                    openApplication();
-
-                } catch {
-
-                    localStorage.removeItem(
-                        "flicktide_demo_user"
-                    );
-
-                    showLogin();
-
-                }
-
-            } else {
-
-                /*
-                 * নতুন visitor হলে সরাসরি
-                 * Signup দেখানো হচ্ছে।
-                 *
-                 * কারণ FlickTide-এর প্রথম ধাপ:
-                 * Profile / Account creation.
-                 */
-
-                showSignup();
-
-            }
-
-        }
-
-
-        initialize();
-
-    </script>
+</script>
 
 </body>
 </html>
