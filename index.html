@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07090d">
+  <meta name="description" content="FlikTide — Discover, Play, Learn & Explore.">
+  <title>FlikTide — Discover, Play, Learn & Explore</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #07090d;
+      --surface: #10131a;
+      --surface-2: #151923;
+      --border: rgba(255,255,255,.08);
+      --text: #f5f7fb;
+      --muted: #9299a8;
+      --accent: #7c5cff;
+      --accent-2: #21d4fd;
+      --radius: 20px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 85% 5%, rgba(124,92,255,.18), transparent 30%),
+        radial-gradient(circle at 10% 20%, rgba(33,212,253,.08), transparent 25%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: rgba(7,9,13,.78);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: auto;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -.6px;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 8px 30px rgba(124,92,255,.28);
+      color: white;
+      font-weight: 900;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+    }
+
+    /* HERO */
+
+    .hero {
+      max-width: 1180px;
+      margin: auto;
+      padding: 72px 20px 45px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 13px;
+      border: 1px solid rgba(124,92,255,.25);
+      background: rgba(124,92,255,.08);
+      color: #c9c0ff;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 9vw, 78px);
+      line-height: .98;
+      letter-spacing: -3px;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #fff, #a99aff, #6ee7ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: 22px auto 30px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* SEARCH */
+
+    .search-wrap {
+      max-width: 650px;
+      margin: auto;
+      position: relative;
+    }
+
+    .search {
+      width: 100%;
+      height: 60px;
+      padding: 0 58px 0 20px;
+      border-radius: 17px;
+      border: 1px solid var(--border);
+      outline: none;
+      background: rgba(16,19,26,.88);
+      color: white;
+      font-size: 16px;
+      box-shadow: 0 15px 45px rgba(0,0,0,.2);
+      transition: .25s ease;
+    }
+
+    .search:focus {
+      border-color: rgba(124,92,255,.6);
+      box-shadow: 0 0 0 4px rgba(124,92,255,.1);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 19px;
+      top: 18px;
+      color: var(--muted);
+      font-size: 21px;
+    }
+
+    /* MAIN */
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 10px 20px 80px;
+    }
+
+    .section {
+      margin-top: 45px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      margin-bottom: 17px;
+    }
+
+    .section-title {
+      font-size: 23px;
+      letter-spacing: -.6px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    .view-all {
+      color: #a99aff;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* FEATURED */
+
+    .featured {
+      display: grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 15px;
+    }
+
+    .feature-card {
+      min-height: 250px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 90% 10%, rgba(124,92,255,.3), transparent 35%),
+        var(--surface);
+    }
+
+    .feature-card.small {
+      min-height: 250px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(33,212,253,.18), transparent 40%),
+        var(--surface);
+    }
+
+    .feature-card h3 {
+      font-size: 28px;
+      max-width: 430px;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      max-width: 440px;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .feature-button {
+      margin-top: 22px;
+      border: 0;
+      padding: 12px 18px;
+      border-radius: 12px;
+      background: white;
+      color: #08090c;
+      font-weight: 700;
+    }
+
+    .orb {
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      right: -45px;
+      bottom: -65px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      opacity: .2;
+      filter: blur(2px);
+    }
+
+    /* CATEGORY GRID */
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .category {
+      padding: 19px;
+      min-height: 125px;
+      border-radius: 17px;
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, var(--surface), var(--surface-2));
+      transition: transform .2s ease, border-color .2s ease;
+    }
+
+    .category:hover {
+      transform: translateY(-3px);
+      border-color: rgba(124,92,255,.4);
+    }
+
+    .category-icon {
+      font-size: 27px;
+      margin-bottom: 15px;
+    }
+
+    .category h3 {
+      font-size: 15px;
+    }
+
+    .category p {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    /* TOOLS */
+
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .tool {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: .2s ease;
+    }
+
+    .tool:hover {
+      transform: translateY(-2px);
+      background: var(--surface-2);
+    }
+
+    .tool-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: rgba(124,92,255,.12);
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .tool h3 {
+      font-size: 14px;
+    }
+
+    .tool p {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 35px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-brand {
+      color: white;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+
+      .nav {
+        padding: 12px 15px;
+      }
+
+      .brand {
+        font-size: 19px;
+      }
+
+      .brand-icon {
+        width: 35px;
+        height: 35px;
+      }
+
+      .hero {
+        padding: 58px 16px 30px;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero p {
+        font-size: 14px;
+      }
+
+      main {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      .featured {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-card,
+      .feature-card.small {
+        min-height: 220px;
+      }
+
+      .categories {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .tools {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        margin-top: 35px;
+      }
+
+      .section-title {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .categories {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .category {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="nav">
+
+      <a href="#" class="brand">
+        <span class="brand-icon">F</span>
+        <span>FlikTide</span>
+      </a>
+
+      <div class="nav-actions">
+        <button class="icon-btn" aria-label="Search"
+          onclick="focusSearch()">⌕</button>
+
+        <button class="icon-btn" aria-label="Menu"
+          onclick="alert('More features coming soon.')">☰</button>
+      </div>
+
+    </nav>
+  </header>
+
+  <section class="hero">
+
+    <div class="badge">
+      ✦ A new way to discover
+    </div>
+
+    <h1>
+      Discover.
+      <span class="gradient-text">Play.</span>
+      Learn.
+      Explore.
+    </h1>
+
+    <p>
+      Welcome to FlikTide — a place for useful tools,
+      fascinating knowledge, fun challenges and things
+      worth discovering.
+    </p>
+
+    <div class="search-wrap">
+      <input
+        id="search"
+        class="search"
+        type="search"
+        placeholder="Search tools, games, quizzes..."
+        autocomplete="off"
+      >
+      <span class="search-icon">⌕</span>
+    </div>
+
+  </section>
+
+  <main>
+
+    <!-- FEATURED -->
+
+    <section class="section">
+
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">🔥 Discover</h2>
+          <p class="section-subtitle">
+            Something interesting is waiting for you.
+          </p>
+        </div>
+
+        <a href="#" class="view-all">View all</a>
+      </div>
+
+      <div class="featured">
+
+        <article class="feature-card">
+          <div class="orb"></div>
+
+          <h3>
+            Test your knowledge.
+            Can you score 10/10?
+          </h3>
+
+          <p>
+            Challenge yourself with quick quizzes,
+            interesting questions and daily challenges.
+          </p>
+
+          <button class="feature-button"
+            onclick="comingSoon()">
+            Start a Quiz →
+          </button>
+        </article>
+
+        <article class="feature-card small">
+
+          <h3>🎮 Play & Explore</h3>
+
+          <p>
+            Simple games and challenges designed
+            for quick moments of fun.
+          </p>
+
+          <button class="feature-button"
+            onclick="comingSoon()">
+            Explore Games →
+          </button>
+
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- CATEGORIES -->
+
+    <section class="section">
+
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Explore Categories</h2>
+          <p class="section-subtitle">
+            Find something you love.
+          </p>
+        </div>
+      </div>
+
+      <div class="categories">
+
+        <a href="#" class="category">
+          <div class="category-icon">🎮</div>
+          <h3>Games</h3>
+          <p>Play & challenge</p>
+        </a>
+
+        <a href="#" class="category">
+          <div class="category-icon">🧠</div>
+          <h3>Quizzes</h3>
+          <p>Test your mind</p>
+        </a>
+
+        <a href="#" class="category">
+          <div class="category-icon">🛠️</div>
+          <h3>Tools</h3>
+          <p>Useful everyday tools</p>
+        </a>
+
+        <a href="#" class="category">
+          <div class="category-icon">🤖</div>
+          <h3>AI</h3>
+          <p>Explore AI tools</p>
+        </a>
+
+        <a href="#" class="category">
+          <div class="category-icon">📚</div>
+          <h3>Learn</h3>
+          <p>Knowledge & education</p>
+        </a>
+
+        <a href="#" class="category">
+          <div class="category-icon">🌍</div>
+          <h3>World</h3>
+          <p>Discover the world</p>
+        </a>
+
+        <a href="#" class="category">
+          <div class="category-icon">✨</div>
+          <h3>Trending</h3>
+          <p>What's interesting</p>
+        </a>
+
+        <a href="#" class="category">
+          <div class="category-icon">🚀</div>
+          <h3>New</h3>
+          <p>Fresh on FlikTide</p>
+        </a>
+
+      </div>
+
+    </section>
+
+    <!-- TOOLS -->
+
+    <section class="section">
+
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">⚡ Popular Tools</h2>
+          <p class="section-subtitle">
+            Fast, simple and useful.
+          </p>
+        </div>
+
+        <a href="#" class="view-all">All tools</a>
+      </div>
+
+      <div class="tools">
+
+        <a href="#" class="tool">
+          <div class="tool-icon">🧮</div>
+          <div>
+            <h3>Calculator</h3>
+            <p>Quick calculations</p>
+          </div>
+        </a>
+
+        <a href="#" class="tool">
+          <div class="tool-icon">🔄</div>
+          <div>
+            <h3>Unit Converter</h3>
+            <p>Convert anything</p>
+          </div>
+        </a>
+
+        <a href="#" class="tool">
+          <div class="tool-icon">🔢</div>
+          <div>
+            <h3>Age Calculator</h3>
+            <p>Calculate your age</p>
+          </div>
+        </a>
+
+        <a href="#" class="tool">
+          <div class="tool-icon">📝</div>
+          <div>
+            <h3>Word Counter</h3>
+            <p>Count words & characters</p>
+          </div>
+        </a>
+
+        <a href="#" class="tool">
+          <div class="tool-icon">📱</div>
+          <div>
+            <h3>QR Generator</h3>
+            <p>Create QR codes</p>
+          </div>
+        </a>
+
+        <a href="#" class="tool">
+          <div class="tool-icon">📅</div>
+          <div>
+            <h3>Date Calculator</h3>
+            <p>Calculate dates</p>
+          </div>
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+
+    <div class="footer-brand">FlikTide</div>
+
+    <p>
+      Discover · Play · Learn · Explore
+    </p>
+
+    <br>
+
+    <p>
+      © 2026 FlikTide. All rights reserved.
+    </p>
+
+  </footer>
+
+  <script>
+
+    function focusSearch() {
+      document.getElementById("search").focus();
+    }
+
+    function comingSoon() {
+      alert("This feature is coming soon to FlikTide 🚀");
+    }
+
+    document.getElementById("search")
+      .addEventListener("keydown", function(event) {
+
+        if (event.key === "Enter") {
+
+          const value = this.value.trim();
+
+          if (value) {
+            alert("Searching FlikTide for: " + value);
+          }
+
+        }
+
+      });
+
+  </script>
+
+</body>
+  </html>
