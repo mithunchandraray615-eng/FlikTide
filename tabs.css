@@ -1,0 +1,790 @@
+/* =========================================================
+   FlikTide Tabs System
+   File: assets/css/components/tabs.css
+
+   YouTube-inspired tabs / category navigation
+   ========================================================= */
+
+
+/* =========================================================
+   Base Tabs Container
+   ========================================================= */
+
+.tabs {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+
+    gap: 8px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding: 4px 0;
+
+    scrollbar-width: none;
+
+    white-space: nowrap;
+
+    -webkit-overflow-scrolling: touch;
+
+    overscroll-behavior-x: contain;
+}
+
+.tabs::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* =========================================================
+   Tab
+   ========================================================= */
+
+.tab {
+    position: relative;
+
+    flex: 0 0 auto;
+
+    min-height: 36px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 8px 14px;
+
+    border: 0;
+    border-radius: 8px;
+
+    background: #f2f2f2;
+    color: #0f0f0f;
+
+    font-family:
+        "Noto Sans Bengali",
+        Arial,
+        sans-serif;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    line-height: 1;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease,
+        transform 0.12s ease;
+}
+
+
+/* Hover */
+
+.tab:hover {
+    background: #e5e5e5;
+}
+
+
+/* Active */
+
+.tab.is-active,
+.tab[aria-selected="true"] {
+    background: #0f0f0f;
+    color: #ffffff;
+}
+
+
+/* Active Hover */
+
+.tab.is-active:hover,
+.tab[aria-selected="true"]:hover {
+    background: #272727;
+}
+
+
+/* Active Press */
+
+.tab:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================================
+   Focus
+   ========================================================= */
+
+.tab:focus-visible {
+    outline: 2px solid #065fd4;
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   Tab With Icon
+   ========================================================= */
+
+.tab__icon {
+    width: 18px;
+    height: 18px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 6px;
+
+    flex: 0 0 auto;
+}
+
+
+.tab__icon svg {
+    width: 100%;
+    height: 100%;
+
+    fill: currentColor;
+}
+
+
+.tab__label {
+    display: inline-block;
+}
+
+
+/* =========================================================
+   Category Tabs
+   ========================================================= */
+
+.category-tabs {
+    position: relative;
+
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    overflow: hidden;
+}
+
+
+.category-tabs__scroller {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding: 4px 0 8px;
+
+    scrollbar-width: none;
+
+    scroll-behavior: smooth;
+}
+
+.category-tabs__scroller::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* =========================================================
+   Category Chip
+   ========================================================= */
+
+.category-chip {
+    flex: 0 0 auto;
+
+    min-height: 36px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 8px 14px;
+
+    border: 0;
+    border-radius: 8px;
+
+    background: #f2f2f2;
+    color: #0f0f0f;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease;
+}
+
+
+.category-chip:hover {
+    background: #e5e5e5;
+}
+
+
+.category-chip.is-active,
+.category-chip[aria-selected="true"] {
+    background: #0f0f0f;
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   Underline Tabs
+   ========================================================= */
+
+.tabs--underline {
+    gap: 0;
+
+    border-bottom: 1px solid #e5e5e5;
+}
+
+
+.tabs--underline .tab {
+    min-height: 48px;
+
+    padding: 12px 18px;
+
+    border-radius: 0;
+
+    background: transparent;
+    color: #606060;
+}
+
+
+.tabs--underline .tab:hover {
+    background: #f2f2f2;
+    color: #0f0f0f;
+}
+
+
+.tabs--underline .tab.is-active,
+.tabs--underline .tab[aria-selected="true"] {
+    background: transparent;
+    color: #0f0f0f;
+}
+
+
+.tabs--underline .tab::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: -1px;
+
+    height: 3px;
+
+    border-radius: 3px 3px 0 0;
+
+    background: transparent;
+
+    transform: scaleX(0);
+
+    transition:
+        transform 0.18s ease,
+        background-color 0.18s ease;
+}
+
+
+.tabs--underline .tab.is-active::after,
+.tabs--underline .tab[aria-selected="true"]::after {
+    background: #0f0f0f;
+
+    transform: scaleX(1);
+}
+
+
+/* =========================================================
+   Pill Tabs
+   ========================================================= */
+
+.tabs--pill {
+    padding: 4px;
+
+    gap: 4px;
+
+    width: max-content;
+
+    max-width: 100%;
+
+    border-radius: 10px;
+
+    background: #f2f2f2;
+}
+
+
+.tabs--pill .tab {
+    background: transparent;
+}
+
+
+.tabs--pill .tab:hover {
+    background: #e5e5e5;
+}
+
+
+.tabs--pill .tab.is-active,
+.tabs--pill .tab[aria-selected="true"] {
+    background: #ffffff;
+    color: #0f0f0f;
+
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================================================
+   Segmented Tabs
+   ========================================================= */
+
+.tabs--segmented {
+    display: grid;
+
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+
+    width: 100%;
+
+    padding: 3px;
+
+    border-radius: 9px;
+
+    background: #f1f3f4;
+}
+
+
+.tabs--segmented .tab {
+    width: 100%;
+
+    border-radius: 7px;
+
+    background: transparent;
+}
+
+
+.tabs--segmented .tab.is-active,
+.tabs--segmented .tab[aria-selected="true"] {
+    background: #ffffff;
+    color: #0f0f0f;
+
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================================================
+   Tab With Count
+   ========================================================= */
+
+.tab__count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 18px;
+    height: 18px;
+
+    margin-left: 6px;
+    padding: 0 5px;
+
+    border-radius: 999px;
+
+    background: rgba(15, 15, 15, 0.08);
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+.tab.is-active .tab__count,
+.tab[aria-selected="true"] .tab__count {
+    background: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   Tab Navigation Arrows
+   ========================================================= */
+
+.tabs-navigation {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+}
+
+
+.tabs-navigation__content {
+    flex: 1;
+
+    min-width: 0;
+
+    overflow: hidden;
+}
+
+
+.tabs-navigation__button {
+    position: relative;
+
+    z-index: 2;
+
+    flex: 0 0 40px;
+
+    width: 40px;
+    height: 40px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: #ffffff;
+    color: #0f0f0f;
+
+    box-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.15);
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        transform 0.12s ease;
+}
+
+
+.tabs-navigation__button:hover {
+    background: #f2f2f2;
+}
+
+
+.tabs-navigation__button:active {
+    transform: scale(0.94);
+}
+
+
+.tabs-navigation__button:disabled {
+    opacity: 0.35;
+
+    cursor: default;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   Tab Divider
+   ========================================================= */
+
+.tabs-divider {
+    width: 1px;
+
+    height: 24px;
+
+    margin: 0 4px;
+
+    background: #e5e5e5;
+
+    flex: 0 0 auto;
+}
+
+
+/* =========================================================
+   Tab Group
+   ========================================================= */
+
+.tab-group {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    min-width: 0;
+}
+
+
+.tab-group__title {
+    flex: 0 0 auto;
+
+    margin-right: 4px;
+
+    color: #606060;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   Tabs Loading State
+   ========================================================= */
+
+.tabs.is-loading {
+    pointer-events: none;
+}
+
+
+.tabs.is-loading .tab {
+    color: transparent;
+
+    background: #e5e7eb;
+
+    animation:
+        tab-loading-pulse 1.3s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes tab-loading-pulse {
+
+    0%,
+    100% {
+        opacity: 0.55;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   Dark Mode
+   ========================================================= */
+
+[data-theme="dark"] .tab {
+    background: #272727;
+    color: #f1f1f1;
+}
+
+
+[data-theme="dark"] .tab:hover {
+    background: #3f3f3f;
+}
+
+
+[data-theme="dark"] .tab.is-active,
+[data-theme="dark"] .tab[aria-selected="true"] {
+    background: #f1f1f1;
+    color: #0f0f0f;
+}
+
+
+[data-theme="dark"] .tab.is-active:hover,
+[data-theme="dark"] .tab[aria-selected="true"]:hover {
+    background: #ffffff;
+}
+
+
+[data-theme="dark"] .tabs--underline {
+    border-color: #3f3f3f;
+}
+
+
+[data-theme="dark"] .tabs--underline .tab {
+    background: transparent;
+    color: #aaaaaa;
+}
+
+
+[data-theme="dark"] .tabs--underline .tab:hover {
+    background: #272727;
+    color: #ffffff;
+}
+
+
+[data-theme="dark"] .tabs--underline .tab.is-active,
+[data-theme="dark"] .tabs--underline .tab[aria-selected="true"] {
+    color: #ffffff;
+}
+
+
+[data-theme="dark"] .tabs--underline .tab.is-active::after,
+[data-theme="dark"] .tabs--underline .tab[aria-selected="true"]::after {
+    background: #ffffff;
+}
+
+
+[data-theme="dark"] .tabs--pill {
+    background: #272727;
+}
+
+
+[data-theme="dark"] .tabs--pill .tab.is-active,
+[data-theme="dark"] .tabs--pill .tab[aria-selected="true"] {
+    background: #3f3f3f;
+    color: #ffffff;
+}
+
+
+[data-theme="dark"] .tabs--segmented {
+    background: #272727;
+}
+
+
+[data-theme="dark"] .tabs--segmented .tab.is-active,
+[data-theme="dark"] .tabs--segmented .tab[aria-selected="true"] {
+    background: #3f3f3f;
+    color: #ffffff;
+}
+
+
+[data-theme="dark"] .tabs-navigation__button {
+    background: #212121;
+    color: #ffffff;
+
+    box-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.45);
+}
+
+
+[data-theme="dark"] .tabs-navigation__button:hover {
+    background: #3f3f3f;
+}
+
+
+[data-theme="dark"] .tabs-divider {
+    background: #3f3f3f;
+}
+
+
+[data-theme="dark"] .tab-group__title {
+    color: #aaaaaa;
+}
+
+
+[data-theme="dark"] .tabs.is-loading .tab {
+    background: #3f3f3f;
+}
+
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .tabs {
+        gap: 6px;
+    }
+
+    .tab {
+        min-height: 34px;
+
+        padding: 7px 12px;
+
+        font-size: 13px;
+    }
+
+    .category-chip {
+        min-height: 34px;
+
+        padding: 7px 12px;
+
+        font-size: 13px;
+    }
+
+    .tabs--underline .tab {
+        min-height: 44px;
+
+        padding: 10px 14px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .tabs {
+        gap: 5px;
+    }
+
+    .tab {
+        min-height: 32px;
+
+        padding: 7px 11px;
+
+        font-size: 12px;
+
+        border-radius: 7px;
+    }
+
+    .category-chip {
+        min-height: 32px;
+
+        padding: 7px 11px;
+
+        font-size: 12px;
+    }
+
+    .tabs--underline .tab {
+        min-height: 42px;
+
+        padding: 10px 12px;
+    }
+
+    .tabs-navigation__button {
+        flex-basis: 34px;
+
+        width: 34px;
+        height: 34px;
+    }
+}
+
+
+/* =========================================================
+   Reduced Motion
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .tab,
+    .tabs--underline .tab::after,
+    .tabs-navigation__button {
+        transition: none;
+    }
+
+    .tabs.is-loading .tab {
+        animation: none;
+    }
+}
+
+
+/* =========================================================
+   High Contrast
+   ========================================================= */
+
+@media (prefers-contrast: more) {
+
+    .tab {
+        border: 1px solid currentColor;
+    }
+
+    .tabs--underline .tab {
+        border: 0;
+    }
+
+    .tabs--underline .tab.is-active::after,
+    .tabs--underline .tab[aria-selected="true"]::after {
+        height: 4px;
+    }
+}
