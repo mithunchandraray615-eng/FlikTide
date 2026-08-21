@@ -1,2 +1,0 @@
-
-FlikTide - Education 
