@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width,
+                 initial-scale=1.0,
+                 maximum-scale=1.0,
+                 user-scalable=no">
+
+    <meta
+        name="description"
+        content="FlikTide Learning Library">
+
+    <title>FlikTide - My Library</title>
+
+    <!-- Library stylesheet -->
+    <link rel="stylesheet" href="library.css">
+</head>
+
+
+<body>
+
+<div id="library-app">
+
+
+    <!-- ======================================
+         HEADER
+    ======================================= -->
+
+    <header class="library-header">
+
+        <!-- Back -->
+
+        <button
+            id="library-back-button"
+            class="header-button"
+            type="button"
+            aria-label="Go back"
+            onclick="history.back()">
+
+            ←
+
+        </button>
+
+
+        <!-- Title -->
+
+        <div class="library-title">
+
+            <h1>
+                My Library
+            </h1>
+
+        </div>
+
+
+        <!-- Profile -->
+
+        <button
+            id="library-profile-button"
+            class="profile-button"
+            type="button"
+            aria-label="Profile"
+            onclick="location.href='../profile/profile.html'">
+
+            <span class="profile-avatar">
+                U
+            </span>
+
+        </button>
+
+    </header>
+
+
+
+    <!-- ======================================
+         MAIN LIBRARY
+    ======================================= -->
+
+    <main class="library-main">
+
+
+        <!-- ==================================
+             SAVED VIDEOS
+        =================================== -->
+
+        <section class="library-section">
+
+            <a
+                href="saved-videos/saved-videos.html"
+                class="library-card">
+
+                <div class="library-card-icon">
+                    📚
+                </div>
+
+                <div class="library-card-content">
+
+                    <h2>
+                        Saved Videos
+                    </h2>
+
+                    <p>
+                        আপনার সংরক্ষিত শিক্ষামূলক ভিডিও
+                    </p>
+
+                </div>
+
+                <span class="library-card-arrow">
+                    →
+                </span>
+
+            </a>
+
+        </section>
+
+
+
+        <!-- ==================================
+             WATCH HISTORY
+        =================================== -->
+
+        <section class="library-section">
+
+            <a
+                href="watch-history/watch-history.html"
+                class="library-card">
+
+                <div class="library-card-icon">
+                    🕘
+                </div>
+
+                <div class="library-card-content">
+
+                    <h2>
+                        Watch History
+                    </h2>
+
+                    <p>
+                        আগে দেখা ভিডিও ও শেখার ইতিহাস
+                    </p>
+
+                </div>
+
+                <span class="library-card-arrow">
+                    →
+                </span>
+
+            </a>
+
+        </section>
+
+
+
+        <!-- ==================================
+             DICTIONARY
+        =================================== -->
+
+        <section class="library-section">
+
+            <a
+                href="dictionary/dictionary.html"
+                class="library-card">
+
+                <div class="library-card-icon">
+                    📖
+                </div>
+
+                <div class="library-card-content">
+
+                    <h2>
+                        বাংলা ↔ English Dictionary
+                    </h2>
+
+                    <p>
+                        শব্দের অর্থ, ব্যবহার ও pronunciation
+                    </p>
+
+                </div>
+
+                <span class="library-card-arrow">
+                    →
+                </span>
+
+            </a>
+
+        </section>
+
+
+
+        <!-- ==================================
+             AI TRANSLATOR
+        =================================== -->
+
+        <section class="library-section">
+
+            <a
+                href="translator/translator.html"
+                class="library-card">
+
+                <div class="library-card-icon">
+                    🌐
+                </div>
+
+                <div class="library-card-content">
+
+                    <h2>
+                        AI Translator
+                    </h2>
+
+                    <p>
+                        বাংলা ↔ English অনুবাদ
+                    </p>
+
+                </div>
+
+                <span class="library-card-arrow">
+                    →
+                </span>
+
+            </a>
+
+        </section>
+
+
+
+        <!-- ==================================
+             AI ENGLISH
+        =================================== -->
+
+        <section class="library-section">
+
+            <a
+                href="ai-english/ai-english.html"
+                class="library-card ai-english-card">
+
+                <div class="library-card-icon ai-icon">
+                    🧠
+                </div>
+
+                <div class="library-card-content">
+
+                    <h2>
+                        AI English
+                    </h2>
+
+                    <p>
+                        AI-এর মাধ্যমে English শেখার সম্পূর্ণ
+                        Learning Center
+                    </p>
+
+                </div>
+
+                <span class="library-card-arrow">
+                    →
+                </span>
+
+            </a>
+
+        </section>
+
+
+
+        <!-- ==================================
+             AI ENGLISH FEATURES PREVIEW
+        =================================== -->
+
+        <section class="ai-features">
+
+            <h2>
+                AI English Learning
+            </h2>
+
+
+            <div class="ai-feature-grid">
+
+
+                <!-- Conversation -->
+
+                <a
+                    href="ai-english/conversation/conversation.html"
+                    class="ai-feature-card">
+
+                    <span class="feature-icon">
+                        💬
+                    </span>
+
+                    <span class="feature-title">
+                        Conversation
+                    </span>
+
+                </a>
+
+
+                <!-- Speaking -->
+
+                <a
+                    href="ai-english/speaking/speaking.html"
+                    class="ai-feature-card">
+
+                    <span class="feature-icon">
+                        🗣️
+                    </span>
+
+                    <span class="feature-title">
+                        Speaking
+                    </span>
+
+                </a>
+
+
+                <!-- Vocabulary -->
+
+                <a
+                    href="ai-english/vocabulary/vocabulary.html"
+                    class="ai-feature-card">
+
+                    <span class="feature-icon">
+                        📚
+                    </span>
+
+                    <span class="feature-title">
+                        Vocabulary
+                    </span>
+
+                </a>
+
+
+                <!-- Grammar -->
+
+                <a
+                    href="ai-english/grammar/grammar.html"
+                    class="ai-feature-card">
+
+                    <span class="feature-icon">
+                        ✍️
+                    </span>
+
+                    <span class="feature-title">
+                        Grammar
+                    </span>
+
+                </a>
+
+
+                <!-- Writing -->
+
+                <a
+                    href="ai-english/writing/writing.html"
+                    class="ai-feature-card">
+
+                    <span class="feature-icon">
+                        📝
+                    </span>
+
+                    <span class="feature-title">
+                        Writing
+                    </span>
+
+                </a>
+
+
+                <!-- Listening -->
+
+                <a
+                    href="ai-english/listening/listening.html"
+                    class="ai-feature-card">
+
+                    <span class="feature-icon">
+                        🎧
+                    </span>
+
+                    <span class="feature-title">
+                        Listening
+                    </span>
+
+                </a>
+
+
+                <!-- Quiz -->
+
+                <a
+                    href="ai-english/quiz/quiz.html"
+                    class="ai-feature-card">
+
+                    <span class="feature-icon">
+                        📝
+                    </span>
+
+                    <span class="feature-title">
+                        Quiz
+                    </span>
+
+                </a>
+
+
+                <!-- Progress -->
+
+                <a
+                    href="ai-english/progress/progress.html"
+                    class="ai-feature-card">
+
+                    <span class="feature-icon">
+                        📊
+                    </span>
+
+                    <span class="feature-title">
+                        Progress
+                    </span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ======================================
+         BOTTOM NAVIGATION
+    ======================================= -->
+
+    <nav
+        class="library-bottom-navigation"
+        aria-label="Main navigation">
+
+
+        <!-- Home -->
+
+        <a
+            href="../index.html"
+            class="bottom-nav-item">
+
+            <span class="bottom-nav-icon">
+                ⌂
+            </span>
+
+            <span class="bottom-nav-label">
+                Home
+            </span>
+
+        </a>
+
+
+        <!-- Explore -->
+
+        <a
+            href="../explore/explore.html"
+            class="bottom-nav-item">
+
+            <span class="bottom-nav-icon">
+                🔎
+            </span>
+
+            <span class="bottom-nav-label">
+                Explore
+            </span>
+
+        </a>
+
+
+        <!-- Library -->
+
+        <a
+            href="library.html"
+            class="bottom-nav-item active">
+
+            <span class="bottom-nav-icon">
+                ▣
+            </span>
+
+            <span class="bottom-nav-label">
+                My Library
+            </span>
+
+        </a>
+
+
+        <!-- Profile -->
+
+        <a
+            href="../profile/profile.html"
+            class="bottom-nav-item">
+
+            <span class="bottom-nav-icon">
+                ●
+            </span>
+
+            <span class="bottom-nav-label">
+                Profile
+            </span>
+
+        </a>
+
+    </nav>
+
+
+</div>
+
+
+<!-- Library JavaScript -->
+<script src="library.js"></script>
+
+</body>
+</html>
