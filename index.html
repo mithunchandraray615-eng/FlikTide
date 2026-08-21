@@ -1,432 +1,225 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-  >
+    <title>FlikTide</title>
 
-  <title>FlickTide</title>
-
-  <!-- Main stylesheet — পরে আলাদা CSS ফাইলে থাকবে -->
-  <link rel="stylesheet" href="css/main.css">
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-  <!-- =========================================
-       APP ROOT
-       ========================================= -->
-  <div id="app">
-
-    <!-- =========================================
-         TOP HEADER
-         ========================================= -->
-    <header class="app-header">
-
-      <!-- Menu -->
-      <button
-        class="header-button"
-        id="menuButton"
-        type="button"
-        aria-label="Menu"
-      >
-        ☰
-      </button>
-
-      <!-- Brand -->
-      <a href="#" class="brand" id="brandLink">
-        <div class="brand-logo">FT</div>
-
-        <div class="brand-name">
-          <span>Flick</span><strong>Tide</strong>
-        </div>
-      </a>
-
-      <!-- Header Actions -->
-      <div class="header-actions">
-
-        <!-- Theme -->
-        <button
-          class="header-button"
-          id="themeButton"
-          type="button"
-          aria-label="Theme"
-        >
-          🌙
-        </button>
-
-        <!-- Notification -->
-        <button
-          class="header-button notification-button"
-          id="notificationButton"
-          type="button"
-          aria-label="Notifications"
-        >
-          🔔
-          <span class="notification-dot"></span>
-        </button>
-
-        <!-- Profile -->
-        <button
-          class="profile-button"
-          id="headerProfileButton"
-          type="button"
-          aria-label="Profile"
-        >
-          M
-        </button>
-
-      </div>
-
-    </header>
-
-
-    <!-- =========================================
-         MAIN CONTENT AREA
-         ========================================= -->
-    <main id="mainContent">
-
-      <!--
-        ভবিষ্যতে Home / Explore / Library / Profile
-        আলাদা Page এখানে render হবে।
-      -->
-
-      <section
-        id="homePage"
-        class="page active-page"
-        aria-label="Home"
-      >
-
-        <!-- =====================================
-             HOME PAGE HEADER / SEARCH
-             ===================================== -->
-        <div class="home-top">
-
-          <div class="search-box">
-
-            <span class="search-icon">⌕</span>
-
-            <input
-              type="search"
-              id="searchInput"
-              placeholder="ভিডিও, বিষয়, শিক্ষক খুঁজুন..."
-              autocomplete="off"
-            >
-
-          </div>
+    <!-- =========================
+         APP ROOT
+    ========================== -->
+    <div id="app">
+
+        <!-- =========================
+             TOP HEADER
+        ========================== -->
+        <header id="app-header">
+
+            <!-- Menu -->
+            <button
+                id="menu-button"
+                type="button"
+                aria-label="Menu">
+                ☰
+            </button>
+
+            <!-- Logo / Brand -->
+            <a
+                id="brand"
+                href="#home"
+                aria-label="FlikTide Home">
+                
+                <div id="brand-logo">FT</div>
 
-        </div>
+                <div id="brand-name">
+                    <span>Flik</span><strong>Tide</strong>
+                </div>
 
+            </a>
 
-        <!-- =====================================
-             HOME FEED CONTAINER
-             ===================================== -->
-        <section
-          id="homeFeed"
-          class="feed-container"
-          aria-label="Video Feed"
-        >
+            <!-- Header actions -->
+            <div id="header-actions">
 
-          <!--
-            ভিডিওগুলো এখানে পরে Feed system থেকে আসবে।
+                <button
+                    id="theme-button"
+                    type="button"
+                    aria-label="Theme">
+                    🌙
+                </button>
 
-            এই index.html-এ কোনো ভিডিও,
-            recommendation বা feed logic রাখা হচ্ছে না।
-          -->
+                <button
+                    id="notification-button"
+                    type="button"
+                    aria-label="Notifications">
+                    🔔
+                </button>
 
-        </section>
+                <button
+                    id="profile-button"
+                    type="button"
+                    aria-label="Profile">
+                    <span id="header-profile-avatar">M</span>
+                </button>
 
-      </section>
+            </div>
 
+        </header>
 
-      <!-- =========================================
-           EXPLORE PAGE
-           ========================================= -->
-      <section
-        id="explorePage"
-        class="page"
-        aria-label="Explore"
-        hidden
-      >
 
-        <div class="page-header">
+        <!-- =========================
+             PAGE CONTAINER
+        ========================== -->
+        <main id="main-content">
 
-          <button
-            class="back-button"
-            type="button"
-            data-back
-            aria-label="Back"
-          >
-            ←
-          </button>
+            <!--
+                Different pages will be rendered here later.
 
-          <h1>Explore</h1>
+                Example pages:
+                - Home
+                - Shorts
+                - Explore
+                - Library
+                - Profile
+                - Teacher Profile
+                - Video Player
+                - Settings
+            -->
 
-        </div>
+            <section
+                id="page-home"
+                class="page"
+                data-page="home">
 
-        <div id="exploreContent"></div>
+                <!-- Home page content will be added later -->
 
-      </section>
+            </section>
 
 
-      <!-- =========================================
-           LIBRARY PAGE
-           ========================================= -->
-      <section
-        id="libraryPage"
-        class="page"
-        aria-label="Library"
-        hidden
-      >
+            <section
+                id="page-shorts"
+                class="page"
+                data-page="shorts"
+                hidden>
 
-        <div class="page-header">
+                <!-- Shorts content will be added later -->
 
-          <button
-            class="back-button"
-            type="button"
-            data-back
-            aria-label="Back"
-          >
-            ←
-          </button>
+            </section>
 
-          <h1>Library</h1>
 
-        </div>
+            <section
+                id="page-explore"
+                class="page"
+                data-page="explore"
+                hidden>
 
-        <div id="libraryContent"></div>
+                <!-- Explore content will be added later -->
 
-      </section>
+            </section>
 
 
-      <!-- =========================================
-           PROFILE PAGE
-           ========================================= -->
-      <section
-        id="profilePage"
-        class="page"
-        aria-label="Profile"
-        hidden
-      >
+            <section
+                id="page-library"
+                class="page"
+                data-page="library"
+                hidden>
 
-        <div class="page-header">
+                <!-- Library content will be added later -->
 
-          <button
-            class="back-button"
-            type="button"
-            data-back
-            aria-label="Back"
-          >
-            ←
-          </button>
+            </section>
 
-          <h1>Profile</h1>
 
-        </div>
+            <section
+                id="page-profile"
+                class="page"
+                data-page="profile"
+                hidden>
 
-        <div id="profileContent"></div>
+                <!-- Profile content will be added later -->
 
-      </section>
+            </section>
 
+        </main>
 
-      <!-- =========================================
-           VIDEO PAGE
-           ========================================= -->
-      <section
-        id="videoPage"
-        class="page"
-        aria-label="Video"
-        hidden
-      >
 
-        <div class="page-header">
+        <!-- =========================
+             BOTTOM NAVIGATION
+        ========================== -->
+        <nav
+            id="bottom-navigation"
+            aria-label="Main navigation">
 
-          <button
-            class="back-button"
-            type="button"
-            data-back
-            aria-label="Back"
-          >
-            ←
-          </button>
+            <button
+                class="nav-item active"
+                data-page-target="home"
+                type="button">
 
-          <h1>Video</h1>
-
-        </div>
-
-        <div id="videoContent"></div>
-
-      </section>
-
-
-      <!-- =========================================
-           TEACHER PROFILE PAGE
-           ========================================= -->
-      <section
-        id="teacherPage"
-        class="page"
-        aria-label="Teacher Profile"
-        hidden
-      >
-
-        <div class="page-header">
-
-          <button
-            class="back-button"
-            type="button"
-            data-back
-            aria-label="Back"
-          >
-            ←
-          </button>
-
-          <h1>Teacher</h1>
-
-        </div>
-
-        <div id="teacherContent"></div>
-
-      </section>
-
-    </main>
-
-
-    <!-- =========================================
-         BOTTOM NAVIGATION
-         ========================================= -->
-    <nav
-      class="bottom-navigation"
-      id="bottomNavigation"
-      aria-label="Main Navigation"
-    >
+                <span class="nav-icon">⌂</span>
+                <span class="nav-label">Home</span>
 
-      <!-- Home -->
-      <button
-        class="nav-item active"
-        type="button"
-        data-page="homePage"
-        aria-label="Home"
-      >
-        <span class="nav-icon">⌂</span>
-        <span class="nav-label">Home</span>
-      </button>
-
+            </button>
 
-      <!-- Shorts -->
-      <button
-        class="nav-item"
-        type="button"
-        data-page="shortsPage"
-        aria-label="Shorts"
-      >
-        <span class="nav-icon">▶</span>
-        <span class="nav-label">Shorts</span>
-      </button>
 
+            <button
+                class="nav-item"
+                data-page-target="shorts"
+                type="button">
 
-      <!-- Explore -->
-      <button
-        class="nav-item"
-        type="button"
-        data-page="explorePage"
-        aria-label="Explore"
-      >
-        <span class="nav-icon">◎</span>
-        <span class="nav-label">Explore</span>
-      </button>
+                <span class="nav-icon">▶</span>
+                <span class="nav-label">Shorts</span>
 
+            </button>
 
-      <!-- Library -->
-      <button
-        class="nav-item"
-        type="button"
-        data-page="libraryPage"
-        aria-label="Library"
-      >
-        <span class="nav-icon">▣</span>
-        <span class="nav-label">Library</span>
-      </button>
 
+            <button
+                class="nav-item"
+                data-page-target="explore"
+                type="button">
 
-      <!-- Profile -->
-      <button
-        class="nav-item"
-        type="button"
-        data-page="profilePage"
-        aria-label="Profile"
-      >
-        <span class="nav-icon">♙</span>
-        <span class="nav-label">Profile</span>
-      </button>
+                <span class="nav-icon">◉</span>
+                <span class="nav-label">Explore</span>
 
-    </nav>
+            </button>
 
 
-    <!-- =========================================
-         MOBILE MENU DRAWER
-         ========================================= -->
-    <aside
-      id="sideMenu"
-      class="side-menu"
-      aria-label="Menu"
-      hidden
-    >
+            <button
+                class="nav-item"
+                data-page-target="library"
+                type="button">
 
-      <div class="side-menu-header">
+                <span class="nav-icon">▣</span>
+                <span class="nav-label">Library</span>
 
-        <div class="brand">
-          <div class="brand-logo">FT</div>
+            </button>
 
-          <div class="brand-name">
-            <span>Flick</span><strong>Tide</strong>
-          </div>
-        </div>
 
-        <button
-          type="button"
-          id="closeMenuButton"
-          aria-label="Close Menu"
-        >
-          ×
-        </button>
+            <button
+                class="nav-item"
+                data-page-target="profile"
+                type="button">
 
-      </div>
+                <span class="nav-icon">♙</span>
+                <span class="nav-label">Profile</span>
 
+            </button>
 
-      <div class="side-menu-content">
+        </nav>
 
-        <!-- ভবিষ্যতে Menu items এখানে যুক্ত হবে -->
+    </div>
 
-      </div>
 
-    </aside>
+    <!--
+        JavaScript functionality will be added
+        in separate files later.
+    -->
 
-
-    <!-- =========================================
-         OVERLAY
-         ========================================= -->
-    <div
-      id="appOverlay"
-      class="app-overlay"
-      hidden
-    ></div>
-
-
-  </div>
-
-
-  <!-- =========================================
-       JAVASCRIPT ENTRY
-       =========================================
-
-       এখানে এখন কোনো feature logic নেই।
-       ভবিষ্যতে আলাদা JS modules এখান থেকে যুক্ত হবে।
-       ========================================= -->
-
-  <script type="module" src="js/app.js"></script>
+    <script src="js/app.js"></script>
 
 </body>
 </html>
