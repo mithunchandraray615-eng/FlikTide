@@ -1,2 +1,2 @@
 # FlikTide
-FlikTide - Discover, Play, Learn &amp; Explore
+FlikTide - Education, Teach and learn 
