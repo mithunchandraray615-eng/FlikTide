@@ -1,0 +1,1083 @@
+/* =========================================================
+   FlikTide Video Card
+   File: assets/css/components/video-card.css
+
+   YouTube-inspired long-form educational video cards
+   ========================================================= */
+
+
+/* =========================================================
+   Video Grid
+   ========================================================= */
+
+.video-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(0, 1fr)
+        );
+
+    column-gap: 16px;
+    row-gap: 36px;
+
+    width: 100%;
+}
+
+
+/* =========================================================
+   Main Video Card
+   ========================================================= */
+
+.video-card {
+    position: relative;
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   Thumbnail Wrapper
+   ========================================================= */
+
+.video-card__thumbnail {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+
+    border-radius: 8px;
+
+    background: #e5e7eb;
+
+    isolation: isolate;
+}
+
+
+/* Thumbnail Image */
+
+.video-card__thumbnail img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.25s ease,
+        filter 0.25s ease;
+}
+
+
+/* Thumbnail Hover */
+
+.video-card:hover
+.video-card__thumbnail img {
+    transform: scale(1.025);
+}
+
+
+/* =========================================================
+   Thumbnail Overlay
+   ========================================================= */
+
+.video-card__overlay {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.08);
+
+    opacity: 0;
+
+    transition:
+        opacity 0.18s ease;
+}
+
+
+.video-card:hover
+.video-card__overlay {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   Play Button
+   ========================================================= */
+
+.video-card__play {
+    width: 48px;
+    height: 48px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.72);
+    color: #ffffff;
+
+    font-size: 18px;
+
+    transform: scale(0.9);
+
+    transition:
+        transform 0.18s ease,
+        background-color 0.18s ease;
+}
+
+
+.video-card:hover
+.video-card__play {
+    transform: scale(1);
+}
+
+
+.video-card__play:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+
+/* =========================================================
+   Video Duration
+   ========================================================= */
+
+.video-card__duration {
+    position: absolute;
+
+    right: 6px;
+    bottom: 6px;
+
+    z-index: 3;
+
+    padding: 3px 5px;
+
+    border-radius: 3px;
+
+    background: rgba(0, 0, 0, 0.82);
+    color: #ffffff;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    letter-spacing: 0.01em;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   LIVE Badge
+   ========================================================= */
+
+.video-card__live {
+    position: absolute;
+
+    left: 7px;
+    bottom: 7px;
+
+    z-index: 3;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 4px;
+
+    padding: 4px 6px;
+
+    border-radius: 3px;
+
+    background: #d90429;
+    color: #ffffff;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    line-height: 1;
+}
+
+
+.video-card__live-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   Progress Bar
+   ========================================================= */
+
+.video-card__progress {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 4;
+
+    height: 3px;
+
+    background: rgba(0, 0, 0, 0.35);
+}
+
+
+.video-card__progress-value {
+    display: block;
+
+    width: 0;
+    height: 100%;
+
+    background: #ff0000;
+
+    transition:
+        width 0.2s ease;
+}
+
+
+/* =========================================================
+   Card Body
+   ========================================================= */
+
+.video-card__body {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    padding-top: 12px;
+}
+
+
+/* =========================================================
+   Channel Avatar
+   ========================================================= */
+
+.video-card__avatar {
+    position: relative;
+
+    flex: 0 0 36px;
+
+    width: 36px;
+    height: 36px;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background: #e5e7eb;
+}
+
+
+.video-card__avatar img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   Card Information
+   ========================================================= */
+
+.video-card__info {
+    flex: 1 1 auto;
+
+    min-width: 0;
+}
+
+
+/* =========================================================
+   Title
+   ========================================================= */
+
+.video-card__title {
+    margin: 0;
+
+    color: #0f0f0f;
+
+    font-size: 15px;
+    font-weight: 650;
+
+    line-height: 1.4;
+
+    letter-spacing: -0.01em;
+
+    display: -webkit-box;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   Channel Name
+   ========================================================= */
+
+.video-card__channel {
+    display: block;
+
+    margin-top: 7px;
+
+    color: #606060;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    line-height: 1.35;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+.video-card__channel:hover {
+    color: #0f0f0f;
+}
+
+
+/* =========================================================
+   Verified Teacher
+   ========================================================= */
+
+.video-card__verified {
+    display: inline-flex;
+
+    width: 14px;
+    height: 14px;
+
+    margin-left: 3px;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #606060;
+    color: #ffffff;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    vertical-align: -1px;
+}
+
+
+/* =========================================================
+   Metadata
+   ========================================================= */
+
+.video-card__meta {
+    display: flex;
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 4px;
+
+    margin-top: 3px;
+
+    color: #606060;
+
+    font-size: 12px;
+    font-weight: 400;
+
+    line-height: 1.4;
+}
+
+
+.video-card__meta-separator {
+    color: #606060;
+}
+
+
+/* =========================================================
+   Subject Badge
+   ========================================================= */
+
+.video-card__subject {
+    display: inline-flex;
+    align-items: center;
+
+    width: max-content;
+    max-width: 100%;
+
+    margin-top: 7px;
+
+    padding: 4px 7px;
+
+    border-radius: 4px;
+
+    background: #f2f2f2;
+    color: #606060;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   Three Dot Menu
+   ========================================================= */
+
+.video-card__menu {
+    flex: 0 0 30px;
+
+    width: 30px;
+    height: 30px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: transparent;
+    color: #606060;
+
+    font-size: 19px;
+
+    opacity: 0;
+
+    cursor: pointer;
+
+    transition:
+        opacity 0.15s ease,
+        background-color 0.15s ease;
+}
+
+
+.video-card:hover
+.video-card__menu,
+.video-card__menu:focus-visible {
+    opacity: 1;
+}
+
+
+.video-card__menu:hover {
+    background: #f2f2f2;
+}
+
+
+/* =========================================================
+   Menu / Options State
+   ========================================================= */
+
+.video-card.is-menu-open
+.video-card__menu {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   New Video Badge
+   ========================================================= */
+
+.video-card__new {
+    position: absolute;
+
+    top: 7px;
+    left: 7px;
+
+    z-index: 4;
+
+    padding: 4px 6px;
+
+    border-radius: 4px;
+
+    background: #ffffff;
+    color: #0f0f0f;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.16);
+}
+
+
+/* =========================================================
+   Sponsored / Promoted
+   ========================================================= */
+
+.video-card__sponsored {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #606060;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   Card States
+   ========================================================= */
+
+.video-card.is-watched
+.video-card__title {
+    color: #606060;
+}
+
+
+.video-card.is-unavailable {
+    opacity: 0.65;
+
+    cursor: default;
+}
+
+
+.video-card.is-unavailable
+.video-card__thumbnail img {
+    filter: grayscale(1);
+}
+
+
+/* =========================================================
+   Horizontal Video Card
+   ========================================================= */
+
+.video-card--horizontal {
+    display: flex;
+    flex-direction: row;
+
+    gap: 14px;
+
+    width: 100%;
+}
+
+
+.video-card--horizontal
+.video-card__thumbnail {
+    flex: 0 0 246px;
+
+    width: 246px;
+    height: 138px;
+
+    aspect-ratio: auto;
+}
+
+
+.video-card--horizontal
+.video-card__body {
+    flex: 1;
+
+    min-width: 0;
+
+    padding-top: 0;
+}
+
+
+.video-card--horizontal
+.video-card__title {
+    font-size: 17px;
+}
+
+
+.video-card--horizontal
+.video-card__channel {
+    margin-top: 9px;
+
+
+/* =========================================================
+   Compact Video Card
+   ========================================================= */
+
+.video-card--compact {
+    display: flex;
+    flex-direction: row;
+
+    gap: 10px;
+}
+
+
+.video-card--compact
+.video-card__thumbnail {
+    flex: 0 0 150px;
+
+    width: 150px;
+    height: 84px;
+
+    aspect-ratio: auto;
+
+    border-radius: 6px;
+}
+
+
+.video-card--compact
+.video-card__body {
+    flex: 1;
+
+    padding-top: 0;
+
+    gap: 0;
+}
+
+
+.video-card--compact
+.video-card__avatar {
+    display: none;
+}
+
+
+.video-card--compact
+.video-card__title {
+    font-size: 13px;
+}
+
+
+.video-card--compact
+.video-card__channel {
+    margin-top: 5px;
+
+    font-size: 11px;
+}
+
+
+.video-card--compact
+.video-card__meta {
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   Featured Video Card
+   ========================================================= */
+
+.video-card--featured
+.video-card__thumbnail {
+    border-radius: 10px;
+}
+
+
+.video-card--featured
+.video-card__title {
+    font-size: 18px;
+
+    line-height: 1.35;
+}
+
+
+.video-card--featured
+.video-card__body {
+    padding-top: 14px;
+}
+
+
+/* =========================================================
+   Large Video Card
+   ========================================================= */
+
+.video-card--large
+.video-card__title {
+    font-size: 17px;
+}
+
+
+.video-card--large
+.video-card__thumbnail {
+    border-radius: 9px;
+}
+
+
+/* =========================================================
+   Watch Page Recommendation Card
+   ========================================================= */
+
+.video-card--recommendation {
+    display: flex;
+    flex-direction: row;
+
+    gap: 10px;
+
+    width: 100%;
+}
+
+
+.video-card--recommendation
+.video-card__thumbnail {
+    flex: 0 0 168px;
+
+    width: 168px;
+    height: 94px;
+
+    aspect-ratio: auto;
+
+    border-radius: 6px;
+}
+
+
+.video-card--recommendation
+.video-card__body {
+    flex: 1;
+
+    min-width: 0;
+
+    padding-top: 0;
+}
+
+
+.video-card--recommendation
+.video-card__avatar {
+    display: none;
+}
+
+
+.video-card--recommendation
+.video-card__title {
+    font-size: 13px;
+    line-height: 1.35;
+}
+
+
+.video-card--recommendation
+.video-card__channel {
+    margin-top: 5px;
+
+    font-size: 11px;
+}
+
+
+.video-card--recommendation
+.video-card__meta {
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   Skeleton Compatibility
+   ========================================================= */
+
+.video-card.is-loading {
+    pointer-events: none;
+}
+
+
+.video-card.is-loading .video-card__thumbnail,
+.video-card.is-loading .video-card__avatar,
+.video-card.is-loading .video-card__title,
+.video-card.is-loading .video-card__channel,
+.video-card.is-loading .video-card__meta {
+    background: #e5e7eb;
+
+    color: transparent;
+
+    animation:
+        video-card-loading-pulse
+        1.3s
+        ease-in-out
+        infinite;
+}
+
+
+.video-card.is-loading .video-card__thumbnail img {
+    visibility: hidden;
+}
+
+
+@keyframes video-card-loading-pulse {
+
+    0%,
+    100% {
+        opacity: 0.55;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   Dark Theme
+   ========================================================= */
+
+[data-theme="dark"] .video-card__title {
+    color: #f1f1f1;
+}
+
+
+[data-theme="dark"] .video-card__channel,
+[data-theme="dark"] .video-card__meta {
+    color: #aaaaaa;
+}
+
+
+[data-theme="dark"] .video-card__channel:hover {
+    color: #ffffff;
+}
+
+
+[data-theme="dark"] .video-card__subject {
+    background: #272727;
+    color: #aaaaaa;
+}
+
+
+[data-theme="dark"] .video-card__menu {
+    color: #aaaaaa;
+}
+
+
+[data-theme="dark"] .video-card__menu:hover {
+    background: #272727;
+}
+
+
+[data-theme="dark"] .video-card__new {
+    background: #ffffff;
+    color: #0f0f0f;
+}
+
+
+[data-theme="dark"] .video-card.is-watched
+.video-card__title {
+    color: #aaaaaa;
+}
+
+
+[data-theme="dark"] .video-card.is-loading .video-card__thumbnail,
+[data-theme="dark"] .video-card.is-loading .video-card__avatar,
+[data-theme="dark"] .video-card.is-loading .video-card__title,
+[data-theme="dark"] .video-card.is-loading .video-card__channel,
+[data-theme="dark"] .video-card.is-loading .video-card__meta {
+    background: #272727;
+}
+
+
+/* =========================================================
+   Responsive — Large Tablet
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+    .video-grid {
+        grid-template-columns:
+            repeat(
+                3,
+                minmax(0, 1fr)
+            );
+
+        column-gap: 14px;
+        row-gap: 32px;
+    }
+}
+
+
+/* =========================================================
+   Responsive — Tablet
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .video-grid {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+        column-gap: 12px;
+        row-gap: 28px;
+    }
+
+    .video-card__body {
+        gap: 9px;
+    }
+
+    .video-card__avatar {
+        flex-basis: 34px;
+
+        width: 34px;
+        height: 34px;
+    }
+
+    .video-card__title {
+        font-size: 14px;
+    }
+
+    .video-card__channel {
+        font-size: 12px;
+    }
+}
+
+
+/* =========================================================
+   Responsive — Mobile
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .video-grid {
+        grid-template-columns:
+            repeat(
+                1,
+                minmax(0, 1fr)
+            );
+
+        row-gap: 26px;
+    }
+
+    .video-card__thumbnail {
+        border-radius: 7px;
+    }
+
+    .video-card__body {
+        padding-top: 9px;
+
+        gap: 10px;
+    }
+
+    .video-card__avatar {
+        flex-basis: 34px;
+
+        width: 34px;
+        height: 34px;
+    }
+
+    .video-card__title {
+        font-size: 14px;
+    }
+
+    .video-card__channel {
+        margin-top: 5px;
+
+        font-size: 12px;
+    }
+
+    .video-card__meta {
+        font-size: 11px;
+    }
+
+    .video-card__menu {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   Very Small Mobile
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .video-card__body {
+        gap: 8px;
+    }
+
+    .video-card__avatar {
+        flex-basis: 32px;
+
+        width: 32px;
+        height: 32px;
+    }
+
+    .video-card__title {
+        font-size: 13px;
+    }
+
+    .video-card__channel {
+        font-size: 11px;
+    }
+
+    .video-card__meta {
+        font-size: 10px;
+    }
+
+    .video-card__duration {
+        right: 5px;
+        bottom: 5px;
+
+        font-size: 10px;
+    }
+}
+
+
+/* =========================================================
+   Accessibility
+   ========================================================= */
+
+.video-card:focus-visible {
+    outline: 2px solid #065fd4;
+    outline-offset: 4px;
+
+    border-radius: 9px;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    .video-card__thumbnail img,
+    .video-card__overlay,
+    .video-card__play,
+    .video-card__menu,
+    .video-card.is-loading
+    .video-card__thumbnail,
+    .video-card.is-loading
+    .video-card__avatar,
+    .video-card.is-loading
+    .video-card__title,
+    .video-card.is-loading
+    .video-card__channel,
+    .video-card.is-loading
+    .video-card__meta {
+        transition: none;
+        animation: none;
+    }
+}
+
+
+/* =========================================================
+   High Contrast
+   ========================================================= */
+
+@media (prefers-contrast: more) {
+
+    .video-card__thumbnail {
+        border: 1px solid currentColor;
+    }
+
+    .video-card:focus-visible {
+        outline-width: 3px;
+    }
+}
