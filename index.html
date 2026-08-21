@@ -3,848 +3,957 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0,
-               maximum-scale=1.0,user-scalable=no">
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>FlikTide</title>
+<title>FlickTide</title>
 
 <style>
-/* =========================================================
-   FLIKTIDE — FOUNDATION
-   ========================================================= */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-:root {
-    --bg: #f5f7fb;
-    --surface: #ffffff;
-    --surface2: #eef1f7;
-    --text: #111827;
-    --muted: #687386;
-    --border: #dfe4ec;
-    --primary: #2563eb;
-    --primary2: #4f46e5;
-    --orange: #f97316;
-    --danger: #ef4444;
-    --shadow: 0 8px 25px rgba(0,0,0,.08);
+:root{
+    --bg:#0f172a;
+    --card:#111827;
+    --card2:#1e293b;
+    --text:#f8fafc;
+    --muted:#94a3b8;
+    --border:#263247;
+    --primary:#2563eb;
+    --orange:#ff7200;
+    --white:#ffffff;
 }
 
-body.dark {
-    --bg: #0d1628;
-    --surface: #111b2e;
-    --surface2: #1a263b;
-    --text: #f8fafc;
-    --muted: #9aa6ba;
-    --border: #243149;
-    --shadow: 0 8px 25px rgba(0,0,0,.25);
+body.light{
+    --bg:#f4f6fb;
+    --card:#ffffff;
+    --card2:#eef2f7;
+    --text:#111827;
+    --muted:#64748b;
+    --border:#dbe2ea;
 }
 
-body {
+body{
     font-family:
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
+        Arial,
         "Noto Sans Bengali",
-        "Segoe UI",
         sans-serif;
 
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding-bottom: 78px;
-    transition: .2s;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
 }
 
-/* =========================================================
+/* =========================
    HEADER
-   ========================================================= */
+========================= */
 
-.header {
-    height: 74px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+.header{
+    position:sticky;
+    top:0;
+    z-index:1000;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    height:74px;
 
-    padding: 10px 16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
+    padding:10px 22px;
+
+    background:var(--bg);
+    border-bottom:1px solid var(--border);
 }
 
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    cursor:pointer;
 }
 
-.logo {
-    width: 48px;
-    height: 48px;
+.logo{
+    width:50px;
+    height:50px;
 
-    border-radius: 15px;
+    border-radius:16px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    color: white;
-    font-weight: 900;
-    font-size: 19px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
     background:
-        linear-gradient(135deg,#4f46e5,#7c3aed,#f97316);
+        linear-gradient(135deg,#2563eb,#7c3aed,#ff7200);
+
+    color:white;
+    font-size:20px;
+    font-weight:900;
 }
 
-.brand-name {
-    font-size: 25px;
-    font-weight: 900;
+.brand-name{
+    font-size:27px;
+    font-weight:900;
 }
 
-.brand-name span {
-    color: var(--orange);
+.brand-name span{
+    color:var(--orange);
 }
 
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.header-actions{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.icon-btn {
-    width: 48px;
-    height: 48px;
+.icon-btn{
+    width:52px;
+    height:52px;
 
-    border: none;
-    border-radius: 15px;
+    border:0;
+    border-radius:17px;
 
-    background: var(--surface2);
-    color: var(--text);
+    background:var(--card2);
+    color:var(--text);
 
-    font-size: 22px;
-    cursor: pointer;
+    font-size:24px;
+    cursor:pointer;
 }
 
-.icon-btn:active {
-    transform: scale(.94);
+.profile-mini{
+    width:52px;
+    height:52px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+
+    color:white;
+    font-size:20px;
+    font-weight:800;
+
+    cursor:pointer;
+    overflow:hidden;
 }
 
-.header-avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    color: white;
-    font-weight: 800;
-    font-size: 18px;
-
-    background:
-        linear-gradient(135deg,#2563eb,#7c3aed);
+.profile-mini img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
-/* =========================================================
-   PAGE
-   ========================================================= */
-
-.page {
-    display: none;
-    max-width: 1000px;
-    margin: auto;
-    padding: 20px 16px;
-}
-
-.page.active {
-    display: block;
-}
-
-.page-title {
-    font-size: 28px;
-    font-weight: 900;
-    margin-bottom: 18px;
-}
-
-.back-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 18px;
-}
-
-.back-btn {
-    width: 44px;
-    height: 44px;
-
-    border: none;
-    border-radius: 13px;
-
-    background: var(--surface2);
-    color: var(--text);
-
-    font-size: 25px;
-    cursor: pointer;
-}
-
-.back-title {
-    font-size: 20px;
-    font-weight: 800;
-}
-
-/* =========================================================
+/* =========================
    SEARCH
-   ========================================================= */
+========================= */
 
-.search-box {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    background: var(--surface);
-    border: 1px solid var(--border);
-
-    border-radius: 20px;
-
-    padding: 14px 16px;
-    margin-bottom: 22px;
+.search-area{
+    padding:18px 22px 8px;
 }
 
-.search-box span {
-    font-size: 22px;
+.search-box{
+    height:55px;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:0 18px;
+
+    border:1px solid var(--border);
+    border-radius:28px;
+
+    background:var(--card);
 }
 
-.search-box input {
-    flex: 1;
-    border: none;
-    outline: none;
+.search-box input{
+    flex:1;
 
-    background: transparent;
-    color: var(--text);
+    border:0;
+    outline:0;
 
-    font-size: 17px;
+    background:transparent;
+    color:var(--text);
+
+    font-size:17px;
 }
 
-/* =========================================================
-   CONTENT CARDS
-   ========================================================= */
+/* =========================
+   PAGE
+========================= */
 
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 18px;
+.page{
+    display:none;
+    min-height:calc(100vh - 145px);
+    padding-bottom:95px;
 }
 
-.content-card {
-    overflow: hidden;
-
-    background: var(--surface);
-    border: 1px solid var(--border);
-
-    border-radius: 22px;
-
-    box-shadow: var(--shadow);
-
-    cursor: pointer;
-    transition: .2s;
+.page.active{
+    display:block;
 }
 
-.content-card:active {
-    transform: scale(.98);
+.page-content{
+    padding:12px 22px;
 }
 
-.thumbnail {
-    height: 210px;
+.page-title{
+    font-size:28px;
+    font-weight:900;
+    margin:15px 0 20px;
+}
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* =========================
+   HOME FEED
+========================= */
+
+.video-feed{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.long-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:22px;
+    overflow:hidden;
+    cursor:pointer;
+}
+
+.thumbnail{
+    position:relative;
+
+    width:100%;
+    aspect-ratio:16/9;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
     background:
-        linear-gradient(135deg,#e0e7ff,#fff7ed);
+        linear-gradient(135deg,#dbeafe,#fef3c7);
 
-    font-size: 65px;
+    color:#334155;
+
+    font-size:65px;
 }
 
-.card-info {
-    padding: 16px;
+.thumbnail .duration{
+    position:absolute;
+    right:10px;
+    bottom:10px;
+
+    padding:5px 8px;
+
+    border-radius:6px;
+
+    background:rgba(0,0,0,.8);
+    color:white;
+
+    font-size:13px;
 }
 
-.card-title {
-    font-size: 20px;
-    font-weight: 850;
-    margin-bottom: 8px;
+.video-info{
+    padding:15px;
 }
 
-.card-meta {
-    color: var(--muted);
-    font-size: 15px;
+.video-title{
+    font-size:19px;
+    font-weight:800;
+    line-height:1.4;
 }
 
-/* =========================================================
-   TEACHER
-   ========================================================= */
+.video-meta{
+    margin-top:7px;
 
-.teacher-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    margin-top: 12px;
+    color:var(--muted);
+    font-size:14px;
 }
 
-.teacher-logo {
-    width: 40px;
-    height: 40px;
+.teacher-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
 
-    border-radius: 50%;
+    margin-top:12px;
+}
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.teacher-logo{
+    width:36px;
+    height:36px;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#2563eb,#9333ea);
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:13px;
+    font-weight:bold;
+
+    overflow:hidden;
+}
+
+.teacher-logo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.teacher-name{
+    color:var(--muted);
+    font-size:14px;
+}
+
+/* =========================
+   SHORTS SECTION
+========================= */
+
+.shorts-section{
+    margin:8px 0 15px;
+}
+
+.shorts-heading{
+    font-size:22px;
+    font-weight:900;
+    margin-bottom:12px;
+}
+
+.shorts-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.short-card{
+    background:var(--card);
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    overflow:hidden;
+    cursor:pointer;
+}
+
+.short-thumbnail{
+    width:100%;
+    aspect-ratio:9/16;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
     background:
-        linear-gradient(135deg,#2563eb,#7c3aed);
+        linear-gradient(145deg,#dbeafe,#fff7ed);
 
-    color: white;
-    font-weight: 800;
-
-    overflow: hidden;
+    font-size:48px;
 }
 
-.teacher-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.short-info{
+    padding:12px;
 }
 
-.teacher-name {
-    color: var(--primary);
-    font-weight: 750;
-    cursor: pointer;
+.short-title{
+    font-size:15px;
+    font-weight:800;
+    line-height:1.4;
 }
 
-/* =========================================================
-   PROFILE
-   ========================================================= */
-
-.profile-card {
-    overflow: hidden;
-
-    background: var(--surface);
-
-    border: 1px solid var(--border);
-
-    border-radius: 28px;
-
-    box-shadow: var(--shadow);
+.short-meta{
+    color:var(--muted);
+    margin-top:5px;
+    font-size:12px;
 }
 
-.cover {
-    height: 220px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #2563eb,
-            #7c3aed,
-            #f97316
-        );
-
-    background-size: cover;
-    background-position: center;
-
-    position: relative;
-}
-
-.cover-edit {
-    position: absolute;
-    right: 14px;
-    bottom: 14px;
-
-    border: none;
-    border-radius: 12px;
-
-    padding: 10px 14px;
-
-    background: rgba(0,0,0,.55);
-    color: white;
-
-    cursor: pointer;
-}
-
-.profile-body {
-    padding: 0 24px 28px;
-}
-
-.profile-avatar {
-    width: 140px;
-    height: 140px;
-
-    margin-top: -70px;
-
-    position: relative;
-
-    border-radius: 50%;
-
-    border: 6px solid var(--surface);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    overflow: hidden;
-
-    background:
-        linear-gradient(135deg,#2563eb,#7c3aed);
-
-    color: white;
-
-    font-size: 52px;
-    font-weight: 900;
-}
-
-.profile-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.profile-name {
-    font-size: 34px;
-    font-weight: 900;
-    margin-top: 18px;
-}
-
-.profile-phone {
-    color: var(--muted);
-    font-size: 20px;
-    margin-top: 6px;
-}
-
-.badge {
-    display: inline-block;
-
-    margin-top: 14px;
-
-    padding: 10px 18px;
-
-    background: var(--surface2);
-
-    border-radius: 30px;
-
-    color: var(--text);
-
-    font-weight: 700;
-}
-
-.edit-btn {
-    margin-top: 18px;
-
-    border: none;
-    border-radius: 15px;
-
-    padding: 14px 22px;
-
-    background: var(--primary);
-    color: white;
-
-    font-size: 17px;
-    font-weight: 800;
-
-    cursor: pointer;
-}
-
-.profile-details {
-    margin-top: 25px;
-
-    display: grid;
-    gap: 10px;
-}
-
-.detail {
-    padding: 15px;
-
-    background: var(--surface2);
-
-    border-radius: 15px;
-}
-
-.detail strong {
-    display: block;
-    margin-bottom: 4px;
-}
-
-/* =========================================================
-   STATS
-   ========================================================= */
-
-.stats {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 10px;
-
-    margin-top: 20px;
-}
-
-.stat {
-    background: var(--surface2);
-    padding: 16px;
-    text-align: center;
-    border-radius: 15px;
-}
-
-.stat-number {
-    font-size: 22px;
-    font-weight: 900;
-}
-
-/* =========================================================
+/* =========================
    BOTTOM NAV
-   ========================================================= */
+========================= */
 
-.bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
 
-    height: 76px;
+    height:76px;
 
-    display: grid;
-    grid-template-columns: repeat(5,1fr);
+    z-index:1000;
 
-    background: var(--surface);
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
 
-    border-top: 1px solid var(--border);
-
-    z-index: 2000;
+    background:var(--bg);
+    border-top:1px solid var(--border);
 }
 
-.nav-btn {
-    border: none;
-    background: transparent;
+.nav-item{
+    border:0;
+    background:transparent;
 
-    color: var(--muted);
+    color:var(--muted);
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
 
-    gap: 4px;
+    gap:4px;
 
-    font-size: 13px;
-
-    cursor: pointer;
+    cursor:pointer;
 }
 
-.nav-icon {
-    font-size: 24px;
+.nav-item.active{
+    color:#2563eb;
 }
 
-.nav-btn.active {
-    color: var(--primary);
-    font-weight: 800;
+.nav-icon{
+    font-size:23px;
 }
 
-/* =========================================================
-   MODAL
-   ========================================================= */
-
-.modal {
-    display: none;
-
-    position: fixed;
-    inset: 0;
-
-    background: rgba(0,0,0,.65);
-
-    z-index: 5000;
-
-    align-items: flex-end;
-    justify-content: center;
+.nav-label{
+    font-size:12px;
 }
 
-.modal.show {
-    display: flex;
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-bar{
+    display:none;
+
+    padding:14px 22px 5px;
 }
 
-.modal-box {
-    width: 100%;
-    max-width: 650px;
-
-    max-height: 90vh;
-    overflow-y: auto;
-
-    background: var(--surface);
-
-    border-radius: 25px 25px 0 0;
-
-    padding: 22px;
+.back-bar.show{
+    display:block;
 }
 
-.modal-title {
-    font-size: 23px;
-    font-weight: 900;
-    margin-bottom: 18px;
+.back-button{
+    border:0;
+    background:var(--card2);
+    color:var(--text);
+
+    border-radius:12px;
+
+    padding:10px 15px;
+
+    font-size:16px;
+    cursor:pointer;
 }
 
-.form-group {
-    margin-bottom: 15px;
+/* =========================
+   VIDEO PLAYER
+========================= */
+
+.player-page{
+    padding:0 0 100px;
 }
 
-.form-group label {
-    display: block;
+.video-player-wrapper{
+    position:relative;
 
-    margin-bottom: 7px;
+    width:100%;
 
-    font-weight: 700;
+    background:#000;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+#mainVideo{
+    width:100%;
+    max-height:75vh;
+
+    display:block;
+
+    background:#000;
+
+    object-fit:contain;
+
+    transition:transform .2s ease;
+}
+
+.player-controls{
+    position:absolute;
+    right:12px;
+    bottom:12px;
+
+    display:flex;
+    gap:8px;
+}
+
+.player-btn{
+    border:0;
+
+    background:rgba(0,0,0,.75);
+    color:#fff;
+
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+
+    cursor:pointer;
+    font-size:18px;
+}
+
+.player-info{
+    padding:18px 22px;
+}
+
+.player-title{
+    font-size:23px;
+    font-weight:900;
+    line-height:1.4;
+}
+
+.player-description{
+    margin-top:10px;
+    color:var(--muted);
+    line-height:1.6;
+}
+
+.player-teacher{
+    margin-top:15px;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    cursor:pointer;
+}
+
+.suggested{
+    padding:10px 22px;
+}
+
+.suggested-title{
+    font-size:22px;
+    font-weight:900;
+    margin-bottom:15px;
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile-page{
+    padding-bottom:100px;
+}
+
+.cover{
+    position:relative;
+
+    height:190px;
+
+    background:
+        linear-gradient(135deg,#2563eb,#7c3aed,#ec4899);
+
+    overflow:hidden;
+}
+
+.cover img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.profile-card{
+    margin:0 22px;
+
+    margin-top:-40px;
+
+    position:relative;
+    z-index:2;
+
+    padding:85px 22px 28px;
+
+    border-radius:28px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+}
+
+.profile-photo{
+    position:absolute;
+
+    top:-70px;
+    left:22px;
+
+    width:140px;
+    height:140px;
+
+    border-radius:50%;
+
+    border:6px solid var(--bg);
+
+    background:
+        linear-gradient(135deg,#2563eb,#7c3aed);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#fff;
+    font-size:48px;
+    font-weight:900;
+
+    overflow:hidden;
+}
+
+.profile-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.profile-name{
+    font-size:32px;
+    font-weight:900;
+}
+
+.profile-phone{
+    margin-top:6px;
+    color:var(--muted);
+    font-size:18px;
+}
+
+.role-badge{
+    display:inline-block;
+
+    margin-top:14px;
+
+    padding:10px 22px;
+
+    background:var(--white);
+    color:#475569;
+
+    border-radius:30px;
+
+    font-size:16px;
+}
+
+.profile-buttons{
+    display:flex;
+    gap:10px;
+
+    margin-top:18px;
+}
+
+.primary-btn{
+    border:0;
+
+    background:var(--primary);
+    color:#fff;
+
+    padding:13px 20px;
+
+    border-radius:14px;
+
+    font-size:16px;
+    font-weight:800;
+
+    cursor:pointer;
+}
+
+/* =========================
+   PROFILE STATS
+========================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+
+    gap:10px;
+
+    margin:18px 22px;
+}
+
+.stat{
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:17px;
+
+    padding:15px 8px;
+
+    text-align:center;
+}
+
+.stat-number{
+    font-size:20px;
+    font-weight:900;
+}
+
+.stat-label{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:4px;
+}
+
+/* =========================
+   EDIT MODAL
+========================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+
+    z-index:3000;
+
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+
+    background:rgba(0,0,0,.7);
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:600px;
+
+    background:var(--card);
+
+    border-radius:28px 28px 0 0;
+
+    padding:25px;
+
+    max-height:90vh;
+    overflow-y:auto;
+}
+
+.modal-title{
+    font-size:23px;
+    font-weight:900;
+
+    margin-bottom:20px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+
+    margin-bottom:7px;
+
+    color:var(--muted);
 }
 
 .form-group input,
-.form-group textarea,
-.form-group select {
-    width: 100%;
+.form-group select{
+    width:100%;
 
-    padding: 14px;
+    padding:14px;
 
-    border-radius: 13px;
+    border-radius:13px;
 
-    border: 1px solid var(--border);
+    border:1px solid var(--border);
 
-    background: var(--surface2);
-    color: var(--text);
+    background:var(--bg);
+    color:var(--text);
 
-    outline: none;
-
-    font-size: 16px;
+    outline:none;
 }
 
-.form-actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
+.modal-actions{
+    display:flex;
+    gap:10px;
+
+    margin-top:20px;
 }
 
-.primary-btn,
-.secondary-btn,
-.danger-btn {
-    flex: 1;
+.secondary-btn{
+    flex:1;
 
-    border: none;
-    border-radius: 13px;
+    border:1px solid var(--border);
 
-    padding: 14px;
+    background:var(--card2);
+    color:var(--text);
 
-    font-weight: 800;
+    padding:13px;
 
-    cursor: pointer;
+    border-radius:13px;
+
+    cursor:pointer;
 }
 
-.primary-btn {
-    background: var(--primary);
-    color: white;
+.primary-btn.full{
+    flex:1;
 }
 
-.secondary-btn {
-    background: var(--surface2);
-    color: var(--text);
+/* =========================
+   TEACHER PROFILE
+========================= */
+
+.teacher-profile-header{
+    text-align:center;
+
+    padding:25px;
 }
 
-.danger-btn {
-    background: var(--danger);
-    color: white;
+.big-teacher-logo{
+    width:110px;
+    height:110px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#fff;
+    font-size:38px;
+    font-weight:900;
+
+    overflow:hidden;
 }
 
-/* =========================================================
-   LOGIN
-   ========================================================= */
-
-.auth-page {
-    min-height: calc(100vh - 74px);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
+.big-teacher-logo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
-.auth-box {
-    width: 100%;
-    max-width: 430px;
-
-    background: var(--surface);
-
-    border: 1px solid var(--border);
-
-    border-radius: 25px;
-
-    padding: 25px;
-
-    box-shadow: var(--shadow);
+.teacher-profile-name{
+    font-size:28px;
+    font-weight:900;
+    margin-top:15px;
 }
 
-.auth-logo {
-    width: 75px;
-    height: 75px;
-
-    border-radius: 22px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin: 0 auto 18px;
-
-    background:
-        linear-gradient(135deg,#2563eb,#7c3aed,#f97316);
-
-    color: white;
-
-    font-size: 25px;
-    font-weight: 900;
+.teacher-subject{
+    color:var(--muted);
+    margin-top:5px;
 }
 
-.auth-title {
-    text-align: center;
-    font-size: 28px;
-    font-weight: 900;
-    margin-bottom: 8px;
+/* =========================
+   EXPLORE
+========================= */
+
+.explore-search{
+    margin-bottom:18px;
 }
 
-.auth-subtitle {
-    text-align: center;
-    color: var(--muted);
-    margin-bottom: 25px;
+.category-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
 }
 
-.auth-switch {
-    margin-top: 18px;
-    text-align: center;
-    color: var(--primary);
-    cursor: pointer;
-    font-weight: 700;
+.category{
+    padding:22px;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    font-weight:800;
 }
 
-/* =========================================================
-   TEACHER PAGE
-   ========================================================= */
+/* =========================
+   LIBRARY
+========================= */
 
-.teacher-profile {
-    padding: 22px;
+.empty-state{
+    padding:60px 20px;
 
-    background: var(--surface);
+    text-align:center;
 
-    border: 1px solid var(--border);
-
-    border-radius: 25px;
-
-    margin-bottom: 20px;
+    color:var(--muted);
 }
 
-.teacher-header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.teacher-big-logo {
-    width: 80px;
-    height: 80px;
-
-    border-radius: 50%;
-
-    background:
-        linear-gradient(135deg,#2563eb,#7c3aed);
-
-    color: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 30px;
-    font-weight: 900;
-
-    overflow: hidden;
-}
-
-.teacher-big-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* =========================================================
-   EMPTY
-   ========================================================= */
-
-.empty {
-    padding: 50px 20px;
-    text-align: center;
-    color: var(--muted);
-}
-
-.empty-icon {
-    font-size: 55px;
-    margin-bottom: 10px;
-}
-
-/* =========================================================
+/* =========================
    RESPONSIVE
-   ========================================================= */
+========================= */
 
-@media (max-width: 650px) {
+@media(min-width:800px){
 
-    .brand-name {
-        font-size: 22px;
+    .page-content,
+    .search-area{
+        max-width:1100px;
+        margin:auto;
     }
 
-    .header {
-        padding: 10px 12px;
+    .video-feed{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .card-grid {
-        grid-template-columns: 1fr;
+    .shorts-section{
+        grid-column:1/-1;
     }
 
-    .thumbnail {
-        height: 260px;
+    .shorts-grid{
+        grid-template-columns:repeat(2,250px);
     }
 
-    .profile-name {
-        font-size: 30px;
-    }
-
-    .stats {
-        grid-template-columns: 1fr 1fr 1fr;
+    .bottom-nav{
+        max-width:700px;
+        left:50%;
+        transform:translateX(-50%);
+        border:1px solid var(--border);
+        border-radius:20px 20px 0 0;
     }
 }
 
-@media (max-width: 380px) {
+@media(max-width:480px){
 
-    .brand-name {
-        display: none;
+    .header{
+        height:72px;
+        padding:10px 18px;
     }
 
-    .icon-btn {
-        width: 43px;
-        height: 43px;
+    .brand-name{
+        font-size:23px;
     }
 
-    .header-avatar {
-        width: 43px;
-        height: 43px;
+    .logo{
+        width:45px;
+        height:45px;
+    }
+
+    .header-actions{
+        gap:7px;
+    }
+
+    .icon-btn{
+        width:45px;
+        height:45px;
+    }
+
+    .profile-mini{
+        width:45px;
+        height:45px;
+    }
+
+    .page-content{
+        padding:10px 22px;
     }
 }
 </style>
@@ -852,15 +961,17 @@ body {
 
 <body>
 
-<!-- =======================================================
+<!-- =====================================================
      HEADER
-     ======================================================= -->
+===================================================== -->
 
 <header class="header">
 
-    <div class="brand">
+    <div class="brand" onclick="navigateHome()">
 
-        <div class="logo">FT</div>
+        <div class="logo">
+            FT
+        </div>
 
         <div class="brand-name">
             Flick<span>Tide</span>
@@ -870,213 +981,250 @@ body {
 
     <div class="header-actions">
 
-        <button
-            class="icon-btn"
-            id="themeBtn"
-            onclick="toggleTheme()">
+        <button class="icon-btn"
+                onclick="toggleTheme()"
+                aria-label="Theme">
             🌙
         </button>
 
-        <button
-            class="icon-btn"
-            onclick="showNotifications()">
+        <button class="icon-btn"
+                onclick="showNotifications()"
+                aria-label="Notifications">
             🔔
         </button>
 
-        <button
-            class="header-avatar"
-            onclick="navigate('profile')"
-            id="headerAvatar">
+        <div class="profile-mini"
+             id="miniProfile"
+             onclick="navigate('profile')">
             M
-        </button>
+        </div>
 
     </div>
 
 </header>
 
 
-<!-- =======================================================
+<!-- =====================================================
+     BACK BUTTON
+===================================================== -->
+
+<div class="back-bar" id="backBar">
+
+    <button class="back-button"
+            onclick="goBack()">
+        ← আগের পেজ
+    </button>
+
+</div>
+
+
+<!-- =====================================================
      HOME
-     ======================================================= -->
+===================================================== -->
 
-<main
-    id="home"
-    class="page active">
+<main id="homePage"
+      class="page active">
 
-    <div class="search-box">
+    <div class="search-area">
 
-        <span>🔍</span>
+        <div class="search-box">
 
-        <input
-            id="searchInput"
-            type="search"
-            placeholder="ভিডিও, বিষয়, শিক্ষক খুঁজুন..."
-            oninput="searchContent(this.value)">
+            🔍
+
+            <input
+                id="homeSearch"
+                type="search"
+                placeholder="ভিডিও, বিষয়, শিক্ষক খুঁজুন..."
+                oninput="searchHome(this.value)"
+            >
+
+        </div>
 
     </div>
 
-    <h1 class="page-title">
-        শেখা শুরু করুন
-    </h1>
+    <div class="page-content">
 
-    <div
-        id="homeContent"
-        class="card-grid">
+        <div class="video-feed"
+             id="homeFeed">
+
+        </div>
+
     </div>
 
 </main>
 
 
-<!-- =======================================================
+<!-- =====================================================
      SHORTS
-     ======================================================= -->
+===================================================== -->
 
-<main
-    id="shorts"
-    class="page">
+<main id="shortsPage"
+      class="page">
 
-    <h1 class="page-title">
-        Shorts
-    </h1>
+    <div class="page-content">
 
-    <div
-        id="shortsContent"
-        class="card-grid">
+        <h1 class="page-title">
+            Shorts
+        </h1>
+
+        <div class="shorts-grid"
+             id="shortsFeed">
+
+        </div>
+
     </div>
 
 </main>
 
 
-<!-- =======================================================
+<!-- =====================================================
      EXPLORE
-     ======================================================= -->
+===================================================== -->
 
-<main
-    id="explore"
-    class="page">
+<main id="explorePage"
+      class="page">
 
-    <h1 class="page-title">
-        Explore
-    </h1>
+    <div class="page-content">
 
-    <div class="search-box">
+        <h1 class="page-title">
+            Explore
+        </h1>
 
-        <span>🔍</span>
+        <div class="search-box explore-search">
 
-        <input
-            type="search"
-            placeholder="বিষয় বা শিক্ষক খুঁজুন..."
-            oninput="searchExplore(this.value)">
+            🔍
+
+            <input
+                id="exploreSearch"
+                placeholder="বিষয় বা শিক্ষক খুঁজুন..."
+                oninput="searchExplore(this.value)"
+            >
+
+        </div>
+
+        <div class="category-grid"
+             id="categoryGrid">
+
+        </div>
 
     </div>
-
-    <div id="exploreContent"></div>
 
 </main>
 
 
-<!-- =======================================================
+<!-- =====================================================
      LIBRARY
-     ======================================================= -->
+===================================================== -->
 
-<main
-    id="library"
-    class="page">
+<main id="libraryPage"
+      class="page">
 
-    <h1 class="page-title">
-        Library
-    </h1>
+    <div class="page-content">
 
-    <div
-        id="libraryContent"
-        class="card-grid">
+        <h1 class="page-title">
+            Library
+        </h1>
+
+        <div class="empty-state">
+
+            📚
+
+            <br><br>
+
+            আপনার Save করা ভিডিও এখানে থাকবে।
+
+        </div>
+
     </div>
 
 </main>
 
 
-<!-- =======================================================
+<!-- =====================================================
      PROFILE
-     ======================================================= -->
+===================================================== -->
 
-<main
-    id="profile"
-    class="page">
+<main id="profilePage"
+      class="page profile-page">
+
+    <div class="cover"
+         id="profileCover">
+
+        <img id="coverImage"
+             style="display:none">
+
+    </div>
 
     <div class="profile-card">
 
-        <div
-            id="profileCover"
-            class="cover">
+        <div class="profile-photo"
+             id="profilePhoto">
 
-            <button
-                class="cover-edit"
-                onclick="openEditProfile()">
-                ✏️ Cover পরিবর্তন
+            M
+
+        </div>
+
+        <div class="profile-name"
+             id="profileName">
+            Mithun Chandra Ray
+        </div>
+
+        <div class="profile-phone"
+             id="profilePhone">
+            01708744994
+        </div>
+
+        <span class="role-badge"
+              id="profileRole">
+            Student
+        </span>
+
+        <div class="profile-buttons">
+
+            <button class="primary-btn"
+                    onclick="openEditProfile()">
+                Edit Profile
             </button>
 
         </div>
 
-        <div class="profile-body">
+    </div>
 
-            <div
-                id="profileAvatar"
-                class="profile-avatar">
-                M
+    <div class="stats">
+
+        <div class="stat">
+
+            <div class="stat-number"
+                 id="watchHours">
+                0h 0m 0s
             </div>
 
-            <div
-                id="profileName"
-                class="profile-name">
-                Mithun Chandra Ray
+            <div class="stat-label">
+                আজকের সময়
             </div>
 
-            <div
-                id="profilePhone"
-                class="profile-phone">
-                01708744994
+        </div>
+
+        <div class="stat">
+
+            <div class="stat-number">
+                0
             </div>
 
-            <div
-                id="profileRole"
-                class="badge">
-                Student
+            <div class="stat-label">
+                Saved
             </div>
 
-            <br>
+        </div>
 
-            <button
-                class="edit-btn"
-                onclick="openEditProfile()">
-                ✏️ Edit Profile
-            </button>
+        <div class="stat">
 
-            <div
-                id="profileDetails"
-                class="profile-details">
+            <div class="stat-number">
+                0
             </div>
 
-            <div class="stats">
-
-                <div class="stat">
-                    <div
-                        id="watchTime"
-                        class="stat-number">
-                        00:00:00
-                    </div>
-                    <small>আজকের সময়</small>
-                </div>
-
-                <div class="stat">
-                    <div class="stat-number">0</div>
-                    <small>Saved</small>
-                </div>
-
-                <div class="stat">
-                    <div class="stat-number">0</div>
-                    <small>Completed</small>
-                </div>
-
+            <div class="stat-label">
+                Liked
             </div>
 
         </div>
@@ -1086,142 +1234,140 @@ body {
 </main>
 
 
-<!-- =======================================================
+<!-- =====================================================
      TEACHER PROFILE
-     ======================================================= -->
+===================================================== -->
 
-<main
-    id="teacherPage"
-    class="page">
+<main id="teacherPage"
+      class="page">
 
-    <div class="back-row">
+    <div class="page-content">
 
-        <button
-            class="back-btn"
-            onclick="goBack()">
-            ←
-        </button>
+        <div class="teacher-profile-header">
 
-        <div
-            id="teacherPageTitle"
-            class="back-title">
-            শিক্ষক
+            <div class="big-teacher-logo"
+                 id="teacherBigLogo">
+                T
+            </div>
+
+            <div class="teacher-profile-name"
+                 id="teacherProfileName">
+                FlickTide Teacher
+            </div>
+
+            <div class="teacher-subject"
+                 id="teacherProfileSubject">
+                শিক্ষক
+            </div>
+
         </div>
 
-    </div>
+        <h2 class="page-title">
+            এই শিক্ষকের কন্টেন্ট
+        </h2>
 
-    <div
-        id="teacherProfileBox"
-        class="teacher-profile">
-    </div>
+        <div class="video-feed"
+             id="teacherFeed">
 
-    <h2 class="page-title">
-        এই শিক্ষকের Content
-    </h2>
+        </div>
 
-    <div
-        id="teacherContent"
-        class="card-grid">
     </div>
 
 </main>
 
 
-<!-- =======================================================
-     CONTENT DETAIL
-     ======================================================= -->
+<!-- =====================================================
+     VIDEO PLAYER
+===================================================== -->
 
-<main
-    id="contentDetail"
-    class="page">
+<main id="playerPage"
+      class="page player-page">
 
-    <div class="back-row">
+    <div class="video-player-wrapper">
 
-        <button
-            class="back-btn"
-            onclick="goBack()">
-            ←
-        </button>
+        <video
+            id="mainVideo"
+            controls
+            playsinline>
+        </video>
 
-        <div class="back-title">
-            Content
+        <div class="player-controls">
+
+            <button class="player-btn"
+                    onclick="zoomVideo(-0.1)">
+                −
+            </button>
+
+            <button class="player-btn"
+                    onclick="resetVideoZoom()">
+                1×
+            </button>
+
+            <button class="player-btn"
+                    onclick="zoomVideo(0.1)">
+                +
+            </button>
+
+            <button class="player-btn"
+                    onclick="fullscreenVideo()">
+                ⛶
+            </button>
+
         </div>
 
     </div>
 
-    <div
-        id="detailBox">
+    <div class="player-info">
+
+        <div class="player-title"
+             id="playerTitle">
+        </div>
+
+        <div class="player-description"
+             id="playerDescription">
+        </div>
+
+        <div class="player-teacher"
+             onclick="openCurrentTeacher()">
+
+            <div class="teacher-logo"
+                 id="playerTeacherLogo">
+            </div>
+
+            <div>
+                <strong id="playerTeacherName">
+                </strong>
+
+                <div class="teacher-name"
+                     id="playerTeacherSubject">
+                </div>
+            </div>
+
+        </div>
+
     </div>
+
+    <section class="suggested">
+
+        <div class="suggested-title">
+            সম্পর্কিত ভিডিও
+        </div>
+
+        <div class="video-feed"
+             id="suggestedFeed">
+        </div>
+
+    </section>
 
 </main>
 
 
-<!-- =======================================================
-     BOTTOM NAVIGATION
-     ======================================================= -->
-
-<nav class="bottom-nav">
-
-    <button
-        class="nav-btn active"
-        data-page="home"
-        onclick="navigate('home')">
-
-        <span class="nav-icon">⌂</span>
-        <span>Home</span>
-
-    </button>
-
-    <button
-        class="nav-btn"
-        data-page="shorts"
-        onclick="navigate('shorts')">
-
-        <span class="nav-icon">▶</span>
-        <span>Shorts</span>
-
-    </button>
-
-    <button
-        class="nav-btn"
-        data-page="explore"
-        onclick="navigate('explore')">
-
-        <span class="nav-icon">◎</span>
-        <span>Explore</span>
-
-    </button>
-
-    <button
-        class="nav-btn"
-        data-page="library"
-        onclick="navigate('library')">
-
-        <span class="nav-icon">▣</span>
-        <span>Library</span>
-
-    </button>
-
-    <button
-        class="nav-btn"
-        data-page="profile"
-        onclick="navigate('profile')">
-
-        <span class="nav-icon">♙</span>
-        <span>Profile</span>
-
-    </button>
-
-</nav>
-
-
-<!-- =======================================================
+<!-- =====================================================
      EDIT PROFILE MODAL
-     ======================================================= -->
+===================================================== -->
 
-<div
-    id="editModal"
-    class="modal">
+<div class="modal"
+     id="editModal">
 
     <div class="modal-box">
 
@@ -1237,7 +1383,8 @@ body {
 
             <input
                 id="editName"
-                type="text">
+                type="text"
+                placeholder="আপনার নাম">
 
         </div>
 
@@ -1249,23 +1396,24 @@ body {
 
             <input
                 id="editPhone"
-                type="tel">
+                type="tel"
+                placeholder="01XXXXXXXXX">
 
         </div>
 
         <div class="form-group">
 
             <label>
-                পরিচয়
+                Account Type
             </label>
 
             <select id="editRole">
 
-                <option value="Student">
+                <option>
                     Student
                 </option>
 
-                <option value="Teacher">
+                <option>
                     Teacher
                 </option>
 
@@ -1276,44 +1424,30 @@ body {
         <div class="form-group">
 
             <label>
-                Bio
+                Profile Photo
             </label>
 
-            <textarea
-                id="editBio"
-                rows="4"
-                placeholder="আপনার সম্পর্কে লিখুন...">
-            </textarea>
+            <input
+                id="profileImageInput"
+                type="file"
+                accept="image/*">
 
         </div>
 
         <div class="form-group">
 
             <label>
-                Profile Photo URL
+                Cover Photo
             </label>
 
             <input
-                id="editAvatar"
-                type="url"
-                placeholder="https://...">
+                id="coverImageInput"
+                type="file"
+                accept="image/*">
 
         </div>
 
-        <div class="form-group">
-
-            <label>
-                Cover Photo URL
-            </label>
-
-            <input
-                id="editCover"
-                type="url"
-                placeholder="https://...">
-
-        </div>
-
-        <div class="form-actions">
+        <div class="modal-actions">
 
             <button
                 class="secondary-btn"
@@ -1322,7 +1456,7 @@ body {
             </button>
 
             <button
-                class="primary-btn"
+                class="primary-btn full"
                 onclick="saveProfile()">
                 Save
             </button>
@@ -1334,486 +1468,677 @@ body {
 </div>
 
 
-<!-- =======================================================
-     JAVASCRIPT
-     ======================================================= -->
+<!-- =====================================================
+     BOTTOM NAVIGATION
+===================================================== -->
+
+<nav class="bottom-nav">
+
+    <button class="nav-item active"
+            data-page="home"
+            onclick="navigate('home')">
+
+        <span class="nav-icon">
+            ⌂
+        </span>
+
+        <span class="nav-label">
+            Home
+        </span>
+
+    </button>
+
+    <button class="nav-item"
+            data-page="shorts"
+            onclick="navigate('shorts')">
+
+        <span class="nav-icon">
+            ▶
+        </span>
+
+        <span class="nav-label">
+            Shorts
+        </span>
+
+    </button>
+
+    <button class="nav-item"
+            data-page="explore"
+            onclick="navigate('explore')">
+
+        <span class="nav-icon">
+            ◉
+        </span>
+
+        <span class="nav-label">
+            Explore
+        </span>
+
+    </button>
+
+    <button class="nav-item"
+            data-page="library"
+            onclick="navigate('library')">
+
+        <span class="nav-icon">
+            ▣
+        </span>
+
+        <span class="nav-label">
+            Library
+        </span>
+
+    </button>
+
+    <button class="nav-item"
+            data-page="profile"
+            onclick="navigate('profile')">
+
+        <span class="nav-icon">
+            ♙
+        </span>
+
+        <span class="nav-label">
+            Profile
+        </span>
+
+    </button>
+
+</nav>
+
 
 <script>
 
-/* =========================================================
-   DATA
-   ========================================================= */
+/* =====================================================
+   DATA FOUNDATION
+===================================================== */
 
-const defaultProfile = {
+const longVideos = [
 
-    name: "Mithun Chandra Ray",
+{
+    id:1,
+    title:"গণিতের গুরুত্বপূর্ণ ধারণা",
+    subject:"গণিত",
+    teacher:"রাকিব স্যার",
+    teacherId:"rakib",
+    teacherLogo:"R",
+    icon:"📐",
+    duration:"12:45",
+    description:"গণিতের গুরুত্বপূর্ণ ধারণাগুলো সহজভাবে শেখানো হয়েছে।",
+    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+},
 
-    phone: "01708744994",
+{
+    id:2,
+    title:"Science Basics",
+    subject:"বিজ্ঞান",
+    teacher:"সুমাইয়া ম্যাডাম",
+    teacherId:"sumaiya",
+    teacherLogo:"S",
+    icon:"🔬",
+    duration:"18:20",
+    description:"বিজ্ঞানের মৌলিক বিষয়গুলো বুঝে শেখার একটি সহজ ক্লাস।",
+    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+},
 
-    role: "Student",
+{
+    id:3,
+    title:"English Grammar",
+    subject:"ইংরেজি",
+    teacher:"নাজমুল স্যার",
+    teacherId:"nazmul",
+    teacherLogo:"N",
+    icon:"📘",
+    duration:"15:10",
+    description:"English Grammar-এর গুরুত্বপূর্ণ বিষয়গুলো।",
+    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+},
 
-    bio: "FlickTide শিক্ষার্থী",
+{
+    id:4,
+    title:"বাংলা সাহিত্য পরিচিতি",
+    subject:"বাংলা",
+    teacher:"তানিয়া ম্যাডাম",
+    teacherId:"tania",
+    teacherLogo:"T",
+    icon:"📖",
+    duration:"20:10",
+    description:"বাংলা সাহিত্যের গুরুত্বপূর্ণ অধ্যায়।",
+    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+},
 
-    avatar: "",
+{
+    id:5,
+    title:"পদার্থবিজ্ঞানের বেসিক",
+    subject:"পদার্থবিজ্ঞান",
+    teacher:"আরিফ স্যার",
+    teacherId:"arif",
+    teacherLogo:"A",
+    icon:"⚛️",
+    duration:"22:30",
+    description:"পদার্থবিজ্ঞানের মৌলিক ধারণা।",
+    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+},
 
-    cover: ""
+{
+    id:6,
+    title:"জীববিজ্ঞানের গুরুত্বপূর্ণ অধ্যায়",
+    subject:"জীববিজ্ঞান",
+    teacher:"মেহেদী স্যার",
+    teacherId:"mehedi",
+    teacherLogo:"M",
+    icon:"🧬",
+    duration:"17:50",
+    description:"জীববিজ্ঞানের গুরুত্বপূর্ণ বিষয়গুলো।",
+    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+},
+
+{
+    id:7,
+    title:"Higher Math Class",
+    subject:"উচ্চতর গণিত",
+    teacher:"রাকিব স্যার",
+    teacherId:"rakib",
+    teacherLogo:"R",
+    icon:"📊",
+    duration:"25:20",
+    description:"Higher Math-এর গুরুত্বপূর্ণ ধারণা।",
+    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+},
+
+{
+    id:8,
+    title:"ICT Basic Course",
+    subject:"ICT",
+    teacher:"সুমাইয়া ম্যাডাম",
+    teacherId:"sumaiya",
+    teacherLogo:"S",
+    icon:"💻",
+    duration:"16:40",
+    description:"ICT শেখার জন্য বেসিক ক্লাস।",
+    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+},
+
+{
+    id:9,
+    title:"রসায়নের গুরুত্বপূর্ণ সূত্র",
+    subject:"রসায়ন",
+    teacher:"আরিফ স্যার",
+    teacherId:"arif",
+    teacherLogo:"A",
+    icon:"🧪",
+    duration:"19:15",
+    description:"রসায়নের গুরুত্বপূর্ণ সূত্র।",
+    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+},
+
+{
+    id:10,
+    title:"Exam Preparation",
+    subject:"Exam",
+    teacher:"মেহেদী স্যার",
+    teacherId:"mehedi",
+    teacherLogo:"M",
+    icon:"🎓",
+    duration:"13:50",
+    description:"পরীক্ষার প্রস্তুতির জন্য গুরুত্বপূর্ণ আলোচনা।",
+    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+},
+
+{
+    id:11,
+    title:"Bangla 2nd Paper",
+    subject:"বাংলা",
+    teacher:"তানিয়া ম্যাডাম",
+    teacherId:"tania",
+    teacherLogo:"T",
+    icon:"📚",
+    duration:"21:30",
+    description:"বাংলা দ্বিতীয় পত্রের ক্লাস।",
+    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+},
+
+{
+    id:12,
+    title:"Physics Problem Solving",
+    subject:"পদার্থবিজ্ঞান",
+    teacher:"আরিফ স্যার",
+    teacherId:"arif",
+    teacherLogo:"A",
+    icon:"🔭",
+    duration:"28:10",
+    description:"Physics-এর গুরুত্বপূর্ণ সমস্যা সমাধান।",
+    video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+}
+
+];
+
+
+const shorts = [
+
+{
+    id:101,
+    title:"১ মিনিটে একটি গুরুত্বপূর্ণ ধারণা",
+    subject:"গণিত",
+    teacher:"রাকিব স্যার",
+    teacherId:"rakib",
+    logo:"🎓",
+    duration:"0:58"
+},
+
+{
+    id:102,
+    title:"Exam preparation tip",
+    subject:"Study",
+    teacher:"মেহেদী স্যার",
+    teacherId:"mehedi",
+    logo:"🧠",
+    duration:"0:45"
+},
+
+{
+    id:103,
+    title:"English Grammar Tip",
+    subject:"ইংরেজি",
+    teacher:"নাজমুল স্যার",
+    teacherId:"nazmul",
+    logo:"📘",
+    duration:"0:52"
+},
+
+{
+    id:104,
+    title:"Science in 60 Seconds",
+    subject:"বিজ্ঞান",
+    teacher:"সুমাইয়া ম্যাডাম",
+    teacherId:"sumaiya",
+    logo:"🔬",
+    duration:"0:59"
+},
+
+{
+    id:105,
+    title:"দ্রুত গণিত সমাধান",
+    subject:"গণিত",
+    teacher:"রাকিব স্যার",
+    teacherId:"rakib",
+    logo:"📐",
+    duration:"0:50"
+},
+
+{
+    id:106,
+    title:"পরীক্ষার আগে যা করবেন",
+    subject:"Study",
+    teacher:"তানিয়া ম্যাডাম",
+    teacherId:"tania",
+    logo:"🎯",
+    duration:"0:57"
+}
+
+];
+
+
+/* =====================================================
+   PROFILE DATA
+===================================================== */
+
+let profile = JSON.parse(
+    localStorage.getItem("flicktide_profile")
+) || {
+
+    name:"Mithun Chandra Ray",
+    phone:"01708744994",
+    role:"Student",
+    photo:"",
+    cover:""
 
 };
 
 
-const teachers = [
+/* =====================================================
+   CURRENT STATE
+===================================================== */
 
-    {
-        id: "teacher-1",
+let currentVideo = null;
+let currentTeacher = null;
 
-        name: "FlickTide Teacher",
+let videoZoom = 1;
 
-        subject: "গণিত",
-
-        logo: "📐",
-
-        bio: "গণিতের গুরুত্বপূর্ণ বিষয় সহজভাবে শেখানো।"
-    },
-
-    {
-        id: "teacher-2",
-
-        name: "Science Teacher",
-
-        subject: "বিজ্ঞান",
-
-        logo: "🔬",
-
-        bio: "বিজ্ঞানের মৌলিক ধারণা।"
-    },
-
-    {
-        id: "teacher-3",
-
-        name: "English Teacher",
-
-        subject: "ইংরেজি",
-
-        logo: "📘",
-
-        bio: "English Grammar এবং Language Learning।"
-    }
-
-];
+let pageHistory = [];
 
 
-const contents = [
+/* =====================================================
+   INITIALIZATION
+===================================================== */
 
-    {
-        id: 1,
+document.addEventListener("DOMContentLoaded",()=>{
 
-        type: "course",
+    loadProfile();
 
-        title: "গণিতের গুরুত্বপূর্ণ ধারণা",
+    renderHome();
 
-        subject: "গণিত",
+    renderShorts();
 
-        teacherId: "teacher-1",
+    renderExplore();
 
-        icon: "📐"
-    },
+    startWatchTimer();
 
-    {
-        id: 2,
-
-        type: "course",
-
-        title: "Science Basics",
-
-        subject: "বিজ্ঞান",
-
-        teacherId: "teacher-2",
-
-        icon: "🔬"
-    },
-
-    {
-        id: 3,
-
-        type: "course",
-
-        title: "English Grammar",
-
-        subject: "ইংরেজি",
-
-        teacherId: "teacher-3",
-
-        icon: "📘"
-    },
-
-    {
-        id: 4,
-
-        type: "short",
-
-        title: "১ মিনিটে একটি গুরুত্বপূর্ণ ধারণা",
-
-        subject: "Educational Short",
-
-        teacherId: "teacher-1",
-
-        icon: "🎓"
-    },
-
-    {
-        id: 5,
-
-        type: "short",
-
-        title: "Exam preparation tip",
-
-        subject: "Study Short",
-
-        teacherId: "teacher-2",
-
-        icon: "🧠"
-    }
-
-];
-
-
-/* =========================================================
-   STATE
-   ========================================================= */
-
-let profile =
-    JSON.parse(
-        localStorage.getItem("fliktide_profile")
-    ) || defaultProfile;
-
-
-let currentPage = "home";
-
-let previousPages = [];
-
-let currentTeacherId = null;
-
-
-/* =========================================================
-   PROFILE SAVE
-   ========================================================= */
-
-function saveProfileData() {
-
-    localStorage.setItem(
-        "fliktide_profile",
-        JSON.stringify(profile)
+    window.addEventListener(
+        "popstate",
+        handleBrowserBack
     );
 
-}
+});
 
 
-/* =========================================================
-   PROFILE RENDER
-   ========================================================= */
-
-function renderProfile() {
-
-    document.getElementById("profileName")
-        .textContent = profile.name;
-
-    document.getElementById("profilePhone")
-        .textContent = profile.phone;
-
-    document.getElementById("profileRole")
-        .textContent = profile.role;
-
-    const avatar =
-        document.getElementById("profileAvatar");
-
-    const headerAvatar =
-        document.getElementById("headerAvatar");
-
-
-    if (profile.avatar) {
-
-        avatar.innerHTML =
-            `<img src="${escapeHTML(profile.avatar)}"
-                  alt="Profile">`;
-
-        headerAvatar.innerHTML =
-            `<img src="${escapeHTML(profile.avatar)}"
-                  style="width:100%;height:100%;object-fit:cover;border-radius:50%"
-                  alt="Profile">`;
-
-    } else {
-
-        const letter =
-            profile.name
-                .trim()
-                .charAt(0)
-                .toUpperCase() || "M";
-
-        avatar.textContent = letter;
-
-        headerAvatar.textContent = letter;
-
-    }
-
-
-    const cover =
-        document.getElementById("profileCover");
-
-    if (profile.cover) {
-
-        cover.style.backgroundImage =
-            `url("${profile.cover}")`;
-
-    } else {
-
-        cover.style.backgroundImage =
-            "linear-gradient(135deg,#2563eb,#7c3aed,#f97316)";
-
-    }
-
-
-    document.getElementById("profileDetails")
-        .innerHTML = `
-
-            <div class="detail">
-                <strong>পরিচয়</strong>
-                ${escapeHTML(profile.role)}
-            </div>
-
-            <div class="detail">
-                <strong>Bio</strong>
-                ${escapeHTML(profile.bio || "কোনো Bio দেওয়া হয়নি।")}
-            </div>
-
-        `;
-}
-
-
-/* =========================================================
-   EDIT PROFILE
-   ========================================================= */
-
-function openEditProfile() {
-
-    document.getElementById("editName").value =
-        profile.name;
-
-    document.getElementById("editPhone").value =
-        profile.phone;
-
-    document.getElementById("editRole").value =
-        profile.role;
-
-    document.getElementById("editBio").value =
-        profile.bio || "";
-
-    document.getElementById("editAvatar").value =
-        profile.avatar || "";
-
-    document.getElementById("editCover").value =
-        profile.cover || "";
-
-    document
-        .getElementById("editModal")
-        .classList.add("show");
-
-}
-
-
-function closeEditProfile() {
-
-    document
-        .getElementById("editModal")
-        .classList.remove("show");
-
-}
-
-
-function saveProfile() {
-
-    profile.name =
-        document.getElementById("editName").value.trim()
-        || "Unnamed User";
-
-    profile.phone =
-        document.getElementById("editPhone").value.trim();
-
-    profile.role =
-        document.getElementById("editRole").value;
-
-    profile.bio =
-        document.getElementById("editBio").value.trim();
-
-    profile.avatar =
-        document.getElementById("editAvatar").value.trim();
-
-    profile.cover =
-        document.getElementById("editCover").value.trim();
-
-
-    saveProfileData();
-
-    renderProfile();
-
-    closeEditProfile();
-
-}
-
-
-/* =========================================================
+/* =====================================================
    NAVIGATION
-   ========================================================= */
+===================================================== */
 
-function navigate(page, saveHistory = true) {
+function navigate(page, saveHistory=true){
 
-    if (!document.getElementById(page)) {
-        return;
+    const pages = [
+        "home",
+        "shorts",
+        "explore",
+        "library",
+        "profile",
+        "teacher",
+        "player"
+    ];
+
+    pages.forEach(p=>{
+
+        const element =
+            document.getElementById(p+"Page");
+
+        if(element){
+            element.classList.remove("active");
+        }
+
+    });
+
+    const target =
+        document.getElementById(page+"Page");
+
+    if(target){
+        target.classList.add("active");
     }
 
-    if (
-        saveHistory &&
-        currentPage !== page
-    ) {
+    if(saveHistory){
 
-        previousPages.push(currentPage);
+        pageHistory.push(page);
+
+        history.pushState(
+            {page:page},
+            "",
+            "#"+page
+        );
 
     }
 
+    updateBottomNavigation(page);
+
+    updateBackButton(page);
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+function navigateHome(){
+
+    navigate("home");
+}
+
+
+function goBack(){
+
+    if(pageHistory.length > 1){
+
+        pageHistory.pop();
+
+        history.back();
+
+    }else{
+
+        navigate("home");
+
+    }
+
+}
+
+
+function handleBrowserBack(){
+
+    if(pageHistory.length > 1){
+
+        pageHistory.pop();
+
+    }else{
+
+        pageHistory = ["home"];
+
+    }
+
+    const page =
+        pageHistory[pageHistory.length-1] || "home";
+
+    navigate(page,false);
+
+}
+
+
+function updateBackButton(page){
+
+    const backBar =
+        document.getElementById("backBar");
+
+    const normalPages = [
+        "home",
+        "shorts",
+        "explore",
+        "library",
+        "profile"
+    ];
+
+    if(normalPages.includes(page)){
+
+        backBar.classList.remove("show");
+
+    }else{
+
+        backBar.classList.add("show");
+
+    }
+
+}
+
+
+function updateBottomNavigation(page){
 
     document
-        .querySelectorAll(".page")
-        .forEach(p => p.classList.remove("active"));
+        .querySelectorAll(".nav-item")
+        .forEach(item=>{
 
-
-    document
-        .getElementById(page)
-        .classList.add("active");
-
-
-    currentPage = page;
-
-
-    document
-        .querySelectorAll(".nav-btn")
-        .forEach(btn => {
-
-            btn.classList.toggle(
-                "active",
-                btn.dataset.page === page
-            );
+            item.classList.remove("active");
 
         });
 
+    const item =
+        document.querySelector(
+            `.nav-item[data-page="${page}"]`
+        );
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+    if(item){
+        item.classList.add("active");
+    }
+
+}
+
+
+/* =====================================================
+   HOME FEED
+===================================================== */
+
+function renderHome(list=longVideos){
+
+    const feed =
+        document.getElementById("homeFeed");
+
+    feed.innerHTML="";
+
+    list.forEach((video,index)=>{
+
+        const card =
+            createLongCard(video);
+
+        feed.appendChild(card);
+
+
+        /*
+           প্রতি ৬টি Long Video-এর পরে
+           ২টি Shorts পাশাপাশি
+        */
+
+        if(
+            (index+1)%6===0 &&
+            index < list.length-1
+        ){
+
+            const section =
+                document.createElement("section");
+
+            section.className="shorts-section";
+
+            section.innerHTML=`
+                <div class="shorts-heading">
+                    Shorts
+                </div>
+
+                <div class="shorts-grid">
+
+                    ${shorts.slice(0,2)
+                        .map(s=>createShortHTML(s))
+                        .join("")}
+
+                </div>
+            `;
+
+            feed.appendChild(section);
+
+        }
+
     });
 
 }
 
 
-function goBack() {
+/* =====================================================
+   LONG CARD
+===================================================== */
 
-    if (previousPages.length > 0) {
+function createLongCard(video){
 
-        const page =
-            previousPages.pop();
+    const card =
+        document.createElement("article");
 
-        navigate(page, false);
+    card.className="long-card";
 
-    } else {
+    card.innerHTML=`
 
-        navigate("home", false);
+        <div class="thumbnail">
 
-    }
+            <span>
+                ${video.icon}
+            </span>
+
+            <div class="duration">
+                ${video.duration}
+            </div>
+
+        </div>
+
+        <div class="video-info">
+
+            <div class="video-title">
+                ${video.title}
+            </div>
+
+            <div class="video-meta">
+                ${video.subject}
+            </div>
+
+            <div class="teacher-row"
+                 onclick="event.stopPropagation(); openTeacher('${video.teacherId}')">
+
+                <div class="teacher-logo">
+                    ${video.teacherLogo}
+                </div>
+
+                <div class="teacher-name">
+                    ${video.teacher}
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+    card.onclick=()=>openVideo(video);
+
+    return card;
 
 }
 
 
-/* =========================================================
-   ANDROID / BROWSER BACK BUTTON
-   ========================================================= */
+/* =====================================================
+   SHORTS
+===================================================== */
 
-window.addEventListener(
-    "popstate",
-    function() {
+function renderShorts(list=shorts){
 
-        if (previousPages.length > 0) {
+    const feed =
+        document.getElementById("shortsFeed");
 
-            const page =
-                previousPages.pop();
+    feed.innerHTML="";
 
-            navigate(page, false);
+    list.forEach(short=>{
 
-        } else {
-
-            navigate("home", false);
-
-        }
-
-    }
-);
-
-
-/*
-   Push a history state whenever internal navigation happens.
-   This makes Android browser back work with the app.
-*/
-
-const originalNavigate = navigate;
-
-
-/* =========================================================
-   CONTENT CARD
-   ========================================================= */
-
-function createContentCard(item) {
-
-    const teacher =
-        teachers.find(
-            t => t.id === item.teacherId
+        feed.insertAdjacentHTML(
+            "beforeend",
+            createShortHTML(short)
         );
 
-    if (!teacher) return "";
+    });
 
+}
+
+
+function createShortHTML(short){
 
     return `
 
         <article
-            class="content-card"
-            onclick="openContent(${item.id})">
+            class="short-card"
+            onclick="openShort(${short.id})">
 
-            <div class="thumbnail">
-                ${item.icon}
+            <div class="short-thumbnail">
+                ${short.logo}
             </div>
 
-            <div class="card-info">
+            <div class="short-info">
 
-                <div class="card-title">
-                    ${escapeHTML(item.title)}
+                <div class="short-title">
+                    ${short.title}
                 </div>
 
-                <div class="card-meta">
-                    ${escapeHTML(item.subject)}
-                </div>
-
-                <div
-                    class="teacher-row"
-                    onclick="event.stopPropagation();openTeacher('${teacher.id}')">
-
-                    <div class="teacher-logo">
-
-                        ${teacher.logo}
-
-                    </div>
-
-                    <div class="teacher-name">
-
-                        ${escapeHTML(teacher.name)}
-
-                    </div>
-
+                <div class="short-meta">
+                    ${short.subject} • ${short.teacher}
                 </div>
 
             </div>
@@ -1825,649 +2150,705 @@ function createContentCard(item) {
 }
 
 
-/* =========================================================
-   HOME
-   ========================================================= */
+function openShort(id){
 
-function renderHome(items = contents) {
+    const short =
+        shorts.find(s=>s.id===id);
 
-    document.getElementById("homeContent")
-        .innerHTML =
-        items
-            .filter(i => i.type === "course")
-            .map(createContentCard)
-            .join("");
+    if(!short) return;
+
+    /*
+       Shorts-কে vertical player হিসেবে চালানোর
+       foundation।
+    */
+
+    const video = {
+
+        id:short.id,
+
+        title:short.title,
+
+        subject:short.subject,
+
+        teacher:short.teacher,
+
+        teacherId:short.teacherId,
+
+        teacherLogo:short.logo,
+
+        description:
+            "এই Short ভিডিওটি FlickTide-এর শিক্ষামূলক কন্টেন্ট।",
+
+        video:
+            "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+
+    };
+
+    openVideo(video);
 
 }
 
 
-/* =========================================================
-   SHORTS
-   ========================================================= */
+/* =====================================================
+   VIDEO PLAYER
+===================================================== */
 
-function renderShorts() {
+function openVideo(video){
 
-    document.getElementById("shortsContent")
-        .innerHTML =
-        contents
-            .filter(i => i.type === "short")
-            .map(createContentCard)
-            .join("");
+    currentVideo = video;
+
+    const player =
+        document.getElementById("mainVideo");
+
+    player.src = video.video;
+
+    player.currentTime = 0;
+
+    playerZoomReset();
+
+    document.getElementById(
+        "playerTitle"
+    ).textContent = video.title;
+
+    document.getElementById(
+        "playerDescription"
+    ).textContent = video.description;
+
+    document.getElementById(
+        "playerTeacherName"
+    ).textContent = video.teacher;
+
+    document.getElementById(
+        "playerTeacherSubject"
+    ).textContent = video.subject;
+
+    document.getElementById(
+        "playerTeacherLogo"
+    ).textContent = video.teacherLogo;
+
+    renderSuggested(video);
+
+    navigate("player");
 
 }
 
 
-/* =========================================================
-   LIBRARY
-   ========================================================= */
+function renderSuggested(video){
 
-function renderLibrary() {
+    const feed =
+        document.getElementById("suggestedFeed");
 
-    const saved =
-        JSON.parse(
-            localStorage.getItem("fliktide_saved")
-        ) || [];
+    feed.innerHTML="";
+
+    const suggestions =
+        longVideos
+            .filter(v=>v.id!==video.id)
+            .filter(v=>
+                v.subject===video.subject ||
+                v.teacherId===video.teacherId
+            )
+            .slice(0,6);
+
+    suggestions.forEach(v=>{
+
+        feed.appendChild(
+            createLongCard(v)
+        );
+
+    });
+
+}
 
 
-    if (!saved.length) {
+function fullscreenVideo(){
 
-        document.getElementById("libraryContent")
-            .innerHTML = `
+    const player =
+        document.getElementById("mainVideo");
 
-                <div
-                    class="empty"
-                    style="grid-column:1/-1">
+    if(player.requestFullscreen){
 
-                    <div class="empty-icon">
-                        📚
-                    </div>
+        player.requestFullscreen();
 
-                    <h3>
-                        আপনার Library এখনো খালি
-                    </h3>
+    }else if(player.webkitEnterFullscreen){
 
-                    <p>
-                        Content save করলে এখানে দেখা যাবে।
-                    </p>
-
-                </div>
-
-            `;
-
-        return;
+        player.webkitEnterFullscreen();
 
     }
 
-
-    const items =
-        contents.filter(
-            item => saved.includes(item.id)
-        );
+}
 
 
-    document.getElementById("libraryContent")
-        .innerHTML =
-        items.map(createContentCard).join("");
+function zoomVideo(amount){
+
+    videoZoom += amount;
+
+    if(videoZoom < 1){
+        videoZoom=1;
+    }
+
+    if(videoZoom > 2.5){
+        videoZoom=2.5;
+    }
+
+    document.getElementById(
+        "mainVideo"
+    ).style.transform =
+        `scale(${videoZoom})`;
 
 }
 
 
-/* =========================================================
-   EXPLORE
-   ========================================================= */
+function resetVideoZoom(){
 
-function renderExplore(items = contents) {
+    videoZoom=1;
 
-    const teachersHTML =
-        teachers.map(t => `
-
-            <div
-                class="teacher-profile"
-                onclick="openTeacher('${t.id}')">
-
-                <div class="teacher-header">
-
-                    <div class="teacher-big-logo">
-                        ${t.logo}
-                    </div>
-
-                    <div>
-
-                        <h2>
-                            ${escapeHTML(t.name)}
-                        </h2>
-
-                        <p class="card-meta">
-                            ${escapeHTML(t.subject)}
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        `).join("");
-
-
-    const contentHTML =
-        items.map(createContentCard).join("");
-
-
-    document.getElementById("exploreContent")
-        .innerHTML = `
-
-            <h2 style="margin-bottom:15px">
-                শিক্ষক
-            </h2>
-
-            ${teachersHTML}
-
-            <h2 style="margin:20px 0 15px">
-                Content
-            </h2>
-
-            <div class="card-grid">
-                ${contentHTML}
-            </div>
-
-        `;
+    document.getElementById(
+        "mainVideo"
+    ).style.transform =
+        "scale(1)";
 
 }
 
 
-/* =========================================================
+function playerZoomReset(){
+
+    videoZoom=1;
+
+    const player =
+        document.getElementById("mainVideo");
+
+    player.style.transform="scale(1)";
+
+}
+
+
+/* =====================================================
    TEACHER PROFILE
-   ========================================================= */
+===================================================== */
 
-function openTeacher(id) {
+function openTeacher(teacherId){
 
-    currentTeacherId = id;
+    currentTeacher = teacherId;
+
+    const teacherVideos =
+        longVideos.filter(
+            v=>v.teacherId===teacherId
+        );
+
+    if(!teacherVideos.length) return;
 
     const teacher =
-        teachers.find(
-            t => t.id === id
+        teacherVideos[0];
+
+    document.getElementById(
+        "teacherProfileName"
+    ).textContent =
+        teacher.teacher;
+
+    document.getElementById(
+        "teacherProfileSubject"
+    ).textContent =
+        teacher.subject;
+
+    document.getElementById(
+        "teacherBigLogo"
+    ).textContent =
+        teacher.teacherLogo;
+
+    const feed =
+        document.getElementById("teacherFeed");
+
+    feed.innerHTML="";
+
+    teacherVideos.forEach(video=>{
+
+        feed.appendChild(
+            createLongCard(video)
         );
 
-    if (!teacher) return;
+    });
 
-
-    previousPages.push(currentPage);
-
-
-    document.getElementById("teacherPageTitle")
-        .textContent = teacher.name;
-
-
-    document.getElementById("teacherProfileBox")
-        .innerHTML = `
-
-            <div class="teacher-header">
-
-                <div class="teacher-big-logo">
-                    ${teacher.logo}
-                </div>
-
-                <div>
-
-                    <h1>
-                        ${escapeHTML(teacher.name)}
-                    </h1>
-
-                    <p class="card-meta">
-                        ${escapeHTML(teacher.subject)}
-                    </p>
-
-                </div>
-
-            </div>
-
-            <p
-                style="margin-top:18px;color:var(--muted)">
-                ${escapeHTML(teacher.bio)}
-            </p>
-
-        `;
-
-
-    const teacherContents =
-        contents.filter(
-            item =>
-                item.teacherId === teacher.id
-        );
-
-
-    document.getElementById("teacherContent")
-        .innerHTML =
-        teacherContents
-            .map(createContentCard)
-            .join("");
-
-
-    navigate("teacherPage", false);
+    navigate("teacher");
 
 }
 
 
-/* =========================================================
-   CONTENT DETAIL
-   ========================================================= */
+function openCurrentTeacher(){
 
-function openContent(id) {
+    if(currentVideo){
 
-    const item =
-        contents.find(
-            i => i.id === id
+        openTeacher(
+            currentVideo.teacherId
         );
-
-    if (!item) return;
-
-
-    previousPages.push(currentPage);
-
-
-    const teacher =
-        teachers.find(
-            t => t.id === item.teacherId
-        );
-
-
-    document.getElementById("detailBox")
-        .innerHTML = `
-
-            <div class="content-card"
-                 style="cursor:default">
-
-                <div class="thumbnail"
-                     style="height:300px">
-
-                    ${item.icon}
-
-                </div>
-
-                <div class="card-info">
-
-                    <h1 class="card-title">
-                        ${escapeHTML(item.title)}
-                    </h1>
-
-                    <p class="card-meta">
-                        ${escapeHTML(item.subject)}
-                    </p>
-
-                    <div
-                        class="teacher-row"
-                        onclick="openTeacher('${teacher.id}')">
-
-                        <div class="teacher-logo">
-                            ${teacher.logo}
-                        </div>
-
-                        <div class="teacher-name">
-                            ${escapeHTML(teacher.name)}
-                        </div>
-
-                    </div>
-
-                    <button
-                        class="edit-btn"
-                        onclick="saveContent(${item.id})">
-
-                        🔖 Library-তে Save
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        `;
-
-
-    navigate("contentDetail", false);
-
-}
-
-
-/* =========================================================
-   SAVE CONTENT
-   ========================================================= */
-
-function saveContent(id) {
-
-    let saved =
-        JSON.parse(
-            localStorage.getItem("fliktide_saved")
-        ) || [];
-
-
-    if (!saved.includes(id)) {
-
-        saved.push(id);
-
-        localStorage.setItem(
-            "fliktide_saved",
-            JSON.stringify(saved)
-        );
-
-        alert("Content Library-তে Save হয়েছে।");
-
-        renderLibrary();
-
-    } else {
-
-        alert("এই Content আগে থেকেই Library-তে আছে।");
 
     }
 
 }
 
 
-/* =========================================================
-   SEARCH
-   ========================================================= */
+/* =====================================================
+   EXPLORE
+===================================================== */
 
-function searchContent(query) {
+function renderExplore(){
 
-    query =
-        query.toLowerCase().trim();
+    const grid =
+        document.getElementById("categoryGrid");
 
+    const subjects =
+        [...new Set(
+            longVideos.map(v=>v.subject)
+        )];
 
-    if (!query) {
+    grid.innerHTML="";
 
-        renderHome();
+    subjects.forEach(subject=>{
 
-        return;
+        const div =
+            document.createElement("div");
 
-    }
+        div.className="category";
 
+        div.textContent=subject;
 
-    const results =
-        contents.filter(item => {
+        div.onclick=()=>{
 
-            const teacher =
-                teachers.find(
-                    t => t.id === item.teacherId
+            const filtered =
+                longVideos.filter(
+                    v=>v.subject===subject
                 );
 
-            return (
+            renderHome(filtered);
 
-                item.title
-                    .toLowerCase()
-                    .includes(query)
+            navigate("home");
 
-                ||
+        };
 
-                item.subject
-                    .toLowerCase()
-                    .includes(query)
+        grid.appendChild(div);
 
-                ||
+    });
 
-                teacher.name
-                    .toLowerCase()
-                    .includes(query)
+}
 
-            );
 
-        });
+function searchHome(value){
 
+    const query =
+        value.trim().toLowerCase();
+
+    if(!query){
+
+        renderHome(longVideos);
+        return;
+
+    }
+
+    const results =
+        longVideos.filter(video=>
+
+            video.title
+                .toLowerCase()
+                .includes(query)
+
+            ||
+
+            video.subject
+                .toLowerCase()
+                .includes(query)
+
+            ||
+
+            video.teacher
+                .toLowerCase()
+                .includes(query)
+
+        );
 
     renderHome(results);
 
 }
 
 
-function searchExplore(query) {
+function searchExplore(value){
 
-    query =
-        query.toLowerCase().trim();
+    const query =
+        value.trim().toLowerCase();
+
+    const categories =
+        document.querySelectorAll(".category");
+
+    categories.forEach(category=>{
+
+        category.style.display =
+            category.textContent
+                .toLowerCase()
+                .includes(query)
+                ? "block"
+                : "none";
+
+    });
+
+}
 
 
-    if (!query) {
+/* =====================================================
+   PROFILE
+===================================================== */
 
-        renderExplore();
+function loadProfile(){
 
+    document.getElementById(
+        "profileName"
+    ).textContent =
+        profile.name;
+
+    document.getElementById(
+        "profilePhone"
+    ).textContent =
+        profile.phone;
+
+    document.getElementById(
+        "profileRole"
+    ).textContent =
+        profile.role;
+
+    const mini =
+        document.getElementById("miniProfile");
+
+    if(profile.photo){
+
+        mini.innerHTML =
+            `<img src="${profile.photo}">`;
+
+        document.getElementById(
+            "profilePhoto"
+        ).innerHTML =
+            `<img src="${profile.photo}">`;
+
+    }else{
+
+        const letter =
+            profile.name
+                ? profile.name.charAt(0).toUpperCase()
+                : "M";
+
+        mini.textContent=letter;
+
+        document.getElementById(
+            "profilePhoto"
+        ).textContent=letter;
+
+    }
+
+    if(profile.cover){
+
+        const cover =
+            document.getElementById(
+                "coverImage"
+            );
+
+        cover.src=profile.cover;
+        cover.style.display="block";
+
+    }
+
+}
+
+
+function openEditProfile(){
+
+    document.getElementById(
+        "editName"
+    ).value=profile.name;
+
+    document.getElementById(
+        "editPhone"
+    ).value=profile.phone;
+
+    document.getElementById(
+        "editRole"
+    ).value=profile.role;
+
+    document.getElementById(
+        "editModal"
+    ).classList.add("show");
+
+}
+
+
+function closeEditProfile(){
+
+    document.getElementById(
+        "editModal"
+    ).classList.remove("show");
+
+}
+
+
+function saveProfile(){
+
+    const name =
+        document.getElementById(
+            "editName"
+        ).value.trim();
+
+    const phone =
+        document.getElementById(
+            "editPhone"
+        ).value.trim();
+
+    const role =
+        document.getElementById(
+            "editRole"
+        ).value;
+
+    if(!name){
+
+        alert("নাম লিখুন।");
         return;
 
     }
 
+    profile.name=name;
 
-    const results =
-        contents.filter(item => {
+    profile.phone=phone;
 
-            const teacher =
-                teachers.find(
-                    t => t.id === item.teacherId
-                );
-
-            return (
-
-                item.title
-                    .toLowerCase()
-                    .includes(query)
-
-                ||
-
-                item.subject
-                    .toLowerCase()
-                    .includes(query)
-
-                ||
-
-                teacher.name
-                    .toLowerCase()
-                    .includes(query)
-
-            );
-
-        });
+    profile.role=role;
 
 
-    renderExplore(results);
+    const photoInput =
+        document.getElementById(
+            "profileImageInput"
+        );
 
-}
-
-
-/* =========================================================
-   DARK MODE
-   ========================================================= */
-
-function toggleTheme() {
-
-    document.body.classList.toggle("dark");
-
-
-    const dark =
-        document.body.classList.contains("dark");
-
-
-    localStorage.setItem(
-        "fliktide_theme",
-        dark ? "dark" : "light"
-    );
-
-
-    document.getElementById("themeBtn")
-        .textContent =
-        dark ? "☀️" : "🌙";
-
-}
-
-
-function loadTheme() {
-
-    const theme =
-        localStorage.getItem(
-            "fliktide_theme"
+    const coverInput =
+        document.getElementById(
+            "coverImageInput"
         );
 
 
-    if (theme === "dark") {
+    const saveAfterImages=()=>{
 
-        document.body.classList.add("dark");
+        localStorage.setItem(
+            "flicktide_profile",
+            JSON.stringify(profile)
+        );
 
-        document.getElementById("themeBtn")
-            .textContent = "☀️";
+        loadProfile();
+
+        closeEditProfile();
+
+    };
+
+
+    if(photoInput.files.length){
+
+        const reader =
+            new FileReader();
+
+        reader.onload=e=>{
+
+            profile.photo=e.target.result;
+
+            saveAfterImages();
+
+        };
+
+        reader.readAsDataURL(
+            photoInput.files[0]
+        );
+
+    }else if(coverInput.files.length){
+
+        const reader =
+            new FileReader();
+
+        reader.onload=e=>{
+
+            profile.cover=e.target.result;
+
+            saveAfterImages();
+
+        };
+
+        reader.readAsDataURL(
+            coverInput.files[0]
+        );
+
+    }else{
+
+        saveAfterImages();
+
+    }
+
+
+    /*
+       Cover image থাকলেও profile photo থাকলে
+       দুইটি file একসাথে save করার জন্য
+       পরের foundation update-এ async version
+       ব্যবহার করা যাবে।
+    */
+
+}
+
+
+/* =====================================================
+   THEME
+===================================================== */
+
+function toggleTheme(){
+
+    document.body.classList.toggle("light");
+
+    localStorage.setItem(
+        "flicktide_theme",
+        document.body.classList.contains("light")
+            ? "light"
+            : "dark"
+    );
+
+}
+
+
+if(
+    localStorage.getItem("flicktide_theme")
+    ==="light"
+){
+
+    document.body.classList.add("light");
+
+}
+
+
+/* =====================================================
+   NOTIFICATION
+===================================================== */
+
+function showNotifications(){
+
+    alert(
+        "এখনো কোনো নতুন notification নেই।"
+    );
+
+}
+
+
+/* =====================================================
+   WATCH TIME
+===================================================== */
+
+let watchSeconds =
+    Number(
+        localStorage.getItem(
+            "flicktide_watch_seconds"
+        )
+    ) || 0;
+
+
+function startWatchTimer(){
+
+    setInterval(()=>{
+
+        /*
+           এখানে site open থাকা সময় গণনা হচ্ছে।
+           পরে video-playing time-এর সঙ্গে
+           এটিকে connect করা যাবে।
+        */
+
+        watchSeconds++;
+
+        localStorage.setItem(
+            "flicktide_watch_seconds",
+            watchSeconds
+        );
+
+        updateWatchTime();
+
+    },1000);
+
+}
+
+
+function updateWatchTime(){
+
+    const hours =
+        Math.floor(
+            watchSeconds/3600
+        );
+
+    const minutes =
+        Math.floor(
+            (watchSeconds%3600)/60
+        );
+
+    const seconds =
+        watchSeconds%60;
+
+    const element =
+        document.getElementById(
+            "watchHours"
+        );
+
+    if(element){
+
+        element.textContent =
+            `${hours}h ${minutes}m ${seconds}s`;
 
     }
 
 }
 
 
-/* =========================================================
-   TODAY WATCH TIME
-   ========================================================= */
+/* =====================================================
+   MOBILE BACK / INITIAL HISTORY
+===================================================== */
 
-function getTodayKey() {
+if(!location.hash){
 
-    const date =
-        new Date();
-
-    return (
-        "fliktide_watch_" +
-        date.getFullYear() +
-        "_" +
-        (date.getMonth() + 1) +
-        "_" +
-        date.getDate()
+    history.replaceState(
+        {page:"home"},
+        "",
+        "#home"
     );
 
 }
 
-
-function updateWatchTime() {
-
-    const key =
-        getTodayKey();
+pageHistory=["home"];
 
 
-    let seconds =
-        Number(
-            localStorage.getItem(key)
-        ) || 0;
+/* =====================================================
+   CLOSE MODAL BY OUTSIDE CLICK
+===================================================== */
 
+document
+    .getElementById("editModal")
+    .addEventListener(
+        "click",
+        function(e){
 
-    seconds++;
+            if(e.target===this){
 
+                closeEditProfile();
 
-    localStorage.setItem(
-        key,
-        seconds
+            }
+
+        }
     );
 
 
-    const hours =
-        Math.floor(seconds / 3600);
+/* =====================================================
+   KEYBOARD / ESC
+===================================================== */
 
-    const minutes =
-        Math.floor(
-            (seconds % 3600) / 60
-        );
+document.addEventListener(
+    "keydown",
+    e=>{
 
-    const secs =
-        seconds % 60;
+        if(e.key==="Escape"){
 
+            closeEditProfile();
 
-    const formatted =
-        String(hours).padStart(2,"0") +
-        ":" +
-        String(minutes).padStart(2,"0") +
-        ":" +
-        String(secs).padStart(2,"0");
-
-
-    document.getElementById("watchTime")
-        .textContent = formatted;
-
-}
-
-
-/* =========================================================
-   NOTIFICATIONS
-   ========================================================= */
-
-function showNotifications() {
-
-    alert(
-        "🔔 বর্তমানে নতুন কোনো Notification নেই।"
-    );
-
-}
-
-
-/* =========================================================
-   SECURITY HELPER
-   ========================================================= */
-
-function escapeHTML(value) {
-
-    return String(value)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-
-}
-
-
-/* =========================================================
-   INITIALIZE
-   ========================================================= */
-
-function initializeApp() {
-
-    renderProfile();
-
-    renderHome();
-
-    renderShorts();
-
-    renderLibrary();
-
-    renderExplore();
-
-    loadTheme();
-
-}
-
-
-/* =========================================================
-   START
-   ========================================================= */
-
-initializeApp();
-
-
-/*
-   প্রতি ১ সেকেন্ডে আজকের ব্যবহার সময় update হবে।
-   Browser/app বন্ধ করলে localStorage-এ শেষ সময় থাকবে।
-*/
-
-setInterval(
-    updateWatchTime,
-    1000
-);
-
-
-/* =========================================================
-   HISTORY STATE
-   ========================================================= */
-
-/*
-   Android/mobile browser Back button-এর জন্য
-   history state রাখা হচ্ছে।
-*/
-
-window.addEventListener(
-    "beforeunload",
-    function() {
-
-        localStorage.setItem(
-            "fliktide_last_page",
-            currentPage
-        );
+        }
 
     }
 );
