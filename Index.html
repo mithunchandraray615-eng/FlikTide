@@ -1,277 +1,85 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlikTide</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: #0f0f0f;
-            color: #fff;
-        }
-
-        .header {
-            height: 64px;
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-            gap: 16px;
-            border-bottom: 1px solid #272727;
-            position: sticky;
-            top: 0;
-            background: #0f0f0f;
-            z-index: 10;
-        }
-
-        .menu {
-            font-size: 24px;
-            background: none;
-            border: 0;
-            color: white;
-            cursor: pointer;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: white;
-            text-decoration: none;
-            font-size: 22px;
-            font-weight: bold;
-            white-space: nowrap;
-        }
-
-        .logo-icon {
-            width: 34px;
-            height: 24px;
-            background: #ff0033;
-            border-radius: 7px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo-icon::after {
-            content: "";
-            border-top: 7px solid transparent;
-            border-bottom: 7px solid transparent;
-            border-left: 11px solid white;
-        }
-
-        .search {
-            flex: 1;
-            max-width: 600px;
-            margin: auto;
-            display: flex;
-        }
-
-        .search input {
-            flex: 1;
-            height: 42px;
-            padding: 0 16px;
-            border: 1px solid #303030;
-            border-right: 0;
-            border-radius: 22px 0 0 22px;
-            background: #121212;
-            color: white;
-            outline: none;
-            font-size: 16px;
-        }
-
-        .search button {
-            width: 60px;
-            border: 1px solid #303030;
-            border-radius: 0 22px 22px 0;
-            background: #222;
-            color: white;
-            cursor: pointer;
-            font-size: 18px;
-        }
-
-        .login {
-            text-decoration: none;
-            color: #3ea6ff;
-            border: 1px solid #3ea6ff;
-            border-radius: 20px;
-            padding: 10px 18px;
-            font-weight: bold;
-            white-space: nowrap;
-        }
-
-        .main {
-            display: flex;
-            min-height: calc(100vh - 64px);
-        }
-
-        .sidebar {
-            width: 210px;
-            padding: 18px 12px;
-            border-right: 1px solid #272727;
-        }
-
-        .side-link {
-            display: block;
-            padding: 13px 16px;
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
-            margin-bottom: 4px;
-        }
-
-        .side-link:hover {
-            background: #272727;
-        }
-
-        .content {
-            flex: 1;
-            text-align: center;
-            padding: 80px 20px;
-        }
-
-        .hero-logo {
-            width: 80px;
-            height: 56px;
-            margin: 0 auto 25px;
-            background: #ff0033;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-logo::after {
-            content: "";
-            border-top: 13px solid transparent;
-            border-bottom: 13px solid transparent;
-            border-left: 21px solid white;
-        }
-
-        h1 {
-            font-size: 34px;
-            margin-bottom: 14px;
-        }
-
-        p {
-            color: #aaa;
-            font-size: 16px;
-            margin-bottom: 28px;
-        }
-
-        .big-login {
-            display: inline-block;
-            text-decoration: none;
-            background: white;
-            color: #111;
-            padding: 14px 35px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 17px;
-        }
-
-        .big-login:hover {
-            background: #ddd;
-        }
-
-        @media (max-width: 700px) {
-            .header {
-                padding: 0 10px;
-                gap: 8px;
-            }
-
-            .menu,
-            .sidebar {
-                display: none;
-            }
-
-            .logo {
-                font-size: 18px;
-            }
-
-            .logo-icon {
-                width: 29px;
-                height: 21px;
-            }
-
-            .search {
-                margin-left: 4px;
-            }
-
-            .search input {
-                min-width: 0;
-                font-size: 14px;
-            }
-
-            .search button {
-                width: 48px;
-            }
-
-            .login {
-                padding: 9px 12px;
-                font-size: 13px;
-            }
-
-            .content {
-                padding-top: 90px;
-            }
-
-            h1 {
-                font-size: 27px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flik Tide - Free Learning & Video Platform</title>
+  
+  <!-- Base & Layout CSS -->
+  <link rel="stylesheet" href="assets/css/base/reset.css">
+  <link rel="stylesheet" href="assets/css/base/variables.css">
+  <link rel="stylesheet" href="assets/css/base/layout.css">
+  <link rel="stylesheet" href="assets/css/themes/dark.css">
+  
+  <!-- Component & Page CSS -->
+  <link rel="stylesheet" href="assets/css/components/header.css">
+  <link rel="stylesheet" href="assets/css/components/sidebar.css">
+  <link rel="stylesheet" href="assets/css/components/video-card.css">
+  <link rel="stylesheet" href="assets/css/pages/home.css">
 </head>
+<body class="dark-theme">
 
-<body>
+  <!-- Header Navigation -->
+  <header class="main-header">
+    <div class="logo-container">
+      <img src="public/icons/logo.svg" alt="Flik Tide Logo" class="app-logo">
+      <span class="brand-name">Flik Tide</span>
+    </div>
+    
+    <div class="search-bar-wrapper">
+      <input type="text" id="searchInput" placeholder="ভিডিও খুঁজুন...">
+      <button id="searchBtn">
+        <img src="public/icons/search.svg" alt="Search">
+      </button>
+    </div>
 
-    <header class="header">
-        <button class="menu" type="button">☰</button>
+    <div class="user-actions">
+      <!-- Admin Upload Button (Hidden for general users) -->
+      <a href="watch.html" class="nav-link">সব ভিডিও</a>
+    </div>
+  </header>
 
-        <a href="Index.html" class="logo">
-            <span class="logo-icon"></span>
-            FlikTide
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item active">
+          <img src="public/icons/home.svg" alt="Home">
+          <span>হোম</span>
         </a>
+        <a href="shorts.html" class="nav-item">
+          <img src="public/icons/shorts.svg" alt="Shorts">
+          <span>শর্টস</span>
+        </a>
+        <a href="explore.html" class="nav-item">
+          <img src="public/icons/library.svg" alt="Explore">
+          <span>এক্সপ্লোর</span>
+        </a>
+      </nav>
+    </aside>
 
-        <div class="search">
-            <input type="text" placeholder="Search">
-            <button type="button">🔍</button>
-        </div>
+    <!-- Main Video Feed -->
+    <main class="main-content">
+      <!-- Category Filter Row -->
+      <div class="category-bar">
+        <button class="chip active">সব</button>
+        <button class="chip">টিউটোরিয়াল</button>
+        <button class="chip">কোর্স</button>
+        <button class="chip">শর্টস</button>
+      </div>
 
-        <a href="../Login/Signup.html" class="login">Login</a>
-    </header>
-
-    <main class="main">
-
-        <aside class="sidebar">
-            <a href="#" class="side-link">⌂ &nbsp; Home</a>
-            <a href="#" class="side-link">▶ &nbsp; Videos</a>
-            <a href="#" class="side-link">★ &nbsp; Trending</a>
-        </aside>
-
-        <section class="content">
-            <div class="hero-logo"></div>
-
-            <h1>Welcome to FlikTide</h1>
-
-            <p>
-                Sign in to your FlikTide account
-                and enjoy your video experience.
-            </p>
-
-            <a href="../Login/Signup.html" class="big-login">
-                Login
-            </a>
-        </section>
-
+      <!-- Video Grid Container -->
+      <div class="video-grid" id="videoGrid">
+        <!-- JavaScript এর মাধ্যমে এখানে ভিডিও লোড হবে -->
+      </div>
     </main>
+  </div>
 
+  <!-- Core & Feature Scripts -->
+  <script src="assets/js/core/config.js"></script>
+  <script src="assets/js/api/http.js"></script>
+  <script src="assets/js/api/video-api.js"></script>
+  <script src="assets/js/features/home/home-feed.js"></script>
+  <script src="assets/js/features/home/home-init.js"></script>
 </body>
 </html>
