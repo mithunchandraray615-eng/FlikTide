@@ -1,0 +1,1407 @@
+/* =========================================================
+   FlikTide Input System
+   File: assets/css/components/input.css
+
+   YouTube-inspired input / form controls
+   Designed for Student + Teacher interfaces
+   ========================================================= */
+
+
+/* =========================================================
+   Input Variables
+   ========================================================= */
+
+:root {
+    --input-height: 40px;
+    --input-radius: 20px;
+
+    --input-border: #c6c6c6;
+    --input-border-focus: #065fd4;
+
+    --input-bg: #ffffff;
+    --input-text: #0f0f0f;
+    --input-placeholder: #606060;
+
+    --input-button-bg: #f2f2f2;
+    --input-button-hover: #e5e5e5;
+
+    --input-error: #d93025;
+    --input-success: #188038;
+
+    --input-transition: 0.16s ease;
+}
+
+
+/* =========================================================
+   Base Input
+   ========================================================= */
+
+.input {
+    width: 100%;
+    height: var(--input-height);
+
+    padding: 0 14px;
+
+    border: 1px solid var(--input-border);
+    border-radius: var(--input-radius);
+
+    outline: none;
+
+    background: var(--input-bg);
+    color: var(--input-text);
+
+    font-family:
+        "Noto Sans Bengali",
+        Arial,
+        sans-serif;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    line-height: 1.4;
+
+    transition:
+        border-color var(--input-transition),
+        box-shadow var(--input-transition),
+        background-color var(--input-transition);
+}
+
+
+/* =========================================================
+   Placeholder
+   ========================================================= */
+
+.input::placeholder {
+    color: var(--input-placeholder);
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   Focus
+   ========================================================= */
+
+.input:focus {
+    border-color: var(--input-border-focus);
+
+    box-shadow:
+        inset 1px 0 0 var(--input-border-focus),
+        inset -1px 0 0 var(--input-border-focus),
+        inset 0 1px 0 var(--input-border-focus),
+        inset 0 -1px 0 var(--input-border-focus);
+}
+
+
+.input:focus::placeholder {
+    opacity: 0.75;
+}
+
+
+/* =========================================================
+   Search Input
+   ========================================================= */
+
+.input--search {
+    height: 40px;
+
+    padding:
+        0
+        16px;
+
+    border-radius: 20px;
+
+    background: #ffffff;
+}
+
+
+/* Search Group */
+
+.search-input {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+}
+
+
+/* Search Field */
+
+.search-input .input {
+    padding-right: 48px;
+}
+
+
+/* Search Button */
+
+.search-input__button {
+    position: absolute;
+
+    top: 50%;
+    right: 3px;
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform: translateY(-50%);
+
+    border: 0;
+    border-radius: 50%;
+
+    background: transparent;
+    color: #606060;
+
+    cursor: pointer;
+
+    transition:
+        background-color var(--input-transition),
+        color var(--input-transition);
+}
+
+
+.search-input__button:hover {
+    background: #f2f2f2;
+    color: #0f0f0f;
+}
+
+
+.search-input__button:active {
+    transform:
+        translateY(-50%)
+        scale(0.94);
+}
+
+
+/* =========================================================
+   Search Box With Separate Button
+   ========================================================= */
+
+.search-box {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+}
+
+
+.search-box .input {
+    flex: 1;
+
+    min-width: 0;
+
+    border-radius:
+        20px
+        0
+        0
+        20px;
+}
+
+
+.search-box__button {
+    flex: 0 0 64px;
+
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--input-border);
+
+    border-left: 0;
+
+    border-radius:
+        0
+        20px
+        20px
+        0;
+
+    background: var(--input-button-bg);
+    color: #0f0f0f;
+
+    cursor: pointer;
+
+    transition:
+        background-color var(--input-transition);
+}
+
+
+.search-box__button:hover {
+    background: var(--input-button-hover);
+}
+
+
+/* =========================================================
+   Textarea
+   ========================================================= */
+
+.textarea {
+    width: 100%;
+
+    min-height: 100px;
+
+    padding: 12px 14px;
+
+    resize: vertical;
+
+    border: 1px solid var(--input-border);
+
+    border-radius: 8px;
+
+    outline: none;
+
+    background: var(--input-bg);
+    color: var(--input-text);
+
+    font-family:
+        "Noto Sans Bengali",
+        Arial,
+        sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    transition:
+        border-color var(--input-transition),
+        box-shadow var(--input-transition);
+}
+
+
+.textarea::placeholder {
+    color: var(--input-placeholder);
+}
+
+
+.textarea:focus {
+    border-color: var(--input-border-focus);
+
+    box-shadow:
+        0 0 0 1px
+        var(--input-border-focus);
+}
+
+
+/* =========================================================
+   Form Group
+   ========================================================= */
+
+.input-group {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.input-group + .input-group {
+    margin-top: 16px;
+}
+
+
+/* =========================================================
+   Label
+   ========================================================= */
+
+.input-label {
+    display: flex;
+    align-items: center;
+
+    gap: 4px;
+
+    color: #0f0f0f;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    line-height: 1.4;
+}
+
+
+.input-label__required {
+    color: var(--input-error);
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   Helper Text
+   ========================================================= */
+
+.input-helper {
+    color: #606060;
+
+    font-size: 11px;
+
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   Error Message
+   ========================================================= */
+
+.input-error {
+    display: none;
+
+    color: var(--input-error);
+
+    font-size: 11px;
+    font-weight: 500;
+
+    line-height: 1.45;
+}
+
+
+.input-group.is-error .input-error {
+    display: block;
+}
+
+
+/* =========================================================
+   Error State
+   ========================================================= */
+
+.input.is-error,
+.input-group.is-error .input,
+.textarea.is-error,
+.input-group.is-error .textarea {
+    border-color: var(--input-error);
+
+    box-shadow:
+        0 0 0 1px
+        var(--input-error);
+}
+
+
+.input.is-error:focus,
+.input-group.is-error .input:focus {
+    border-color: var(--input-error);
+}
+
+
+/* =========================================================
+   Success State
+   ========================================================= */
+
+.input.is-success,
+.input-group.is-success .input,
+.textarea.is-success,
+.input-group.is-success .textarea {
+    border-color: var(--input-success);
+
+    box-shadow:
+        0 0 0 1px
+        var(--input-success);
+}
+
+
+/* =========================================================
+   Disabled
+   ========================================================= */
+
+.input:disabled,
+.textarea:disabled,
+.input--disabled {
+    background: #f2f2f2;
+
+    color: #909090;
+
+    border-color: #dddddd;
+
+    cursor: not-allowed;
+
+    opacity: 0.7;
+}
+
+
+/* =========================================================
+   Readonly
+   ========================================================= */
+
+.input:read-only,
+.textarea:read-only {
+    background: #f8f8f8;
+
+    cursor: default;
+}
+
+
+/* =========================================================
+   Password Input
+   ========================================================= */
+
+.password-input {
+    position: relative;
+
+    width: 100%;
+}
+
+
+.password-input .input {
+    padding-right: 48px;
+}
+
+
+.password-input__toggle {
+    position: absolute;
+
+    top: 50%;
+    right: 4px;
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform: translateY(-50%);
+
+    border: 0;
+    border-radius: 50%;
+
+    background: transparent;
+    color: #606060;
+
+    cursor: pointer;
+}
+
+
+.password-input__toggle:hover {
+    background: #f2f2f2;
+}
+
+
+/* =========================================================
+   Mobile Number Input
+   ========================================================= */
+
+.phone-input {
+    display: flex;
+
+    width: 100%;
+
+    gap: 8px;
+}
+
+
+.phone-input__country {
+    flex: 0 0 82px;
+
+    height: var(--input-height);
+
+    padding: 0 10px;
+
+    border: 1px solid var(--input-border);
+
+    border-radius: 8px;
+
+    background: var(--input-bg);
+    color: var(--input-text);
+
+    outline: none;
+
+    font-size: 13px;
+}
+
+
+.phone-input .input {
+    flex: 1;
+
+    min-width: 0;
+
+    border-radius: 8px;
+}
+
+
+/* =========================================================
+   OTP Input
+   ========================================================= */
+
+.otp-input {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+}
+
+
+.otp-input__item {
+    width: 42px;
+    height: 48px;
+
+    padding: 0;
+
+    border: 1px solid var(--input-border);
+
+    border-radius: 7px;
+
+    outline: none;
+
+    background: var(--input-bg);
+    color: var(--input-text);
+
+    text-align: center;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    transition:
+        border-color var(--input-transition),
+        box-shadow var(--input-transition);
+}
+
+
+.otp-input__item:focus {
+    border-color: var(--input-border-focus);
+
+    box-shadow:
+        0 0 0 1px
+        var(--input-border-focus);
+}
+
+
+/* =========================================================
+   Select
+   ========================================================= */
+
+.select {
+    width: 100%;
+
+    height: var(--input-height);
+
+    padding:
+        0
+        38px
+        0
+        12px;
+
+    border: 1px solid var(--input-border);
+
+    border-radius: 8px;
+
+    outline: none;
+
+    background-color: var(--input-bg);
+
+    color: var(--input-text);
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    appearance: none;
+
+    background-image:
+        linear-gradient(
+            45deg,
+            transparent 50%,
+            #606060 50%
+        ),
+        linear-gradient(
+            135deg,
+            #606060 50%,
+            transparent 50%
+        );
+
+    background-position:
+        calc(100% - 17px) 17px,
+        calc(100% - 11px) 17px;
+
+    background-size:
+        6px 6px,
+        6px 6px;
+
+    background-repeat: no-repeat;
+}
+
+
+.select:focus {
+    border-color: var(--input-border-focus);
+
+    box-shadow:
+        0 0 0 1px
+        var(--input-border-focus);
+}
+
+
+/* =========================================================
+   Checkbox
+   ========================================================= */
+
+.checkbox {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    min-height: 36px;
+
+    cursor: pointer;
+
+    color: #0f0f0f;
+
+    font-size: 13px;
+}
+
+
+.checkbox input {
+    width: 18px;
+    height: 18px;
+
+    margin: 0;
+
+    accent-color: #065fd4;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   Radio
+   ========================================================= */
+
+.radio {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    min-height: 36px;
+
+    color: #0f0f0f;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+
+.radio input {
+    width: 18px;
+    height: 18px;
+
+    margin: 0;
+
+    accent-color: #065fd4;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   Switch
+   ========================================================= */
+
+.switch {
+    position: relative;
+
+    display: inline-flex;
+
+    width: 40px;
+    height: 24px;
+}
+
+
+.switch input {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    opacity: 0;
+}
+
+
+.switch__track {
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 999px;
+
+    background: #909090;
+
+    cursor: pointer;
+
+    transition:
+        background-color var(--input-transition);
+}
+
+
+.switch__track::after {
+    content: "";
+
+    position: absolute;
+
+    top: 3px;
+    left: 3px;
+
+    width: 18px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 1px 3px
+        rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform var(--input-transition);
+}
+
+
+.switch input:checked
++ .switch__track {
+    background: #065fd4;
+}
+
+
+.switch input:checked
++ .switch__track::after {
+    transform:
+        translateX(16px);
+}
+
+
+/* =========================================================
+   File Upload
+   ========================================================= */
+
+.file-input {
+    position: relative;
+
+    width: 100%;
+}
+
+
+.file-input input[type="file"] {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    opacity: 0;
+}
+
+
+.file-input__label {
+    width: 100%;
+
+    min-height: 90px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    padding: 18px;
+
+    border:
+        1px dashed
+        #aaaaaa;
+
+    border-radius: 8px;
+
+    background: #fafafa;
+
+    color: #606060;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    transition:
+        background-color var(--input-transition),
+        border-color var(--input-transition);
+}
+
+
+.file-input__label:hover {
+    background: #f2f2f2;
+
+    border-color: #606060;
+}
+
+
+/* =========================================================
+   Upload Title / Description
+   ========================================================= */
+
+.upload-input {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+.upload-input__title {
+    width: 100%;
+
+    min-height: 44px;
+
+    padding: 10px 12px;
+
+    border: 1px solid var(--input-border);
+
+    border-radius: 7px;
+
+    outline: none;
+
+    font-size: 15px;
+}
+
+
+.upload-input__description {
+    width: 100%;
+
+    min-height: 120px;
+
+    padding: 12px;
+
+    resize: vertical;
+
+    border: 1px solid var(--input-border);
+
+    border-radius: 7px;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+.upload-input__title:focus,
+.upload-input__description:focus {
+    border-color:
+        var(--input-border-focus);
+
+    box-shadow:
+        0 0 0 1px
+        var(--input-border-focus);
+}
+
+
+/* =========================================================
+   Character Counter
+   ========================================================= */
+
+.input-counter {
+    display: flex;
+
+    justify-content: flex-end;
+
+    margin-top: -3px;
+
+    color: #606060;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   Input With Icon
+   ========================================================= */
+
+.input-with-icon {
+    position: relative;
+
+    width: 100%;
+}
+
+
+.input-with-icon .input {
+    padding-left: 42px;
+}
+
+
+.input-with-icon__icon {
+    position: absolute;
+
+    top: 50%;
+    left: 13px;
+
+    width: 18px;
+    height: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform:
+        translateY(-50%);
+
+    color: #606060;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   Input With Action
+   ========================================================= */
+
+.input-with-action {
+    position: relative;
+
+    width: 100%;
+}
+
+
+.input-with-action .input {
+    padding-right: 80px;
+}
+
+
+.input-with-action__action {
+    position: absolute;
+
+    top: 50%;
+    right: 5px;
+
+    min-width: 60px;
+    height: 32px;
+
+    transform:
+        translateY(-50%);
+
+    border: 0;
+
+    border-radius: 16px;
+
+    background: transparent;
+
+    color: #065fd4;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.input-with-action__action:hover {
+    background: #f2f2f2;
+}
+
+
+/* =========================================================
+   Login / Signup Form
+   ========================================================= */
+
+.auth-form {
+    width: 100%;
+
+    max-width: 420px;
+
+    margin: 0 auto;
+}
+
+
+.auth-form__group {
+    margin-bottom: 16px;
+}
+
+
+.auth-form .input {
+    height: 44px;
+
+    border-radius: 6px;
+}
+
+
+.auth-form__submit {
+    width: 100%;
+
+    height: 44px;
+
+    margin-top: 8px;
+
+    border: 0;
+
+    border-radius: 22px;
+
+    background: #0f0f0f;
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background-color var(--input-transition),
+        transform var(--input-transition);
+}
+
+
+.auth-form__submit:hover {
+    background: #272727;
+}
+
+
+.auth-form__submit:active {
+    transform:
+        scale(0.98);
+}
+
+
+/* =========================================================
+   Teacher Form
+   ========================================================= */
+
+.teacher-form {
+    width: 100%;
+}
+
+
+.teacher-form .input,
+.teacher-form .textarea,
+.teacher-form .select {
+    border-radius: 7px;
+}
+
+
+.teacher-form__section {
+    margin-bottom: 24px;
+}
+
+
+.teacher-form__section-title {
+    margin-bottom: 12px;
+
+    color: #0f0f0f;
+
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   Student Search / Learning Input
+   ========================================================= */
+
+.learning-search {
+    position: relative;
+
+    width: 100%;
+}
+
+
+.learning-search .input {
+    height: 44px;
+
+    padding-right: 48px;
+
+    border-radius: 22px;
+}
+
+
+.learning-search__button {
+    position: absolute;
+
+    top: 50%;
+    right: 5px;
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform:
+        translateY(-50%);
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   Focus Accessibility
+   ========================================================= */
+
+.input:focus-visible,
+.textarea:focus-visible,
+.select:focus-visible,
+.otp-input__item:focus-visible,
+.phone-input__country:focus-visible {
+
+    outline:
+        2px solid
+        #065fd4;
+
+    outline-offset: 1px;
+}
+
+
+/* =========================================================
+   Dark Mode
+   ========================================================= */
+
+[data-theme="dark"] {
+
+    --input-border: #3f3f3f;
+
+    --input-bg: #121212;
+
+    --input-text: #ffffff;
+
+    --input-placeholder: #aaaaaa;
+
+    --input-button-bg: #272727;
+
+    --input-button-hover: #3f3f3f;
+}
+
+
+[data-theme="dark"] .input,
+[data-theme="dark"] .textarea,
+[data-theme="dark"] .select,
+[data-theme="dark"] .phone-input__country {
+
+    background: var(--input-bg);
+
+    color: var(--input-text);
+}
+
+
+[data-theme="dark"] .input:disabled,
+[data-theme="dark"] .textarea:disabled {
+
+    background: #272727;
+}
+
+
+[data-theme="dark"] .input-label,
+[data-theme="dark"] .teacher-form__section-title,
+[data-theme="dark"] .checkbox,
+[data-theme="dark"] .radio {
+
+    color: #ffffff;
+}
+
+
+[data-theme="dark"] .input-helper,
+[data-theme="dark"] .input-counter {
+
+    color: #aaaaaa;
+}
+
+
+[data-theme="dark"] .file-input__label {
+
+    background: #181818;
+
+    border-color: #555555;
+
+    color: #aaaaaa;
+}
+
+
+[data-theme="dark"] .file-input__label:hover {
+
+    background: #272727;
+
+    border-color: #777777;
+}
+
+
+[data-theme="dark"] .search-input__button:hover,
+[data-theme="dark"] .password-input__toggle:hover,
+[data-theme="dark"] .input-with-action__action:hover {
+
+    background: #272727;
+}
+
+
+[data-theme="dark"] .auth-form__submit {
+
+    background: #ffffff;
+
+    color: #0f0f0f;
+}
+
+
+[data-theme="dark"] .auth-form__submit:hover {
+
+    background: #e5e5e5;
+}
+
+
+/* =========================================================
+   Tablet
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .input {
+        height: 42px;
+
+        font-size: 14px;
+    }
+
+
+    .textarea {
+        min-height: 100px;
+    }
+
+
+    .search-box__button {
+        flex-basis: 54px;
+    }
+
+
+    .otp-input {
+        gap: 6px;
+    }
+
+
+    .otp-input__item {
+        width: 40px;
+        height: 46px;
+    }
+}
+
+
+/* =========================================================
+   Mobile
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .input {
+        height: 42px;
+
+        padding:
+            0
+            12px;
+
+        font-size: 14px;
+    }
+
+
+    .textarea {
+        min-height: 96px;
+
+        padding: 10px 12px;
+    }
+
+
+    .phone-input {
+        gap: 6px;
+    }
+
+
+    .phone-input__country {
+        flex-basis: 76px;
+    }
+
+
+    .otp-input {
+        gap: 5px;
+    }
+
+
+    .otp-input__item {
+        width: 38px;
+        height: 44px;
+
+        font-size: 18px;
+    }
+
+
+    .auth-form {
+        max-width: none;
+    }
+
+
+    .auth-form .input {
+        height: 44px;
+    }
+
+
+    .file-input__label {
+        min-height: 110px;
+    }
+}
+
+
+/* =========================================================
+   Very Small Screens
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .otp-input {
+        gap: 4px;
+    }
+
+
+    .otp-input__item {
+        width: 34px;
+        height: 42px;
+    }
+
+
+    .phone-input__country {
+        flex-basis: 70px;
+    }
+}
+
+
+/* =========================================================
+   Reduced Motion
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .input,
+    .textarea,
+    .select,
+    .search-input__button,
+    .password-input__toggle,
+    .auth-form__submit,
+    .file-input__label {
+
+        transition: none;
+    }
+}
