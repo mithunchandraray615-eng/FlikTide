@@ -1,1552 +1,566 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <!-- =====================================================
-         BASIC META
-    ====================================================== -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta
-        name="description"
-        content="FlikTide - Learn, Flow, Grow. একটি শিক্ষা-কেন্দ্রিক ভিডিও প্ল্যাটফর্ম।"
-    >
-
-    <meta
-        name="theme-color"
-        content="#0f0f0f"
-    >
-
-    <title>FlikTide — Learn. Flow. Grow.</title>
-
-
-    <!-- =====================================================
-         MAIN CSS
-    ====================================================== -->
-
-    <!-- মূল Global Style -->
-    <link rel="stylesheet" href="styles.css">
-
-    <!-- Input / Search / Form -->
-    <link rel="stylesheet" href="input.css">
-
-    <!-- Library -->
-    <link rel="stylesheet" href="library.css">
-
-    <!-- Login / Signup -->
-    <link rel="stylesheet" href="login.css">
 
     <!-- Mobile Responsive -->
-    <link rel="stylesheet" href="mobile.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Notification -->
-    <link rel="stylesheet" href="notification.css">
+    <!-- Website Title -->
+    <title>My Website</title>
 
-    <!-- Shorts -->
-    <link rel="stylesheet" href="shorts.css">
+    <!-- Description -->
+    <meta name="description" content="My simple responsive website">
 
-    <!-- Loading Skeleton -->
-    <link rel="stylesheet" href="skeleton.css">
+    <!-- Basic CSS -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <!-- Student -->
-    <link rel="stylesheet" href="student.css">
+        html {
+            scroll-behavior: smooth;
+        }
 
-    <!-- Tabs -->
-    <link rel="stylesheet" href="tabs.css">
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #222;
+            line-height: 1.6;
+        }
 
-    <!-- Teacher -->
-    <link rel="stylesheet" href="teacher.css">
+        /* Header */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-    <!-- Toast -->
-    <link rel="stylesheet" href="toast.css">
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            padding: 15px 20px;
 
-    <!-- Video Card -->
-    <link rel="stylesheet" href="video-card.css">
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+            text-decoration: none;
+        }
 
-    <!-- =====================================================
-         OPTIONAL FONT
-    ====================================================== -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+        .nav-links a {
+            text-decoration: none;
+            color: #222;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 80vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+            padding: 40px 20px;
+
+            background: linear-gradient(
+                135deg,
+                #eff6ff,
+                #ffffff
+            );
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+
+            background: #2563eb;
+            color: white;
+
+            text-decoration: none;
+            border-radius: 8px;
+
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* Common Section */
+        section {
+            padding: 70px 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #666;
+        }
+
+        /* About */
+        .about {
+            background: #ffffff;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
+
+        /* Services */
+        .services {
+            background: #f5f5f5;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .service-card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .service-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: #666;
+        }
+
+        /* Contact */
+        .contact {
+            background: #ffffff;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+
+            border: 1px solid #ccc;
+            border-radius: 7px;
+
+            font-size: 16px;
+            outline: none;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #2563eb;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+        }
+
+        footer p {
+            color: #d1d5db;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 50px 15px;
+            }
+        }
+    </style>
 </head>
-
 
 <body>
 
-    <!-- =====================================================
-         APP ROOT
-    ====================================================== -->
+    <!-- =========================
+         HEADER
+    ========================== -->
+    <header>
 
-    <div id="app">
+        <nav class="navbar">
 
-        <!-- =================================================
-             HEADER
-        ================================================== -->
+            <!-- Logo -->
+            <a href="#" class="logo">
+                MyWebsite
+            </a>
 
-        <header id="site-header" class="site-header">
+            <!-- Navigation -->
+            <ul class="nav-links">
 
-            <div class="header-left">
+                <li>
+                    <a href="#home">Home</a>
+                </li>
 
-                <button
-                    type="button"
-                    id="menu-btn"
-                    class="icon-button"
-                    aria-label="মেনু খুলুন"
-                >
-                    ☰
-                </button>
+                <li>
+                    <a href="#about">About</a>
+                </li>
 
-                <a
-                    href="#home"
-                    class="brand"
-                    aria-label="FlikTide Home"
-                >
-                    ☀️
-                    <strong>FlikTide</strong>
-                </a>
+                <li>
+                    <a href="#services">Services</a>
+                </li>
 
-            </div>
+                <li>
+                    <a href="#contact">Contact</a>
+                </li>
 
-
-            <!-- Search -->
-            <form
-                id="search-form"
-                class="search-form"
-                role="search"
-            >
-
-                <input
-                    id="search-input"
-                    class="search-input"
-                    type="search"
-                    name="q"
-                    placeholder="ভিডিও, বিষয়, শিক্ষক খুঁজুন..."
-                    autocomplete="off"
-                >
-
-                <button
-                    type="submit"
-                    class="search-button"
-                    aria-label="খুঁজুন"
-                >
-                    🔍
-                </button>
-
-            </form>
-
-
-            <!-- Header Actions -->
-            <div class="header-actions">
-
-                <button
-                    type="button"
-                    id="create-btn"
-                    class="icon-button"
-                    aria-label="তৈরি করুন"
-                >
-                    ＋
-                </button>
-
-                <button
-                    type="button"
-                    id="notification-btn"
-                    class="icon-button notification-button"
-                    aria-label="নোটিফিকেশন"
-                >
-                    🔔
-                    <span
-                        id="notification-count"
-                        class="notification-count"
-                    >0</span>
-                </button>
-
-                <a
-                    href="#profile"
-                    id="profile-button"
-                    class="profile-button"
-                >
-                    👤
-                </a>
-
-            </div>
-
-        </header>
-
-
-        <!-- =================================================
-             DESKTOP / MOBILE NAVIGATION
-        ================================================== -->
-
-        <nav
-            id="main-navigation"
-            class="main-navigation"
-            aria-label="প্রধান নেভিগেশন"
-        >
-
-            <a href="#home">🏠 হোম</a>
-
-            <a href="#shorts">▶️ Shorts</a>
-
-            <a href="#explore">🔎 Explore</a>
-
-            <a href="#library">📚 আমার ক্লাস</a>
-
-            <a href="#history">🕘 ইতিহাস</a>
-
-            <a href="#courses">🎓 কোর্স</a>
-
-            <a href="#subjects">📖 বিষয়সমূহ</a>
-
-            <a href="#teachers">👩‍🏫 শিক্ষক</a>
-
-            <a href="#settings">⚙️ সেটিংস</a>
+            </ul>
 
         </nav>
 
-
-        <!-- =================================================
-             MAIN CONTENT
-        ================================================== -->
-
-        <main id="main-content">
+    </header>
 
 
-            <!-- =============================================
-                 HOME
-            ============================================== -->
+    <!-- =========================
+         HOME / HERO
+    ========================== -->
+    <main>
 
-            <section
-                id="home"
-                class="page-section home-page"
-            >
+        <section id="home" class="hero">
 
-                <div class="page-container">
+            <div class="hero-content">
 
-                    <div class="page-heading">
-                        <h1>আপনার জন্য</h1>
+                <h1>
+                    Welcome to MyWebsite
+                </h1>
+
+                <p>
+                    এটি আপনার ওয়েবসাইটের প্রধান অংশ।
+                    এখানে আপনার ওয়েবসাইটের পরিচিতি বা গুরুত্বপূর্ণ তথ্য দিতে পারেন।
+                </p>
+
+                <a href="#about" class="btn">
+                    Get Started
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ABOUT
+        ========================== -->
+        <section id="about" class="about">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <h2>
+                        About Us
+                    </h2>
+
+                    <p>
+                        আমাদের সম্পর্কে
+                    </p>
+
+                </div>
+
+                <div class="about-content">
+
+                    <p>
+                        এখানে আপনার ওয়েবসাইট, প্রতিষ্ঠান,
+                        অ্যাপ্লিকেশন বা প্রজেক্ট সম্পর্কে
+                        প্রয়োজনীয় তথ্য লিখতে পারবেন।
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SERVICES
+        ========================== -->
+        <section id="services" class="services">
+
+            <div class="container">
+
+                <div class="section-title">
+
+                    <h2>
+                        Our Services
+                    </h2>
+
+                    <p>
+                        আমাদের সেবাসমূহ
+                    </p>
+
+                </div>
+
+                <div class="service-grid">
+
+                    <div class="service-card">
+
+                        <h3>
+                            Service One
+                        </h3>
 
                         <p>
-                            আপনার পড়াশোনার জন্য নির্বাচিত ভিডিও।
+                            আপনার প্রথম সার্ভিস সম্পর্কে
+                            এখানে লিখুন।
                         </p>
-                    </div>
-
-
-                    <!-- Subject Tabs -->
-                    <div
-                        class="subject-tabs"
-                        role="tablist"
-                        aria-label="বিষয় নির্বাচন"
-                    >
-
-                        <button
-                            type="button"
-                            class="tab active"
-                            data-subject="all"
-                        >
-                            সব
-                        </button>
-
-                        <button
-                            type="button"
-                            class="tab"
-                            data-subject="science"
-                        >
-                            বিজ্ঞান
-                        </button>
-
-                        <button
-                            type="button"
-                            class="tab"
-                            data-subject="math"
-                        >
-                            গণিত
-                        </button>
-
-                        <button
-                            type="button"
-                            class="tab"
-                            data-subject="english"
-                        >
-                            ইংরেজি
-                        </button>
-
-                        <button
-                            type="button"
-                            class="tab"
-                            data-subject="bangla"
-                        >
-                            বাংলা
-                        </button>
-
-                        <button
-                            type="button"
-                            class="tab"
-                            data-subject="ict"
-                        >
-                            ICT
-                        </button>
 
                     </div>
 
 
-                    <!-- Recommended Videos -->
-                    <section class="content-section">
+                    <div class="service-card">
 
-                        <h2>আপনার জন্য নির্বাচিত</h2>
-
-                        <div
-                            id="recommended-videos"
-                            class="video-grid"
-                        >
-
-                            <!-- Video cards will appear here -->
-
-                        </div>
-
-                    </section>
-
-
-                    <!-- Educational Shorts -->
-                    <section class="content-section">
-
-                        <h2>শিক্ষামূলক Shorts</h2>
+                        <h3>
+                            Service Two
+                        </h3>
 
                         <p>
-                            অল্প সময়ে নতুন কিছু শিখুন।
+                            আপনার দ্বিতীয় সার্ভিস সম্পর্কে
+                            এখানে লিখুন।
                         </p>
 
-                        <a href="#shorts" class="section-link">
-                            সব দেখুন
-                        </a>
-
-                        <div
-                            id="home-shorts"
-                            class="shorts-grid"
-                        >
-                        </div>
-
-                    </section>
-
-
-                    <!-- Teacher Videos -->
-                    <section class="content-section">
-
-                        <h2>আপনার শিক্ষকদের নতুন ভিডিও</h2>
-
-                        <a href="#teachers" class="section-link">
-                            সব দেখুন
-                        </a>
-
-                        <div
-                            id="teacher-videos"
-                            class="video-grid"
-                        >
-                        </div>
-
-                    </section>
-
-                </div>
-
-            </section>
-
-
-            <!-- =============================================
-                 SHORTS
-            ============================================== -->
-
-            <section
-                id="shorts"
-                class="page-section shorts-page"
-                hidden
-            >
-
-                <div class="page-container">
-
-                    <h1>শিক্ষামূলক Shorts</h1>
-
-                    <p>
-                        দ্রুত ও সহজে শেখার ছোট ভিডিও।
-                    </p>
-
-                    <div
-                        id="shorts-feed"
-                        class="shorts-feed"
-                    >
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- =============================================
-                 EXPLORE
-            ============================================== -->
-
-            <section
-                id="explore"
-                class="page-section explore-page"
-                hidden
-            >
-
-                <div class="page-container">
-
-                    <h1>Explore</h1>
-
-                    <p>
-                        নতুন বিষয়, কোর্স ও শিক্ষকদের খুঁজে নিন।
-                    </p>
-
-
-                    <div class="explore-tabs">
-
-                        <button type="button">সব</button>
-                        <button type="button">বিজ্ঞান</button>
-                        <button type="button">গণিত</button>
-                        <button type="button">ইংরেজি</button>
-                        <button type="button">বাংলা</button>
-                        <button type="button">ICT</button>
-
                     </div>
 
 
-                    <div
-                        id="explore-results"
-                        class="explore-results"
-                    >
-                    </div>
+                    <div class="service-card">
 
-                </div>
+                        <h3>
+                            Service Three
+                        </h3>
 
-            </section>
-
-
-            <!-- =============================================
-                 LIBRARY
-            ============================================== -->
-
-            <section
-                id="library"
-                class="page-section library-page"
-                hidden
-            >
-
-                <div class="page-container">
-
-                    <h1>আমার ক্লাস</h1>
-
-                    <p>
-                        আপনার সংরক্ষিত ভিডিও, কোর্স ও ডাউনলোড এখানে পাবেন।
-                    </p>
-
-
-                    <div class="library-tabs">
-
-                        <button
-                            type="button"
-                            data-library-tab="courses"
-                        >
-                            কোর্স
-                        </button>
-
-                        <button
-                            type="button"
-                            data-library-tab="saved"
-                        >
-                            সংরক্ষিত
-                        </button>
-
-                        <button
-                            type="button"
-                            data-library-tab="downloads"
-                        >
-                            Downloads
-                        </button>
-
-                    </div>
-
-
-                    <div
-                        id="library-content"
-                        class="library-content"
-                    >
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- =============================================
-                 HISTORY
-            ============================================== -->
-
-            <section
-                id="history"
-                class="page-section history-page"
-                hidden
-            >
-
-                <div class="page-container">
-
-                    <h1>ইতিহাস</h1>
-
-                    <p>
-                        আপনি যে ভিডিওগুলো দেখেছেন সেগুলো এখানে থাকবে।
-                    </p>
-
-                    <button
-                        type="button"
-                        id="clear-history-btn"
-                    >
-                        ইতিহাস পরিষ্কার করুন
-                    </button>
-
-                    <div
-                        id="history-list"
-                        class="video-grid"
-                    >
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- =============================================
-                 COURSES
-            ============================================== -->
-
-            <section
-                id="courses"
-                class="page-section courses-page"
-                hidden
-            >
-
-                <div class="page-container">
-
-                    <h1>কোর্স</h1>
-
-                    <p>
-                        বিষয়ভিত্তিক সাজানো সম্পূর্ণ কোর্স।
-                    </p>
-
-                    <div
-                        id="course-list"
-                        class="course-grid"
-                    >
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- =============================================
-                 SUBJECTS
-            ============================================== -->
-
-            <section
-                id="subjects"
-                class="page-section subjects-page"
-                hidden
-            >
-
-                <div class="page-container">
-
-                    <h1>বিষয়সমূহ</h1>
-
-                    <p>
-                        আপনার পছন্দের বিষয় বেছে নিয়ে শেখা শুরু করুন।
-                    </p>
-
-
-                    <div class="subject-grid">
-
-                        <button type="button">
-                            🔬 বিজ্ঞান
-                        </button>
-
-                        <button type="button">
-                            📐 গণিত
-                        </button>
-
-                        <button type="button">
-                            🇬🇧 ইংরেজি
-                        </button>
-
-                        <button type="button">
-                            📚 বাংলা
-                        </button>
-
-                        <button type="button">
-                            💻 ICT
-                        </button>
-
-                        <button type="button">
-                            🌍 সাধারণ জ্ঞান
-                        </button>
+                        <p>
+                            আপনার তৃতীয় সার্ভিস সম্পর্কে
+                            এখানে লিখুন।
+                        </p>
 
                     </div>
 
                 </div>
 
-            </section>
+            </div>
+
+        </section>
 
 
-            <!-- =============================================
-                 TEACHERS
-            ============================================== -->
+        <!-- =========================
+             CONTACT
+        ========================== -->
+        <section id="contact" class="contact">
 
-            <section
-                id="teachers"
-                class="page-section teachers-page"
-                hidden
-            >
+            <div class="container">
 
-                <div class="page-container">
+                <div class="section-title">
 
-                    <h1>শিক্ষক</h1>
+                    <h2>
+                        Contact Us
+                    </h2>
 
                     <p>
-                        আপনার পছন্দের শিক্ষকদের অনুসরণ করুন।
+                        আমাদের সাথে যোগাযোগ করুন
                     </p>
-
-
-                    <div
-                        id="teacher-list"
-                        class="teacher-grid"
-                    >
-                    </div>
 
                 </div>
 
-            </section>
 
+                <form
+                    class="contact-form"
+                    action="#"
+                    method="post"
+                >
 
-            <!-- =============================================
-                 LOGIN / SIGNUP
-            ============================================== -->
+                    <div class="form-group">
 
-            <section
-                id="login"
-                class="page-section login-page"
-                hidden
-            >
-
-                <div class="auth-container">
-
-                    <h1>FlikTide-এ স্বাগতম</h1>
-
-                    <p>
-                        শেখার জন্য আপনার অ্যাকাউন্টে প্রবেশ করুন।
-                    </p>
-
-
-                    <!-- Login -->
-                    <form
-                        id="login-form"
-                        class="auth-form"
-                    >
-
-                        <label for="login-mobile">
-                            মোবাইল নম্বর
+                        <label for="name">
+                            Name
                         </label>
 
                         <input
-                            id="login-mobile"
-                            name="mobile"
-                            type="tel"
-                            placeholder="01XXXXXXXXX"
-                            required
-                        >
-
-
-                        <label for="login-password">
-                            পাসওয়ার্ড
-                        </label>
-
-                        <input
-                            id="login-password"
-                            name="password"
-                            type="password"
-                            placeholder="পাসওয়ার্ড"
-                            required
-                        >
-
-
-                        <button type="submit">
-                            লগইন
-                        </button>
-
-                    </form>
-
-
-                    <!-- Signup -->
-                    <button
-                        type="button"
-                        id="show-signup-btn"
-                    >
-                        নতুন অ্যাকাউন্ট তৈরি করুন
-                    </button>
-
-
-                    <form
-                        id="signup-form"
-                        class="auth-form"
-                        hidden
-                    >
-
-                        <label for="signup-name">
-                            আপনার নাম
-                        </label>
-
-                        <input
-                            id="signup-name"
-                            name="name"
                             type="text"
-                            placeholder="আপনার পূর্ণ নাম"
+                            id="name"
+                            name="name"
+                            placeholder="Your Name"
                             required
                         >
 
+                    </div>
 
-                        <label for="signup-mobile">
-                            মোবাইল নম্বর
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email
                         </label>
 
                         <input
-                            id="signup-mobile"
-                            name="mobile"
-                            type="tel"
-                            placeholder="01XXXXXXXXX"
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Your Email"
                             required
                         >
 
+                    </div>
 
-                        <label for="signup-password">
-                            পাসওয়ার্ড
+
+                    <div class="form-group">
+
+                        <label for="message">
+                            Message
                         </label>
 
-                        <input
-                            id="signup-password"
-                            name="password"
-                            type="password"
-                            placeholder="কমপক্ষে ৬ অক্ষর"
-                            minlength="6"
+                        <textarea
+                            id="message"
+                            name="message"
+                            placeholder="Write your message..."
                             required
-                        >
-
-
-                        <label for="signup-role">
-                            আপনি কে?
-                        </label>
-
-                        <select
-                            id="signup-role"
-                            name="role"
-                            required
-                        >
-
-                            <option value="">
-                                নির্বাচন করুন
-                            </option>
-
-                            <option value="student">
-                                শিক্ষার্থী
-                            </option>
-
-                            <option value="teacher">
-                                শিক্ষক
-                            </option>
-
-                        </select>
-
-
-                        <button type="submit">
-                            অ্যাকাউন্ট তৈরি করুন
-                        </button>
-
-                    </form>
-
-                </div>
-
-            </section>
-
-
-            <!-- =============================================
-                 PROFILE
-            ============================================== -->
-
-            <section
-                id="profile"
-                class="page-section profile-page"
-                hidden
-            >
-
-                <div class="page-container">
-
-                    <h1>প্রোফাইল</h1>
-
-                    <div
-                        id="profile-content"
-                        class="profile-content"
-                    >
-
-                        <div class="profile-avatar">
-                            👤
-                        </div>
-
-                        <h2 id="profile-name">
-                            অতিথি
-                        </h2>
-
-                        <p id="profile-role">
-                            লগইন করা হয়নি
-                        </p>
+                        ></textarea>
 
                     </div>
 
 
                     <button
-                        type="button"
-                        id="edit-profile-btn"
+                        type="submit"
+                        class="btn"
                     >
-                        প্রোফাইল সম্পাদনা
-                    </button>
-
-                    <button
-                        type="button"
-                        id="logout-btn"
-                    >
-                        লগআউট
-                    </button>
-
-                </div>
-
-            </section>
-
-
-            <!-- =============================================
-                 NOTIFICATIONS
-            ============================================== -->
-
-            <section
-                id="notifications"
-                class="page-section notification-page"
-                hidden
-            >
-
-                <div class="page-container">
-
-                    <h1>নোটিফিকেশন</h1>
-
-
-                    <div class="notification-actions">
-
-                        <button
-                            type="button"
-                            id="mark-all-read"
-                        >
-                            সব পড়া হয়েছে
-                        </button>
-
-                        <button
-                            type="button"
-                            data-notification-filter="all"
-                        >
-                            সব
-                        </button>
-
-                        <button
-                            type="button"
-                            data-notification-filter="unread"
-                        >
-                            অপঠিত
-                        </button>
-
-                    </div>
-
-
-                    <div
-                        id="notification-list"
-                        class="notification-list"
-                    >
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- =============================================
-                 SETTINGS
-            ============================================== -->
-
-            <section
-                id="settings"
-                class="page-section settings-page"
-                hidden
-            >
-
-                <div class="page-container">
-
-                    <h1>সেটিংস</h1>
-
-                    <div class="settings-list">
-
-                        <label>
-                            <span>Dark Mode</span>
-
-                            <input
-                                type="checkbox"
-                                id="dark-mode-toggle"
-                            >
-                        </label>
-
-
-                        <label>
-                            <span>নোটিফিকেশন</span>
-
-                            <input
-                                type="checkbox"
-                                id="notification-toggle"
-                                checked
-                            >
-                        </label>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-        </main>
-
-
-        <!-- =================================================
-             MOBILE BOTTOM NAVIGATION
-        ================================================== -->
-
-        <nav
-            id="bottom-navigation"
-            class="bottom-navigation"
-            aria-label="মোবাইল নেভিগেশন"
-        >
-
-            <a href="#home">
-                <span>🏠</span>
-                <small>হোম</small>
-            </a>
-
-            <a href="#shorts">
-                <span>▶️</span>
-                <small>Shorts</small>
-            </a>
-
-            <button
-                type="button"
-                id="bottom-create-btn"
-                aria-label="তৈরি করুন"
-            >
-                ＋
-            </button>
-
-            <a href="#library">
-                <span>📚</span>
-                <small>ক্লাস</small>
-            </a>
-
-            <a href="#profile">
-                <span>👤</span>
-                <small>প্রোফাইল</small>
-            </a>
-
-        </nav>
-
-
-        <!-- =================================================
-             TOAST CONTAINER
-        ================================================== -->
-
-        <div
-            id="toast-container"
-            class="toast-container"
-            aria-live="polite"
-            aria-atomic="true"
-        ></div>
-
-
-        <!-- =================================================
-             LOADING / SKELETON
-        ================================================== -->
-
-        <div
-            id="loading-screen"
-            class="loading-screen"
-            hidden
-        >
-
-            <div class="skeleton-container">
-
-                <div class="skeleton skeleton-title"></div>
-                <div class="skeleton skeleton-text"></div>
-                <div class="skeleton skeleton-card"></div>
-
-            </div>
-
-        </div>
-
-
-        <!-- =================================================
-             VIDEO MODAL
-        ================================================== -->
-
-        <div
-            id="video-modal"
-            class="modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="video-modal-title"
-            hidden
-        >
-
-            <div class="modal-content">
-
-                <button
-                    type="button"
-                    class="modal-close"
-                    data-close-modal="video-modal"
-                    aria-label="বন্ধ করুন"
-                >
-                    ×
-                </button>
-
-                <div class="video-player-wrapper">
-
-                    <video
-                        id="main-video-player"
-                        controls
-                        playsinline
-                    >
-                    </video>
-
-                </div>
-
-                <h2 id="video-modal-title">
-                    ভিডিও শিরোনাম
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <!-- =================================================
-             SEARCH MODAL
-        ================================================== -->
-
-        <div
-            id="search-modal"
-            class="modal"
-            role="dialog"
-            aria-modal="true"
-            hidden
-        >
-
-            <div class="modal-content">
-
-                <button
-                    type="button"
-                    class="modal-close"
-                    data-close-modal="search-modal"
-                >
-                    ×
-                </button>
-
-                <h2>কী শিখতে চান?</h2>
-
-                <form id="modal-search-form">
-
-                    <input
-                        type="search"
-                        id="modal-search-input"
-                        placeholder="বিষয়, ভিডিও অথবা শিক্ষক খুঁজুন"
-                    >
-
-                    <button type="submit">
-                        খুঁজুন
-                    </button>
-
-                </form>
-
-                <div
-                    id="search-results"
-                    class="search-results"
-                >
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- =================================================
-             CREATE / UPLOAD MODAL
-        ================================================== -->
-
-        <div
-            id="create-modal"
-            class="modal"
-            role="dialog"
-            aria-modal="true"
-            hidden
-        >
-
-            <div class="modal-content">
-
-                <button
-                    type="button"
-                    class="modal-close"
-                    data-close-modal="create-modal"
-                >
-                    ×
-                </button>
-
-                <h2>ভিডিও তৈরি করুন</h2>
-
-                <form id="upload-video-form">
-
-                    <label for="video-title">
-                        ভিডিও শিরোনাম
-                    </label>
-
-                    <input
-                        id="video-title"
-                        name="title"
-                        type="text"
-                        required
-                    >
-
-
-                    <label for="video-subject">
-                        বিষয়
-                    </label>
-
-                    <select
-                        id="video-subject"
-                        name="subject"
-                        required
-                    >
-
-                        <option value="">
-                            বিষয় নির্বাচন করুন
-                        </option>
-
-                        <option value="science">
-                            বিজ্ঞান
-                        </option>
-
-                        <option value="math">
-                            গণিত
-                        </option>
-
-                        <option value="english">
-                            ইংরেজি
-                        </option>
-
-                        <option value="bangla">
-                            বাংলা
-                        </option>
-
-                        <option value="ict">
-                            ICT
-                        </option>
-
-                    </select>
-
-
-                    <label for="video-description">
-                        বিবরণ
-                    </label>
-
-                    <textarea
-                        id="video-description"
-                        name="description"
-                        rows="4"
-                    ></textarea>
-
-
-                    <label>
-                        <input
-                            type="checkbox"
-                            id="is-shorts"
-                            name="isShorts"
-                        >
-
-                        এই ভিডিওটি Shorts হিসেবে প্রকাশ করুন
-                    </label>
-
-
-                    <button type="submit">
-                        ভিডিও প্রকাশ করুন
+                        Send Message
                     </button>
 
                 </form>
 
             </div>
 
-        </div>
+        </section>
+
+    </main>
 
 
-        <!-- =================================================
-             FOOTER
-        ================================================== -->
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer>
 
-        <footer class="site-footer">
+        <p>
+            © 2026 MyWebsite. All Rights Reserved.
+        </p>
 
-            <p>
-                © 2026 FlikTide
-            </p>
-
-            <p>
-                Learn. Flow. Grow.
-            </p>
-
-            <p>
-                🎓 FlikTide Education
-            </p>
-
-        </footer>
-
-    </div>
+    </footer>
 
 
-    <!-- =====================================================
+    <!-- =========================
          JAVASCRIPT
-    ====================================================== -->
-
-    <!-- Toast System -->
-    <script src="toast.js" defer></script>
-
-    <!-- Library System -->
-    <script src="library.js" defer></script>
-
-
-    <!-- =====================================================
-         BASIC APP ROUTER
-         বর্তমানে আলাদা app.js নেই, তাই index.html-এর
-         শেষে foundation-level navigation রাখা হয়েছে।
-    ====================================================== -->
-
+    ========================== -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
 
-            const sections = document.querySelectorAll(".page-section");
+        // Basic JavaScript
+        console.log("Website loaded successfully.");
 
-            function showPage(pageId) {
-
-                sections.forEach(function (section) {
-                    section.hidden = section.id !== pageId;
-                });
-
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-            }
-
-
-            function handleRoute() {
-
-                const hash = window.location.hash.replace("#", "");
-
-                const validPage = document.getElementById(hash);
-
-                if (validPage && validPage.classList.contains("page-section")) {
-                    showPage(hash);
-                    return;
-                }
-
-                showPage("home");
-            }
-
-
-            window.addEventListener("hashchange", handleRoute);
-
-            handleRoute();
-
-
-            /* ============================================
-               MENU BUTTON
-            ============================================ */
-
-            const menuButton = document.getElementById("menu-btn");
-
-            if (menuButton) {
-
-                menuButton.addEventListener("click", function () {
-
-                    const navigation =
-                        document.getElementById("main-navigation");
-
-                    if (navigation) {
-                        navigation.classList.toggle("is-open");
-                    }
-
-                });
-
-            }
-
-
-            /* ============================================
-               CREATE BUTTON
-            ============================================ */
-
-            function openCreateModal() {
-
-                const modal =
-                    document.getElementById("create-modal");
-
-                if (modal) {
-                    modal.hidden = false;
-                }
-
-            }
-
-
-            document
-                .getElementById("create-btn")
-                ?.addEventListener("click", openCreateModal);
-
-            document
-                .getElementById("bottom-create-btn")
-                ?.addEventListener("click", openCreateModal);
-
-
-            /* ============================================
-               NOTIFICATION BUTTON
-            ============================================ */
-
-            document
-                .getElementById("notification-btn")
-                ?.addEventListener("click", function () {
-
-                    window.location.hash = "notifications";
-
-                });
-
-
-            /* ============================================
-               MODAL CLOSE
-            ============================================ */
-
-            document
-                .querySelectorAll("[data-close-modal]")
-                .forEach(function (button) {
-
-                    button.addEventListener("click", function () {
-
-                        const modalId =
-                            button.dataset.closeModal;
-
-                        const modal =
-                            document.getElementById(modalId);
-
-                        if (modal) {
-                            modal.hidden = true;
-                        }
-
-                    });
-
-                });
-
-
-            /* ============================================
-               DARK MODE
-            ============================================ */
-
-            const darkModeToggle =
-                document.getElementById("dark-mode-toggle");
-
-            if (darkModeToggle) {
-
-                darkModeToggle.addEventListener("change", function () {
-
-                    document.body.classList.toggle(
-                        "dark-mode",
-                        darkModeToggle.checked
-                    );
-
-                    localStorage.setItem(
-                        "fliktide-dark-mode",
-                        darkModeToggle.checked
-                    );
-
-                });
-
-
-                const savedDarkMode =
-                    localStorage.getItem("fliktide-dark-mode");
-
-                if (savedDarkMode === "true") {
-
-                    darkModeToggle.checked = true;
-
-                    document.body.classList.add("dark-mode");
-
-                }
-
-            }
-
-
-            /* ============================================
-               SEARCH
-            ============================================ */
-
-            const searchForm =
-                document.getElementById("search-form");
-
-            if (searchForm) {
-
-                searchForm.addEventListener("submit", function (event) {
-
-                    event.preventDefault();
-
-                    const input =
-                        document.getElementById("search-input");
-
-                    const query =
-                        input ? input.value.trim() : "";
-
-                    if (!query) {
-                        return;
-                    }
-
-                    const modal =
-                        document.getElementById("search-modal");
-
-                    const modalInput =
-                        document.getElementById("modal-search-input");
-
-                    if (modalInput) {
-                        modalInput.value = query;
-                    }
-
-                    if (modal) {
-                        modal.hidden = false;
-                    }
-
-                });
-
-            }
-
-
-            /* ============================================
-               LOGIN
-            ============================================ */
-
-            const loginForm =
-                document.getElementById("login-form");
-
-            if (loginForm) {
-
-                loginForm.addEventListener("submit", function (event) {
-
-                    event.preventDefault();
-
-                    /*
-                     * Backend authentication পরে এখানে যুক্ত হবে।
-                     * বর্তমানে এটি শুধু UI foundation।
-                     */
-
-                    console.log("Login submitted");
-
-                });
-
-            }
-
-
-            /* ============================================
-               SIGNUP
-            ============================================ */
-
-            const signupForm =
-                document.getElementById("signup-form");
-
-            const showSignupButton =
-                document.getElementById("show-signup-btn");
-
-            if (showSignupButton && signupForm) {
-
-                showSignupButton.addEventListener("click", function () {
-
-                    signupForm.hidden = !signupForm.hidden;
-
-                });
-
-            }
-
-
-            if (signupForm) {
-
-                signupForm.addEventListener("submit", function (event) {
-
-                    event.preventDefault();
-
-                    /*
-                     * Real account creation-এর জন্য
-                     * backend/database প্রয়োজন হবে।
-                     */
-
-                    console.log("Signup submitted");
-
-                });
-
-            }
-
-
-            /* ============================================
-               LOGOUT
-            ============================================ */
-
-            document
-                .getElementById("logout-btn")
-                ?.addEventListener("click", function () {
-
-                    localStorage.removeItem("fliktide-user");
-
-                    window.location.hash = "home";
-
-                });
-
-
-            /* ============================================
-               CLEAR HISTORY
-            ============================================ */
-
-            document
-                .getElementById("clear-history-btn")
-                ?.addEventListener("click", function () {
-
-                    localStorage.removeItem("fliktide-history");
-
-                    const historyList =
-                        document.getElementById("history-list");
-
-                    if (historyList) {
-                        historyList.innerHTML = "";
-                    }
-
-                });
-
-        });
     </script>
 
 </body>
