@@ -3,12 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>FlikTide - Login</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0f1115;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-btn {
+            display: inline-block;
+            padding: 14px 45px;
+            background: #ffffff;
+            color: #0f1115;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            background: #e8e8e8;
+        }
+
+        .login-btn:active {
+            transform: scale(0.96);
+        }
+    </style>
 </head>
 
 <body>
 
-    <a href="../Login/Signup.html">Login</a>
+    <a class="login-btn" href="../Login/Signup.html">
+        Login
+    </a>
 
 </body>
 </html>
